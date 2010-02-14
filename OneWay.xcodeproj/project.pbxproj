@@ -1,0 +1,692 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B19DE50112749EF00B13C62 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B19DE4F112749EF00B13C62 /* Sparkle.framework */; };
+		0B19DE59112749FA00B13C62 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B19DE4F112749EF00B13C62 /* Sparkle.framework */; };
+		0B19DE8711274B4E00B13C62 /* AppleScript.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DE8411274B4E00B13C62 /* AppleScript.c */; };
+		0B19DE8811274B4E00B13C62 /* Plugin.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DE8611274B4E00B13C62 /* Plugin.c */; };
+		0B19DEAE11274C7700B13C62 /* LocationSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEA511274C7700B13C62 /* LocationSheet.m */; };
+		0B19DEAF11274C7700B13C62 /* PasswordSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEA711274C7700B13C62 /* PasswordSheet.m */; };
+		0B19DEB011274C7700B13C62 /* ProgressGradients.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEA911274C7700B13C62 /* ProgressGradients.m */; };
+		0B19DEB111274C7700B13C62 /* TransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEAB11274C7700B13C62 /* TransferCell.m */; };
+		0B19DEB211274C7700B13C62 /* WelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEAD11274C7700B13C62 /* WelcomeView.m */; };
+		0B19DEB511274C8C00B13C62 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEB411274C8C00B13C62 /* Location.m */; };
+		0B19DEC611274CFB00B13C62 /* NSString+Truncate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEC311274CFB00B13C62 /* NSString+Truncate.m */; };
+		0B19DEC711274CFB00B13C62 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEC511274CFB00B13C62 /* NSString+UUID.m */; };
+		0B6E84B71127540600296175 /* Controller+Scripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B21127540600296175 /* Controller+Scripting.m */; };
+		0B6E84B81127540600296175 /* Location+Scripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B41127540600296175 /* Location+Scripting.m */; };
+		0B6E84B91127540600296175 /* QueueNewScriptCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B61127540600296175 /* QueueNewScriptCommand.m */; };
+		0B6E858C1127631800296175 /* clear.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E85821127631800296175 /* clear.png */; };
+		0B6E858D1127631800296175 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E85831127631800296175 /* edit.png */; };
+		0B6E858E1127631800296175 /* log.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E85841127631800296175 /* log.png */; };
+		0B6E858F1127631800296175 /* minus.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E85851127631800296175 /* minus.png */; };
+		0B6E85901127631800296175 /* OneWay.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E85861127631800296175 /* OneWay.icns */; };
+		0B6E85911127631800296175 /* oneway_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E85871127631800296175 /* oneway_screen.png */; };
+		0B6E85921127631800296175 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E85881127631800296175 /* plus.png */; };
+		0B6E85931127631800296175 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E85891127631800296175 /* stop.png */; };
+		0B6E85941127631800296175 /* transfers.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E858A1127631800296175 /* transfers.png */; };
+		0B6E85951127631800296175 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E858B1127631800296175 /* upArrow.png */; };
+		0BAB8D221127476700AD061A /* objective-curl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAB8D211127476700AD061A /* objective-curl.framework */; };
+		0BAB8D341127476E00AD061A /* objective-curl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAB8D211127476700AD061A /* objective-curl.framework */; };
+		0BAB8D3C1127480A00AD061A /* LocationSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D361127480A00AD061A /* LocationSheet.xib */; };
+		0BAB8D3D1127480A00AD061A /* PasswordSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D381127480A00AD061A /* PasswordSheet.xib */; };
+		0BAB8D3E1127480A00AD061A /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D3A1127480A00AD061A /* WelcomeView.xib */; };
+		0BAB8D451127482300AD061A /* dsa_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D3F1127482300AD061A /* dsa_public.pem */; };
+		0BAB8D461127482300AD061A /* OneWay.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D401127482300AD061A /* OneWay.sdef */; };
+		0BAB8D471127482300AD061A /* OneWayPlugin-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D411127482300AD061A /* OneWayPlugin-Info.plist */; };
+		0BAB8D481127482300AD061A /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D421127482300AD061A /* README */; };
+		0BAB8D491127482300AD061A /* uninstall.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D431127482300AD061A /* uninstall.sh */; };
+		0BAB8D4A1127482300AD061A /* version.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D441127482300AD061A /* version.plist */; };
+		0BAB8D531127484D00AD061A /* Controller+Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D4F1127484D00AD061A /* Controller+Toolbar.m */; };
+		0BAB8D541127484D00AD061A /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D511127484D00AD061A /* Controller.m */; };
+		0BAB8D57112748A000AD061A /* OWConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D56112748A000AD061A /* OWConstants.m */; };
+		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0BAB8D251127476800AD061A /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0B19DE59112749FA00B13C62 /* Sparkle.framework in Copy Frameworks */,
+				0BAB8D341127476E00AD061A /* objective-curl.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0B19DE4F112749EF00B13C62 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "../Frameworks/Sparkle 1.5b6/Sparkle.framework"; sourceTree = SOURCE_ROOT; };
+		0B19DE7D11274B1700B13C62 /* OneWayPlugin.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneWayPlugin.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B19DE8411274B4E00B13C62 /* AppleScript.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AppleScript.c; sourceTree = "<group>"; };
+		0B19DE8511274B4E00B13C62 /* AppleScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleScript.h; sourceTree = "<group>"; };
+		0B19DE8611274B4E00B13C62 /* Plugin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Plugin.c; sourceTree = "<group>"; };
+		0B19DEA411274C7700B13C62 /* LocationSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSheet.h; sourceTree = "<group>"; };
+		0B19DEA511274C7700B13C62 /* LocationSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSheet.m; sourceTree = "<group>"; };
+		0B19DEA611274C7700B13C62 /* PasswordSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordSheet.h; sourceTree = "<group>"; };
+		0B19DEA711274C7700B13C62 /* PasswordSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordSheet.m; sourceTree = "<group>"; };
+		0B19DEA811274C7700B13C62 /* ProgressGradients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressGradients.h; sourceTree = "<group>"; };
+		0B19DEA911274C7700B13C62 /* ProgressGradients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressGradients.m; sourceTree = "<group>"; };
+		0B19DEAA11274C7700B13C62 /* TransferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferCell.h; sourceTree = "<group>"; };
+		0B19DEAB11274C7700B13C62 /* TransferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferCell.m; sourceTree = "<group>"; };
+		0B19DEAC11274C7700B13C62 /* WelcomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeView.h; sourceTree = "<group>"; };
+		0B19DEAD11274C7700B13C62 /* WelcomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeView.m; sourceTree = "<group>"; };
+		0B19DEB311274C8C00B13C62 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		0B19DEB411274C8C00B13C62 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		0B19DEC211274CFB00B13C62 /* NSString+Truncate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Truncate.h"; sourceTree = "<group>"; };
+		0B19DEC311274CFB00B13C62 /* NSString+Truncate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Truncate.m"; sourceTree = "<group>"; };
+		0B19DEC411274CFB00B13C62 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
+		0B19DEC511274CFB00B13C62 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
+		0B6E84B11127540600296175 /* Controller+Scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+Scripting.h"; sourceTree = "<group>"; };
+		0B6E84B21127540600296175 /* Controller+Scripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Controller+Scripting.m"; sourceTree = "<group>"; };
+		0B6E84B31127540600296175 /* Location+Scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Location+Scripting.h"; sourceTree = "<group>"; };
+		0B6E84B41127540600296175 /* Location+Scripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Location+Scripting.m"; sourceTree = "<group>"; };
+		0B6E84B51127540600296175 /* QueueNewScriptCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueNewScriptCommand.h; sourceTree = "<group>"; };
+		0B6E84B61127540600296175 /* QueueNewScriptCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueNewScriptCommand.m; sourceTree = "<group>"; };
+		0B6E85821127631800296175 /* clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clear.png; sourceTree = "<group>"; };
+		0B6E85831127631800296175 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
+		0B6E85841127631800296175 /* log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = log.png; sourceTree = "<group>"; };
+		0B6E85851127631800296175 /* minus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minus.png; sourceTree = "<group>"; };
+		0B6E85861127631800296175 /* OneWay.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = OneWay.icns; sourceTree = "<group>"; };
+		0B6E85871127631800296175 /* oneway_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oneway_screen.png; sourceTree = "<group>"; };
+		0B6E85881127631800296175 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		0B6E85891127631800296175 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		0B6E858A1127631800296175 /* transfers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transfers.png; sourceTree = "<group>"; };
+		0B6E858B1127631800296175 /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
+		0BAB8D211127476700AD061A /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "../objective-curl/build/Release/objective-curl.framework"; sourceTree = SOURCE_ROOT; };
+		0BAB8D371127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LocationSheet.xib; sourceTree = "<group>"; };
+		0BAB8D391127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PasswordSheet.xib; sourceTree = "<group>"; };
+		0BAB8D3B1127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/WelcomeView.xib; sourceTree = "<group>"; };
+		0BAB8D3F1127482300AD061A /* dsa_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_public.pem; sourceTree = "<group>"; };
+		0BAB8D401127482300AD061A /* OneWay.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.sdef; path = OneWay.sdef; sourceTree = "<group>"; };
+		0BAB8D411127482300AD061A /* OneWayPlugin-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OneWayPlugin-Info.plist"; sourceTree = "<group>"; };
+		0BAB8D421127482300AD061A /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		0BAB8D431127482300AD061A /* uninstall.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = uninstall.sh; sourceTree = "<group>"; };
+		0BAB8D441127482300AD061A /* version.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = version.plist; sourceTree = "<group>"; };
+		0BAB8D4E1127484D00AD061A /* Controller+Toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+Toolbar.h"; sourceTree = "<group>"; };
+		0BAB8D4F1127484D00AD061A /* Controller+Toolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Controller+Toolbar.m"; sourceTree = "<group>"; };
+		0BAB8D501127484D00AD061A /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		0BAB8D511127484D00AD061A /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		0BAB8D55112748A000AD061A /* OWConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWConstants.h; sourceTree = "<group>"; };
+		0BAB8D56112748A000AD061A /* OWConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWConstants.m; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* OneWay_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneWay_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* OneWay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneWay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0B19DE7B11274B1700B13C62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				0BAB8D221127476700AD061A /* objective-curl.framework in Frameworks */,
+				0B19DE50112749EF00B13C62 /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				0BAB8D131127451800AD061A /* plugin */,
+				0BAB8D121127450B00AD061A /* view */,
+				0BAB8D111127450500AD061A /* model */,
+				0BAB8D10112744FA00AD061A /* scripting */,
+				0BAB8D0F112744F000AD061A /* control */,
+				0BAB8D0E112744EA00AD061A /* enum */,
+				0BAB8D0D112744E300AD061A /* extras */,
+				0BAB8D0C112744DB00AD061A /* lib */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		0B6E8581112762F400296175 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				0B6E85821127631800296175 /* clear.png */,
+				0B6E85831127631800296175 /* edit.png */,
+				0B6E85841127631800296175 /* log.png */,
+				0B6E85851127631800296175 /* minus.png */,
+				0B6E85861127631800296175 /* OneWay.icns */,
+				0B6E85871127631800296175 /* oneway_screen.png */,
+				0B6E85881127631800296175 /* plus.png */,
+				0B6E85891127631800296175 /* stop.png */,
+				0B6E858A1127631800296175 /* transfers.png */,
+				0B6E858B1127631800296175 /* upArrow.png */,
+			);
+			path = icons;
+			sourceTree = "<group>";
+		};
+		0BAB8D0C112744DB00AD061A /* lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		0BAB8D0D112744E300AD061A /* extras */ = {
+			isa = PBXGroup;
+			children = (
+				0B19DEC211274CFB00B13C62 /* NSString+Truncate.h */,
+				0B19DEC311274CFB00B13C62 /* NSString+Truncate.m */,
+				0B19DEC411274CFB00B13C62 /* NSString+UUID.h */,
+				0B19DEC511274CFB00B13C62 /* NSString+UUID.m */,
+			);
+			path = extras;
+			sourceTree = "<group>";
+		};
+		0BAB8D0E112744EA00AD061A /* enum */ = {
+			isa = PBXGroup;
+			children = (
+				0BAB8D55112748A000AD061A /* OWConstants.h */,
+				0BAB8D56112748A000AD061A /* OWConstants.m */,
+			);
+			path = enum;
+			sourceTree = "<group>";
+		};
+		0BAB8D0F112744F000AD061A /* control */ = {
+			isa = PBXGroup;
+			children = (
+				0BAB8D4E1127484D00AD061A /* Controller+Toolbar.h */,
+				0BAB8D4F1127484D00AD061A /* Controller+Toolbar.m */,
+				0BAB8D501127484D00AD061A /* Controller.h */,
+				0BAB8D511127484D00AD061A /* Controller.m */,
+			);
+			path = control;
+			sourceTree = "<group>";
+		};
+		0BAB8D10112744FA00AD061A /* scripting */ = {
+			isa = PBXGroup;
+			children = (
+				0B6E84B11127540600296175 /* Controller+Scripting.h */,
+				0B6E84B21127540600296175 /* Controller+Scripting.m */,
+				0B6E84B31127540600296175 /* Location+Scripting.h */,
+				0B6E84B41127540600296175 /* Location+Scripting.m */,
+				0B6E84B51127540600296175 /* QueueNewScriptCommand.h */,
+				0B6E84B61127540600296175 /* QueueNewScriptCommand.m */,
+			);
+			path = scripting;
+			sourceTree = "<group>";
+		};
+		0BAB8D111127450500AD061A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0B19DEB311274C8C00B13C62 /* Location.h */,
+				0B19DEB411274C8C00B13C62 /* Location.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		0BAB8D121127450B00AD061A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				0B19DEA411274C7700B13C62 /* LocationSheet.h */,
+				0B19DEA511274C7700B13C62 /* LocationSheet.m */,
+				0B19DEA611274C7700B13C62 /* PasswordSheet.h */,
+				0B19DEA711274C7700B13C62 /* PasswordSheet.m */,
+				0B19DEA811274C7700B13C62 /* ProgressGradients.h */,
+				0B19DEA911274C7700B13C62 /* ProgressGradients.m */,
+				0B19DEAA11274C7700B13C62 /* TransferCell.h */,
+				0B19DEAB11274C7700B13C62 /* TransferCell.m */,
+				0B19DEAC11274C7700B13C62 /* WelcomeView.h */,
+				0B19DEAD11274C7700B13C62 /* WelcomeView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		0BAB8D131127451800AD061A /* plugin */ = {
+			isa = PBXGroup;
+			children = (
+				0B19DE8411274B4E00B13C62 /* AppleScript.c */,
+				0B19DE8511274B4E00B13C62 /* AppleScript.h */,
+				0B19DE8611274B4E00B13C62 /* Plugin.c */,
+			);
+			path = plugin;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0B19DE4F112749EF00B13C62 /* Sparkle.framework */,
+				0BAB8D211127476700AD061A /* objective-curl.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* OneWay.app */,
+				0B19DE7D11274B1700B13C62 /* OneWayPlugin.plugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* OneWay */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = OneWay;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* OneWay_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0B6E8581112762F400296175 /* icons */,
+				0BAB8D3F1127482300AD061A /* dsa_public.pem */,
+				0BAB8D401127482300AD061A /* OneWay.sdef */,
+				0BAB8D411127482300AD061A /* OneWayPlugin-Info.plist */,
+				0BAB8D421127482300AD061A /* README */,
+				0BAB8D431127482300AD061A /* uninstall.sh */,
+				0BAB8D441127482300AD061A /* version.plist */,
+				0BAB8D361127480A00AD061A /* LocationSheet.xib */,
+				0BAB8D381127480A00AD061A /* PasswordSheet.xib */,
+				0BAB8D3A1127480A00AD061A /* WelcomeView.xib */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0B19DE7C11274B1700B13C62 /* OneWayPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B19DE8311274B2200B13C62 /* Build configuration list for PBXNativeTarget "OneWayPlugin" */;
+			buildPhases = (
+				0B19DE7911274B1700B13C62 /* Resources */,
+				0B19DE7A11274B1700B13C62 /* Sources */,
+				0B19DE7B11274B1700B13C62 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneWayPlugin;
+			productName = OneWayPlugin;
+			productReference = 0B19DE7D11274B1700B13C62 /* OneWayPlugin.plugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8D1107260486CEB800E47090 /* OneWay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "OneWay" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				0BAB8D251127476800AD061A /* Copy Frameworks */,
+				0B6E84871127518900296175 /* Copy Plugin */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneWay;
+			productInstallPath = "$(HOME)/Applications";
+			productName = OneWay;
+			productReference = 8D1107320486CEB800E47090 /* OneWay.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "OneWay" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* OneWay */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* OneWay */,
+				0B19DE7C11274B1700B13C62 /* OneWayPlugin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0B19DE7911274B1700B13C62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				0BAB8D3C1127480A00AD061A /* LocationSheet.xib in Resources */,
+				0BAB8D3D1127480A00AD061A /* PasswordSheet.xib in Resources */,
+				0BAB8D3E1127480A00AD061A /* WelcomeView.xib in Resources */,
+				0BAB8D451127482300AD061A /* dsa_public.pem in Resources */,
+				0BAB8D461127482300AD061A /* OneWay.sdef in Resources */,
+				0BAB8D471127482300AD061A /* OneWayPlugin-Info.plist in Resources */,
+				0BAB8D481127482300AD061A /* README in Resources */,
+				0BAB8D491127482300AD061A /* uninstall.sh in Resources */,
+				0BAB8D4A1127482300AD061A /* version.plist in Resources */,
+				0B6E858C1127631800296175 /* clear.png in Resources */,
+				0B6E858D1127631800296175 /* edit.png in Resources */,
+				0B6E858E1127631800296175 /* log.png in Resources */,
+				0B6E858F1127631800296175 /* minus.png in Resources */,
+				0B6E85901127631800296175 /* OneWay.icns in Resources */,
+				0B6E85911127631800296175 /* oneway_screen.png in Resources */,
+				0B6E85921127631800296175 /* plus.png in Resources */,
+				0B6E85931127631800296175 /* stop.png in Resources */,
+				0B6E85941127631800296175 /* transfers.png in Resources */,
+				0B6E85951127631800296175 /* upArrow.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B6E84871127518900296175 /* Copy Plugin */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Plugin";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -r $TARGET_BUILD_DIR/OneWayPlugin.plugin \\\n$TARGET_BUILD_DIR/OneWay.app/Contents/Resources/";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0B19DE7A11274B1700B13C62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B19DE8711274B4E00B13C62 /* AppleScript.c in Sources */,
+				0B19DE8811274B4E00B13C62 /* Plugin.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				0BAB8D531127484D00AD061A /* Controller+Toolbar.m in Sources */,
+				0BAB8D541127484D00AD061A /* Controller.m in Sources */,
+				0BAB8D57112748A000AD061A /* OWConstants.m in Sources */,
+				0B19DEAE11274C7700B13C62 /* LocationSheet.m in Sources */,
+				0B19DEAF11274C7700B13C62 /* PasswordSheet.m in Sources */,
+				0B19DEB011274C7700B13C62 /* ProgressGradients.m in Sources */,
+				0B19DEB111274C7700B13C62 /* TransferCell.m in Sources */,
+				0B19DEB211274C7700B13C62 /* WelcomeView.m in Sources */,
+				0B19DEB511274C8C00B13C62 /* Location.m in Sources */,
+				0B19DEC611274CFB00B13C62 /* NSString+Truncate.m in Sources */,
+				0B19DEC711274CFB00B13C62 /* NSString+UUID.m in Sources */,
+				0B6E84B71127540600296175 /* Controller+Scripting.m in Sources */,
+				0B6E84B81127540600296175 /* Location+Scripting.m in Sources */,
+				0B6E84B91127540600296175 /* QueueNewScriptCommand.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0BAB8D361127480A00AD061A /* LocationSheet.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BAB8D371127480A00AD061A /* English */,
+			);
+			name = LocationSheet.xib;
+			sourceTree = "<group>";
+		};
+		0BAB8D381127480A00AD061A /* PasswordSheet.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BAB8D391127480A00AD061A /* English */,
+			);
+			name = PasswordSheet.xib;
+			sourceTree = "<group>";
+		};
+		0BAB8D3A1127480A00AD061A /* WelcomeView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BAB8D3B1127480A00AD061A /* English */,
+			);
+			name = WelcomeView.xib;
+			sourceTree = "<group>";
+		};
+		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58150DA1D0A300B32029 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0B19DE7E11274B1700B13C62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				INFOPLIST_FILE = "OneWayPlugin-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Carbon,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = OneWayPlugin;
+				WRAPPER_EXTENSION = plugin;
+			};
+			name = Debug;
+		};
+		0B19DE7F11274B1700B13C62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				INFOPLIST_FILE = "OneWayPlugin-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Carbon,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = OneWayPlugin;
+				WRAPPER_EXTENSION = plugin;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../objective-curl/build/Release\"",
+					"\"$(SRCROOT)/../Frameworks/Sparkle 1.5b6\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OneWay_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = OneWay;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../objective-curl/build/Release\"",
+					"\"$(SRCROOT)/../Frameworks/Sparkle 1.5b6\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OneWay_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = OneWay;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0B19DE8311274B2200B13C62 /* Build configuration list for PBXNativeTarget "OneWayPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B19DE7E11274B1700B13C62 /* Debug */,
+				0B19DE7F11274B1700B13C62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "OneWay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "OneWay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
