@@ -17,12 +17,17 @@
 #import "NSString+Truncate.h"
 
 
+
 @implementation Controller
 
 @synthesize transfers;
+
 @synthesize savedLocations;
+
 @synthesize totalTransfers;
+
 @synthesize totalActiveTransfers;
+
 
 
 - (id)init
@@ -70,6 +75,7 @@
 }
 
 
+
 - (void)dealloc
 {
 	[savedLocations release], savedLocations = nil;
@@ -83,6 +89,7 @@
 	
 	[super dealloc];
 }
+
 
 
 - (void)awakeFromNib
@@ -112,6 +119,7 @@
 	// Update the status
 	[self updateStatusLabel];
 }
+
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification 
@@ -154,6 +162,7 @@
 }
 
 
+
 /*
  * Applicatoin termination handler, update the context menu items and save all user data (transfers, locations)
  *
@@ -165,6 +174,7 @@
 	[self updateContextMenu];
 	[self saveUserData];
 }
+
 
 
 /*
@@ -211,9 +221,6 @@
 
 
 
-
-
-
 - (void)startTransfer:(NSArray *)fileList toLocation:(Location *)aLocation
 {
 	NSLog(@"Starting upload of %d files to %@", [fileList count], [aLocation hostname]);
@@ -228,16 +235,15 @@
 											  password:[aLocation password]
 											 directory:[aLocation directory]
 												  port:[[aLocation port] intValue]];
-
+	
+	
+	[record setStatusMessage:@"Queued"];
+	
 	[transfers addObject:record];
 	[transferTable reloadData];
 	
 	[self updateStatusLabel];
 }
-
-
-
-
 
 
 
@@ -274,11 +280,11 @@
 		for (int i = 0; i < [savedLocations count]; i++)
 		{
 			Location *rec = [savedLocations objectAtIndex:i];
-			if ([rec type] == kSecProtocolTypeSSH)
+			if ([rec type] == OWLocationTypeSFTP)
 			{
 				[str appendFormat:@"sftp://%@:%@\n", [rec hostname], [rec directory]];
 			}
-			else if ([rec type] == kSecProtocolTypeFTP)
+			else if ([rec type] == OWLocationTypeFTP)
 			{
 				[str appendFormat:@"ftp://%@:%@\n", [rec hostname], [rec directory]];
 			}
@@ -312,7 +318,10 @@
 	[self setTotalActiveTransfers:activeTransfers];
 }
 
+
+
 #pragma mark Notification Handlers
+
 
 
 - (void)handleQueueTransferNotification:(NSNotification *)note
@@ -336,61 +345,255 @@
 }
 
 
-#pragma mark Location CRUD
+
+#pragma mark UploadDelegate methods
 
 
-- (IBAction)createLocation:(id)sender
+
+/*
+ * Called when the upload starts the connection process.
+ */
+- (void)uploadIsConnecting:(Upload *)record
 {
-//	Location *newLocation = [[Location alloc] initWithType:OWLocationTypeSFTP 
-//												  hostname:@"" 
-//												  username:@"" 
-//												  password:@"" 
-//												 directory:@"~/"];
-//	
-//	[locationSheet setSubtitle:[NSString stringWithFormat:@"New Location"]];
-//	[locationSheet setLocation:newLocation];
-//	[locationSheet setShouldShowSaveOption:NO];
-//	
-//	[NSApp beginSheet:[locationSheet window]
-//	   modalForWindow:window
-//		modalDelegate:self
-//	   didEndSelector:@selector(locationSheetDidEnd:returnCode:contextInfo:)
-//		  contextInfo:OWContextCreateLocation];
-//	
-//	[newLocation release];
+	NSLog(@"uploadIsConnecting");
+	
+	[record setStatusMessage:[NSString stringWithFormat:@"Connecting to %@ ...", [record hostname]]];
+	
+	[transferTable reloadData];
 }
 
 
-- (void)createLocationAndTransferFiles:(NSArray *)fileList
+
+/*
+ * Called when the upload has started.
+ */ 
+- (void)uploadDidBegin:(Upload *)record
+{
+	NSLog(@"uploadDidBegin");
+	
+	[record setStatusMessage:[NSString stringWithFormat:@"Uploading %d files to %@", [record totalFiles], [record hostname]]];
+	
+	[transferTable reloadData];
+}
+
+
+
+/*
+ * Called when the upload has progressed, 1-100%.
+ */
+- (void)uploadDidProgress:(Upload *)record toPercent:(NSNumber *)percent
+{
+	NSLog(@"uploadDidProgress:toPercent:%@", percent);
+	
+	[record setStatusMessage:[NSString stringWithFormat:@"Uploading (%@) %d files to %@", percent, [record totalFiles], [record hostname]]];
+	
+	[transferTable reloadData];
+}
+
+
+
+/*
+ * Called when the upload process has finished successfully.
+ */
+- (void)uploadDidFinish:(Upload *)record
+{
+	NSLog(@"uploadDidFinish");
+	
+	[record setStatusMessage:@"Finished"];
+	
+	[transferTable reloadData];
+}
+
+
+
+/*
+ * Called if the upload was cancelled.
+ */
+- (void)uploadWasCancelled:(Upload *)record
+{
+	NSLog(@"uploadWasCancelled");
+	
+	[record setStatusMessage:@"Cancelled"];
+	
+	[transferTable reloadData];
+}
+
+
+
+/*
+ * Called if the upload has failed because of authentication.
+ */
+- (void)uploadDidFailAuthentication:(Upload *)record message:(NSString *)message
+{
+	NSLog(@"uploadDidFailAuthentication: %@", message);
+	
+	[record setStatusMessage:message];
+	
+	[transferTable reloadData];
+}
+
+
+
+/*
+ * Called when the upload has failed. The message will contain a useful description of what went wrong.
+ */
+- (void)uploadDidFail:(Upload *)record message:(NSString *)message
+{
+	NSLog(@"uploadDidFail: %@", message);		
+	
+	[record setStatusMessage:message];
+	
+	[transferTable reloadData];	
+}
+
+
+
+#pragma mark TableView Delegate methods
+
+
+
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
+{
+	int tag = [aTableView tag];
+	if (tag == OWTableViewTransfers)
+	{
+		return [transfers count];
+	}
+	else if (tag == OWTableViewMenuItems)
+	{
+		return [savedLocations count];
+	}
+	return -1;
+}
+
+
+
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
+{
+	int tag = [aTableView tag];
+	if (tag == OWTableViewTransfers)
+	{
+		return (Upload *)[transfers objectAtIndex:rowIndex];
+	}
+	else if (tag == OWTableViewMenuItems)
+	{
+		return @"";
+	}
+	
+	return nil;
+}
+
+
+
+#pragma mark Toolbar Actions
+
+
+
+- (void)stopSelectedTransfers:(id)sender
+{	
+	NSLog(@"Stopping selected transfers...");
+	
+	int i = [[transferTable selectedRowIndexes] firstIndex];
+	
+	while (i != NSNotFound)
+	{
+		Upload *record = (Upload *)[transfers objectAtIndex:i];
+		
+		if ([record isActive])
+		{		
+			[record setCancelled:YES];
+		}
+		
+		i = [[transferTable selectedRowIndexes] indexGreaterThanIndex:i];
+	}
+	
+	[transferTable deselectAll:nil];
+	[transferTable reloadData];	
+	[self updateStatusLabel];
+}
+
+
+
+- (void)clearSelectedTransfers:(id)sender
+{	
+	NSLog(@"Clearing selected transfers...");
+	
+	int i = [[transferTable selectedRowIndexes] firstIndex];
+	NSMutableArray *discardedItems = [NSMutableArray array];
+	
+	while (i != NSNotFound)
+	{
+		Upload *record = (Upload *)[transfers objectAtIndex:i];
+		
+		if (![record isActive])
+		{
+			[discardedItems addObject:record];
+			i = [[transferTable selectedRowIndexes] indexGreaterThanIndex:i];
+		}
+	}
+	
+	[transfers removeObjectsInArray:discardedItems];	
+	[transferTable deselectAll:nil];
+	[transferTable reloadData];
+	[self updateStatusLabel];
+}
+
+
+
+- (void)showTransfersView
+{
+	[viewStack selectTabViewItemAtIndex:0]; 
+}
+
+
+
+- (void)showLocationsView
+{
+	[viewStack selectTabViewItemAtIndex:1];
+}
+
+
+
+#pragma mark Location CRUD
+
+
+
+- (IBAction)createLocation:(id)sender
 {
 	Location *newLocation = [[Location alloc] initWithType:OWLocationTypeSFTP 
 												  hostname:@"" 
 												  username:@"" 
 												  password:@"" 
 												 directory:@"~/"];
-	NSString *fileString;
-	if ([fileList count] == 1)
-	{
-		fileString = [NSString stringWithFormat:@"\"%@\"", [[[fileList objectAtIndex:0] lastPathComponent] stringWithTruncatingToLength:25]];
-	}
-	else if ([fileList count] == 2)
-	{
-		fileString = [NSString stringWithFormat:@"\"%@\" & 1 other", [[[fileList objectAtIndex:0] lastPathComponent] stringWithTruncatingToLength:17]];
-	}
-	else if ([fileList count] < 99)
-	{
-		fileString = [NSString stringWithFormat:@"\"%@\" & %d others", [[[fileList objectAtIndex:0] lastPathComponent] stringWithTruncatingToLength:16], [fileList count] - 1];
-	}
-	else
-	{
-		fileString = [NSString stringWithFormat:@"\"%@\" & %d others", [[[fileList objectAtIndex:0] lastPathComponent] stringWithTruncatingToLength:15], [fileList count] - 1];		
-	}
 	
-	[locationSheet setSubtitle:[NSString stringWithFormat:@"Upload %@ to New Location", fileString]];
+	[locationSheet setSubtitle:[NSString stringWithFormat:@"New Location"]];
 	[locationSheet setLocation:newLocation];
-	[locationSheet setFileList:fileList];
+	[locationSheet setShouldShowSaveOption:NO];
 	[locationSheet setShouldSaveLocation:YES];
+	
+	[NSApp beginSheet:[locationSheet window]
+	   modalForWindow:window
+		modalDelegate:self
+	   didEndSelector:@selector(locationSheetDidEnd:returnCode:contextInfo:)
+		  contextInfo:[NSNumber numberWithInt:OWContextCreateLocation]];
+	
+	[newLocation release];
+}
+
+
+
+- (void)createLocationAndTransferFiles:(NSArray *)fileList
+{
+	Location *newLocation = [[Location alloc] initWithType:OWLocationTypeSFTP 
+												  hostname:@"localhost" 
+												  username:@"nrj"
+												  password:@"yaynocops"
+												 directory:@"~/"];
+
+	[locationSheet setFileList:fileList];
+	[locationSheet setLocation:newLocation];
 	[locationSheet setShouldShowSaveOption:YES];
+	[locationSheet setShouldSaveLocation:YES];
 		
 	[NSApp beginSheet:[locationSheet window]
 	   modalForWindow:window
@@ -399,6 +602,45 @@
 		  contextInfo:[NSNumber numberWithInt:OWContextCreateLocationAndTransferFiles]];
 	
 	[newLocation release];
+}
+
+
+
+- (IBAction)updateLocation:(id)sender
+{
+	if ([menuTable selectedRow] > -1)
+	{
+		Location *loc = [savedLocations objectAtIndex:[menuTable selectedRow]];
+		
+		[locationSheet setSubtitle:[NSString stringWithFormat:@"Edit Location"]];
+		[locationSheet setLocation:loc];
+		
+		[NSApp beginSheet:[locationSheet
+		   modalForWindow:window
+			modalDelegate:self
+		   didEndSelector:@selector(locationSheetDidEnd:returnCode:contextInfo:)
+			  contextInfo:[NSNumber numberWithInt:OWContextUpdateLocation]];
+	}
+}
+
+
+
+- (IBAction)deleteLocation:(id)sender
+{
+	if ([menuTable selectedRow] > -1)
+	{
+		Location *loc = [savedLocations objectAtIndex:[menuTable selectedRow]];		
+		NSBeginAlertSheet(@"Confirm Delete", 
+						  @"Delete", 
+						  @"Cancel", 
+						  nil, 
+						  window, 
+						  self, 
+						  @selector(locationSheetDidEnd:returnCode:contextInfo:), 
+						  nil, 
+						  [NSNumber numberWithInt:OWContextDeleteLocation], 
+						  [NSString stringWithFormat:@"Are you sure you want to delete \"%@:%@\" from your context menu?", [loc hostname], [loc directory]]);
+	}
 }
 
 
@@ -415,6 +657,7 @@
 		
 		switch (context)
 		{
+			// Create a new location, and transfer files to it.
 			case OWContextCreateLocationAndTransferFiles:			
 			{
 				NSArray *fileList = [[locationSheet fileList] retain];
@@ -431,91 +674,43 @@
 				
 				break;
 			}
+			
+			// Create a new location.
+			case OWContextCreateLocation:
+			{
+				[savedLocations addObject:location];
+				[menuTable reloadData];
+				[self updateContextMenu];
+				break;
+			}
+
+			// Updated an existing location
+			case OWContextUpdateLocation:
+			{
+				[menuTable reloadData];
+				[self updateContextMenu];
+				break;
+			}
 				
+			// Delete a location
+			case OWContextDeleteLocation:
+			{
+				[savedLocations removeObjectAtIndex:[menuTable selectedRow]];
+				[menuTable reloadData];
+				[self updateContextMenu];
+				break;
+			}
+			
+			// Invalid context...	
 			default:
 				NSLog(@"Unknown context in locationSheetDidEnd:returnCode:contextInfo:");
 				break;
-				
 		}
-//		if (contextInfo == OWContextCreateLocation)
-//		{
-//			[savedLocations addObject:location];
-//			[menuTable reloadData];
-//			[self updateContextMenu];
-//		}
-//		else if (contextInfo == OWContextCreateLocationAndTransferFiles)
-//		{	
-//			if ([locationSheet shouldSaveLocation])
-//			{
-//				[savedLocations addObject:location];
-//				[menuTable reloadData];
-//				[self updateContextMenu];
-//				[self saveUserData];
-//			}
-//			NSArray *fileList = [[locationSheet fileList] retain];
-//			[self startTransfer:fileList toLocation:location];
-//		}
-//		else if (contextInfo == OWContextUpdateLocation)
-//		{
-//			[menuTable reloadData];
-//			[self updateContextMenu];			
-//		}
-//		else if (contextInfo == OWContextUpdateLocationAndTransferFiles)
-//		{
-//			[menuTable reloadData];
-//			[self updateContextMenu];			
-//		}
-//		else if (contextInfo == OWContextDeleteLocation)
-//		{
-//			[savedLocations removeObjectAtIndex:[menuTable selectedRow]];
-//			[menuTable reloadData];
-//			[self updateContextMenu];				
-//		}
 	}
-//	
-	[locationSheet setLocation:nil];
-	[locationSheet setFileList:nil];
+	
+	[locationSheet reset];
 }
 
-
-
-
-
-- (IBAction)updateLocation:(id)sender
-{
-//	if ([menuTable selectedRow] > -1)
-//	{
-//		Location *loc = [savedLocations objectAtIndex:[menuTable selectedRow]];
-//		
-//		[locationSheet setSubtitle:[NSString stringWithFormat:@"Edit Location"]];
-//		[locationSheet setLocation:loc];
-//		
-//		[NSApp beginSheet:[locationSheet window]
-//		   modalForWindow:window
-//			modalDelegate:self
-//		   didEndSelector:@selector(locationSheetDidEnd:returnCode:contextInfo:)
-//			  contextInfo:OWContextUpdateLocation];
-//	}
-}
-
-
-- (IBAction)deleteLocation:(id)sender
-{
-//	if ([menuTable selectedRow] > -1)
-//	{
-//		Location *loc = [savedLocations objectAtIndex:[menuTable selectedRow]];		
-//		NSBeginAlertSheet(@"Confirm Delete", 
-//						  @"Delete", 
-//						  @"Cancel", 
-//						  nil, 
-//						  window, 
-//						  self, 
-//						  @selector(locationSheetDidEnd:returnCode:contextInfo:), 
-//						  nil, 
-//						  OWContextDeleteLocation, 
-//						  [NSString stringWithFormat:@"Are you sure you want to delete \"%@:%@\" from your context menu?", [loc hostname], [loc directory]]);
-//	}
-}
 
 
 //- (void)passwordSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
@@ -535,6 +730,8 @@
 //	}
 //}
 
+
+
 //- (void)hostKeySheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 //{
 //	[sheet orderOut:self];	
@@ -552,7 +749,9 @@
 //}
 
 
+
 #pragma mark TransferDelegate methods
+
 
 
 //- (void)transfer:(id <TransferRecord>)aRecord requiresAuthentication:(id <UploadTask>)task
@@ -594,111 +793,9 @@
 //}
 
 
-#pragma mark Toolbar Actions
-
-
-- (void)stopSelectedTransfers:(id)sender
-{	
-	//	NSLog(@"Stopping selected transfers...");
-	//	int i = [[transferTable selectedRowIndexes] firstIndex];
-	
-	//	while (i != NSNotFound)
-	//	{
-	//		id <TransferRecord> record = [transfers objectAtIndex:i];
-	//		
-	//		if ([record isActiveTransfer])
-	//		{		
-	//			[[record task] cancelUpload];
-	//		}
-	//		i = [[transferTable selectedRowIndexes] indexGreaterThanIndex:i];
-	//	}
-	
-	//	[transferTable deselectAll:nil];
-	//	[transferTable reloadData];	
-	//	[self updateStatusLabel];
-}
-
-
-- (void)clearSelectedTransfers:(id)sender
-{	
-	NSLog(@"Clearing selected transfers...");
-	int i = [[transferTable selectedRowIndexes] firstIndex];
-	NSMutableArray *discardedItems = [NSMutableArray array];
-	
-	while (i != NSNotFound)
-	{
-		//		id <TransferRecord> record = [transfers objectAtIndex:i];
-		//		
-		//		if (![record isActiveTransfer])
-		//		{
-		//			[discardedItems addObject:record];
-		//			i = [[transferTable selectedRowIndexes] indexGreaterThanIndex:i];
-		//		}
-	}
-	
-	[transfers removeObjectsInArray:discardedItems];	
-	[transferTable deselectAll:nil];
-	[transferTable reloadData];
-	[self updateStatusLabel];
-}
-
-
-- (void)showTransfersView
-{
-	[viewStack selectTabViewItemAtIndex:0]; 
-}
-
-- (void)showLocationsView
-{
-	[viewStack selectTabViewItemAtIndex:1];
-}
-
-
-#pragma mark TableView Delegate methods
-
-
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
-{
-	int tag = [aTableView tag];
-	if (tag == OWTableViewTransfers)
-	{
-		return [transfers count];
-	}
-	else if (tag == OWTableViewMenuItems)
-	{
-		return [savedLocations count];
-	}
-	return -1;
-}
-
-
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
-{
-//	int tag = [aTableView tag];
-//	if (tag == OWTableViewMenuItems)
-//	{
-//		Location *location = [savedLocations objectAtIndex:rowIndex];
-//		NSString *typeString = nil;
-//		switch ([location type])
-//		{
-//			case OWLocationTypeSFTP: 
-//				typeString = [NSString stringWithString:@"sftp"]; 
-//				break;
-//			case OWLocationTypeSCP: 
-//				typeString = [NSString stringWithString:@"scp"]; 
-//				break;
-//		}
-//		return [NSString stringWithFormat:@"%@://%@  %@", typeString, [location hostname], [location directory]];
-//	}
-//	else if (tag == OWTableViewTransfers)
-//	{
-////		return (id <TransferRecord>)[transfers objectAtIndex:rowIndex];
-//	}
-	return nil;
-}
-
 
 #pragma mark Convenience Methods
+
 
 
 - (void)requireSettingsDirectory

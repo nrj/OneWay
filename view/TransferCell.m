@@ -3,11 +3,10 @@
 //		
 //
 //  Created by nrj on 8/6/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2009. All rights reserved.
 //
 
 #import "TransferCell.h"
-#import "Location.h"
 #import "ProgressGradients.h"
 #import "OWConstants.h"
 
@@ -15,12 +14,11 @@
 @implementation TransferCell
 
 
-- (void) drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
 	[super drawWithFrame:cellFrame inView:controlView];
 	
-//	Upload *record = (Upload *)[self objectValue];
-//	Location *location = [record location];
+	Upload *record = (Upload *)[self objectValue];
 	
 	// Make attributes for our strings
 	NSMutableParagraphStyle *paragraphStyle = [[[NSMutableParagraphStyle alloc] init] autorelease];
@@ -78,77 +76,61 @@
 			fraction:1.0];
 	
 
-//	int fullWidth = outterRect.size.width - iconSize.width - HORIZONTAL_PADDING;
+	int fullWidth = outterRect.size.width - iconSize.width - HORIZONTAL_PADDING;
 	
 	
 	// Make the title
-//	NSString *title = [NSString stringWithString:[record name]];
+	NSString *title = [record name] ? [NSString stringWithString:[record name]] : @"";
 	
-//	NSSize titleSize = [title sizeWithAttributes:titleAttributes];
-//	NSRect titleRect = NSMakeRect(outterRect.origin.x + iconSize.width + HORIZONTAL_PADDING, 
-//								  outterRect.origin.y,
-//								  fullWidth,
-//								  titleSize.height);
+	NSSize titleSize = [title sizeWithAttributes:titleAttributes];
+	NSRect titleRect = NSMakeRect(outterRect.origin.x + iconSize.width + HORIZONTAL_PADDING, 
+								  outterRect.origin.y,
+								  fullWidth,
+								  titleSize.height);
 	
-//	[title drawInRect:titleRect withAttributes:titleAttributes];
-	
+	[title drawInRect:titleRect withAttributes:titleAttributes];	
 	
 	// Make the status
-	//NSString *status = [NSString stringWithString:[[self objectValue] valueForKey:@"status"]];
+	NSString *status = [record statusMessage] ? [NSString stringWithString:[record statusMessage]] : @"";		
+	NSSize statusSize = [status sizeWithAttributes:statusAttributes];
 	
-//	NSMutableString *statusText;
-//	if ([status isEqualToString:OWStatusUploading])
-//	{
-//		statusText = [NSMutableString stringWithFormat:@"%@ %d of %d files (%d%%) to %@", OWStatusUploading, [record totalFilesUploaded], [record totalFiles], [record progress], [location hostname]];
-//	}
-//	else if ([status isEqualToString:OWStatusConnecting])
-//	{
-//		statusText = [NSMutableString stringWithFormat:@"%@ to %@...", OWStatusConnecting, [location hostname]];
-//	}
-//	else
-//	{
-//		statusText = [NSMutableString stringWithString:status];	
-//	}
+	NSRect statusRect = NSMakeRect(titleRect.origin.x,
+								   titleRect.origin.y + statusSize.height + VERTICAL_PADDING,
+								   fullWidth,
+								   statusSize.height);
 	
-//	NSSize statusSize = [status sizeWithAttributes:statusAttributes];
-	
-//	NSRect statusRect = NSMakeRect(titleRect.origin.x,
-//								   titleRect.origin.y + statusSize.height + VERTICAL_PADDING,
-//								   fullWidth,
-//								   statusSize.height);
-	
-//	[statusText drawInRect:statusRect withAttributes:statusAttributes];
-	
+	[status drawInRect:statusRect withAttributes:statusAttributes];
+
 	
 	// Make the progress bar
-//	NSRect progressOutline = NSMakeRect(statusRect.origin.x,
-//										statusRect.origin.y + statusSize.height + 1.5, 
-//										fullWidth, 
-//										NSProgressIndicatorPreferredSmallThickness);
+	NSRect progressOutline = NSMakeRect(statusRect.origin.x,
+										statusRect.origin.y + statusSize.height + 1.5, 
+										fullWidth, 
+										NSProgressIndicatorPreferredSmallThickness);
 	
-//	[[ProgressGradients progressLightGrayGradient] drawInRect:progressOutline angle:90];
+	[[ProgressGradients progressLightGrayGradient] drawInRect:progressOutline angle:90];
 	
-//	double progress = [record progress] * progressOutline.size.width / 100 - 1;
+	double progress = [record progress] * progressOutline.size.width / 100 - 1;
 	
-//	if (progress > 0)
-//	{
-//		NSRect progressFill = NSMakeRect(progressOutline.origin.x, 
-//										 progressOutline.origin.y + 0.5,
-//										 progress, NSProgressIndicatorPreferredSmallThickness - 1);
-//		
-//		if ([status isEqualToString:OWStatusUploading])
-//		{
-//			[[ProgressGradients progressBlueGradient] drawInRect:progressFill angle:90];
-//		}
-//		else if ([status isEqualToString:OWStatusCancelled])
-//		{
-//			[[ProgressGradients progressRedGradient] drawInRect:progressFill angle:90];
-//		}
-//		else if ([status isEqualToString:OWStatusFinished])
-//		{
-//			[[ProgressGradients progressLightGreenGradient] drawInRect:progressFill angle:90];
-//		}
-//	}
+	if (progress > 0)
+	{
+		NSRect progressFill = NSMakeRect(progressOutline.origin.x, 
+										 progressOutline.origin.y + 0.5,
+										 progress, NSProgressIndicatorPreferredSmallThickness - 1);
+		
+		if ([record status] == TRANSFER_STATUS_UPLOADING)
+		{
+			[[ProgressGradients progressBlueGradient] drawInRect:progressFill angle:90];
+		}
+		else if ([record status] == TRANSFER_STATUS_CANCELLED || [record status] == TRANSFER_STATUS_FAILED)
+		{
+			[[ProgressGradients progressRedGradient] drawInRect:progressFill angle:90];
+		}
+		else if ([record status] == TRANSFER_STATUS_COMPLETE)
+		{
+			[[ProgressGradients progressLightGreenGradient] drawInRect:progressFill angle:90];
+		}
+	}
 	
 //	NSRect substatusRect = NSMakeRect(progressOutline.origin.x,
 //									  progressOutline.origin.y + statusSize.height - 1.5,

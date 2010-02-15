@@ -32,6 +32,8 @@
 		0B6E85931127631800296175 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E85891127631800296175 /* stop.png */; };
 		0B6E85941127631800296175 /* transfers.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E858A1127631800296175 /* transfers.png */; };
 		0B6E85951127631800296175 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E858B1127631800296175 /* upArrow.png */; };
+		0B8EC5A31128E63100D30FF3 /* Upload+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8EC5A21128E63100D30FF3 /* Upload+NSCoding.m */; };
+		0B8EC5A61128E63C00D30FF3 /* Upload+NSCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8EC5A51128E63C00D30FF3 /* Upload+NSCopying.m */; };
 		0BAB8D221127476700AD061A /* objective-curl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAB8D211127476700AD061A /* objective-curl.framework */; };
 		0BAB8D341127476E00AD061A /* objective-curl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAB8D211127476700AD061A /* objective-curl.framework */; };
 		0BAB8D3C1127480A00AD061A /* LocationSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D361127480A00AD061A /* LocationSheet.xib */; };
@@ -106,6 +108,10 @@
 		0B6E85891127631800296175 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		0B6E858A1127631800296175 /* transfers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transfers.png; sourceTree = "<group>"; };
 		0B6E858B1127631800296175 /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
+		0B8EC5A11128E63100D30FF3 /* Upload+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Upload+NSCoding.h"; sourceTree = "<group>"; };
+		0B8EC5A21128E63100D30FF3 /* Upload+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Upload+NSCoding.m"; sourceTree = "<group>"; };
+		0B8EC5A41128E63C00D30FF3 /* Upload+NSCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Upload+NSCopying.h"; sourceTree = "<group>"; };
+		0B8EC5A51128E63C00D30FF3 /* Upload+NSCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Upload+NSCopying.m"; sourceTree = "<group>"; };
 		0BAB8D211127476700AD061A /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "../objective-curl/build/Release/objective-curl.framework"; sourceTree = SOURCE_ROOT; };
 		0BAB8D371127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LocationSheet.xib; sourceTree = "<group>"; };
 		0BAB8D391127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PasswordSheet.xib; sourceTree = "<group>"; };
@@ -242,6 +248,10 @@
 			children = (
 				0B19DEB311274C8C00B13C62 /* Location.h */,
 				0B19DEB411274C8C00B13C62 /* Location.m */,
+				0B8EC5A11128E63100D30FF3 /* Upload+NSCoding.h */,
+				0B8EC5A21128E63100D30FF3 /* Upload+NSCoding.m */,
+				0B8EC5A41128E63C00D30FF3 /* Upload+NSCopying.h */,
+				0B8EC5A51128E63C00D30FF3 /* Upload+NSCopying.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -494,6 +504,8 @@
 				0B6E84B71127540600296175 /* Controller+Scripting.m in Sources */,
 				0B6E84B81127540600296175 /* Location+Scripting.m in Sources */,
 				0B6E84B91127540600296175 /* QueueNewScriptCommand.m in Sources */,
+				0B8EC5A31128E63100D30FF3 /* Upload+NSCoding.m in Sources */,
+				0B8EC5A61128E63C00D30FF3 /* Upload+NSCopying.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

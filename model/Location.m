@@ -21,7 +21,15 @@
 @synthesize directory;
 @synthesize uid;
 
--(void)encodeWithCoder:(NSCoder *)encoder
+- (id)copyWithZone:(NSZone *)zone 
+{
+    Location *copy = [[[self class] allocWithZone: zone] initWithType:type hostname:hostname username:username password:password directory:directory];
+	[copy setPort:port];
+	[copy setUid:uid];
+    return copy;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder
 {
 	[encoder encodeInt:type forKey:@"type"];
 	[encoder encodeObject:hostname forKey:@"hostname"];
@@ -32,15 +40,7 @@
 	[encoder encodeObject:uid forKey:@"uid"];
 }
 
-- (id)copyWithZone:(NSZone *)zone 
-{
-    Location *copy = [[[self class] allocWithZone: zone] initWithType:type hostname:hostname username:username password:password directory:directory];
-	[copy setPort:port];
-	[copy setUid:uid];
-    return copy;
-}
-
--(id)initWithCoder:(NSCoder *)decoder
+- (id)initWithCoder:(NSCoder *)decoder
 {
 	type = [decoder decodeIntForKey:@"type"];
 	hostname = [[decoder decodeObjectForKey:@"hostname"] retain];
@@ -67,6 +67,7 @@
 	{
 		[self setUid:[NSString stringWithNewUUID]];
 		[self setType:aType];
+		[self setDefaultPort];
 		[self setHostname:aHostname];
 		[self setUsername:aUsername];
 		[self setPassword:aPassword];

@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import <objective-curl/sftp.h>
 
 @interface TransferCell : NSCell
 {
