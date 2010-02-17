@@ -615,7 +615,7 @@
 		[locationSheet setSubtitle:[NSString stringWithFormat:@"Edit Location"]];
 		[locationSheet setLocation:loc];
 		
-		[NSApp beginSheet:[locationSheet
+		[NSApp beginSheet:[locationSheet window]
 		   modalForWindow:window
 			modalDelegate:self
 		   didEndSelector:@selector(locationSheetDidEnd:returnCode:contextInfo:)
@@ -814,6 +814,23 @@
 						attributes:nil];
 	}
 	[mgr release];
+}
+
+
+
+- (void)runUploadTest
+{	
+	NSLog(@"Running Test");
+	Location *l = [savedLocations objectAtIndex:0];
+	id <CurlClient>c = [self clientForLocation:l];
+	 
+	Upload *u = [c uploadFilesAndDirectories:[NSArray arrayWithObject:@"/Users/nrj/Desktop/test-upload"] 
+						  toHost:[l hostname] 
+						username:[l username] 
+						password:[l password]];
+	
+	[transfers addObject:u];
+	[transferTable reloadData];
 }
 
 

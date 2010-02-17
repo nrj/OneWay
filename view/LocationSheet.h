@@ -10,7 +10,7 @@
 
 @class Location;
 
-@interface LocationSheet : NSViewController
+@interface LocationSheet : NSWindowController
 {	
 	IBOutlet NSTextField *subtitleLabel;
 	IBOutlet NSButton *saveButton;

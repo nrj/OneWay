@@ -22,7 +22,7 @@
 
 - (id)init
 {
-	if (self = [super initWithNibName:@"LocationSheet" bundle:nil])
+	if (self = [super initWithWindowNibName:@"LocationSheet"])
 	{
 		subtitle = [[NSString alloc] initWithFormat:@""];
 	}

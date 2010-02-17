@@ -69,7 +69,7 @@
         [item setToolTip: @"Show Log"];
         [item setImage: [NSImage imageNamed: @"log.png"]];
         [item setTarget: self];
-        [item setAction: @selector(showLog)];
+        [item setAction: @selector(runUploadTest)];
 		
 		return item;
 	}

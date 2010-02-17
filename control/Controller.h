@@ -64,4 +64,9 @@
 
 - (void)requireSettingsDirectory;
 
+/*
+ *
+ */
+- (void)runUploadTest;
+
 @end

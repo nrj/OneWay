@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B036F7A112B867400790C7A /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B036F79112B867400790C7A /* menu.png */; };
 		0B19DE50112749EF00B13C62 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B19DE4F112749EF00B13C62 /* Sparkle.framework */; };
 		0B19DE59112749FA00B13C62 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B19DE4F112749EF00B13C62 /* Sparkle.framework */; };
 		0B19DE8711274B4E00B13C62 /* AppleScript.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DE8411274B4E00B13C62 /* AppleScript.c */; };
@@ -71,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0B036F79112B867400790C7A /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		0B19DE4F112749EF00B13C62 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "../Frameworks/Sparkle 1.5b6/Sparkle.framework"; sourceTree = SOURCE_ROOT; };
 		0B19DE7D11274B1700B13C62 /* OneWayPlugin.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneWayPlugin.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B19DE8411274B4E00B13C62 /* AppleScript.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AppleScript.c; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		0B6E8581112762F400296175 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				0B036F79112B867400790C7A /* menu.png */,
 				0B6E85821127631800296175 /* clear.png */,
 				0B6E85831127631800296175 /* edit.png */,
 				0B6E85841127631800296175 /* log.png */,
@@ -453,6 +456,7 @@
 				0B6E85931127631800296175 /* stop.png in Resources */,
 				0B6E85941127631800296175 /* transfers.png in Resources */,
 				0B6E85951127631800296175 /* upArrow.png in Resources */,
+				0B036F7A112B867400790C7A /* menu.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
