@@ -1,5 +1,5 @@
 //
-//  TransferRenderer.h
+//  TransferCell.h
 //  OneWay
 //
 //  Created by nrj on 8/6/09.

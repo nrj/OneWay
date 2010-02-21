@@ -12,6 +12,6 @@
 
 @interface Controller (Toolbar)
 
-- (void)setupToolbarForWindow:(NSWindow *)theWindow;
+- (void)setupToolbar:(NSString *)identifier forWindow:(NSWindow *)theWindow;
 
 @end

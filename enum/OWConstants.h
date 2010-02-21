@@ -46,21 +46,15 @@ NSString * const OWPluginDestinationFile;
 
 // Toolbar Identifiers
 NSString * const OWTransferToolbarIdentifier;
-NSString * const OWTransferToolbarStopItem;
-NSString * const OWTransferToolbarClearItem;
-NSString * const OWTransferToolbarDrawerItem;
-NSString * const OWTransferToolbarTransfersItem;
-NSString * const OWTransferToolbarLogItem;
+NSString * const OWLocationToolbarIdentifier;
 
+NSString * const OWShowTransfersMenuItem;
+NSString * const OWStopTransfersMenuItem;
+NSString * const OWClearTransfersMenuItem;
 
-// Status Strings
-NSString * const OWStatusQueued;
-NSString * const OWStatusConnecting;
-NSString * const OWStatusAuthenticating;
-NSString * const OWStatusUploading;
-NSString * const OWStatusCancelled;
-NSString * const OWStatusFinished;
-NSString * const OWStatusConnectionTimeout;
-NSString * const OWStatusConnectionRefused;
-NSString * const OWStatusInvalidPassword;
-NSString * const OWStatusPermissionDenied;
+NSString * const OWShowLocationsMenuItem;
+NSString * const OWCreateLocationMenuItem;
+NSString * const OWUpdateLocationMenuItem;
+NSString * const OWDeleteLocationMenuItem;
+
+NSString * const OWTestMenuItem;

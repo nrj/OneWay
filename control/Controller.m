@@ -10,6 +10,7 @@
 #import "Controller+Toolbar.h"
 #import "Location.h"
 #import "LocationSheet.h"
+#import "LocationCell.h"
 #import "PasswordSheet.h"
 #import "WelcomeView.h"
 #import "TransferCell.h"
@@ -95,17 +96,24 @@
 - (void)awakeFromNib
 {	
 	// Setup the toolbar
-	[self setupToolbarForWindow:window];
+	[self setupToolbar:OWTransferToolbarIdentifier forWindow:window];
 	
 	// Set the footer gradient
 	[window setContentBorderThickness:[viewStack frame].origin.y forEdge: NSMinYEdge];
 	
 	// Set the cell renderers
-	NSTableColumn *col = [transferTable tableColumnWithIdentifier:@"transferColumn"];
-	TransferCell *cell = [[[TransferCell alloc] init] autorelease];
-	[col setDataCell:cell];
+	NSTableColumn *transferColumn = [transferTable tableColumnWithIdentifier:@"transferColumn"];
+	TransferCell *transferCell = [[[TransferCell alloc] init] autorelease];
+	[transferColumn setDataCell:transferCell];
 	
 	[transferTable setIntercellSpacing:NSMakeSize(0, 0)];
+	
+	NSTableColumn *locationColumn = [menuTable tableColumnWithIdentifier:@"locationColumn"];
+	LocationCell *locationCell = [[[LocationCell alloc] init] autorelease];
+	[locationColumn setDataCell:locationCell];
+	
+	[menuTable setIntercellSpacing:NSMakeSize(0, 0)];
+	
 	
 	// Setup delegates and datasources
 	[transferTable setDelegate:self];
@@ -212,7 +220,7 @@
 	
 	[newClient setDelegate:self];
 	[newClient setShowProgress:YES];
-	[newClient setVerbose:YES];
+	[newClient setVerbose:NO];
 	
 	[clients addObject:newClient];
 	
@@ -282,11 +290,11 @@
 			Location *rec = [savedLocations objectAtIndex:i];
 			if ([rec type] == OWLocationTypeSFTP)
 			{
-				[str appendFormat:@"sftp://%@:%@\n", [rec hostname], [rec directory]];
+				[str appendFormat:@"sftp://%@/%@\n", [rec hostname], [rec directory]];
 			}
 			else if ([rec type] == OWLocationTypeFTP)
 			{
-				[str appendFormat:@"ftp://%@:%@\n", [rec hostname], [rec directory]];
+				[str appendFormat:@"ftp://%@/%@\n", [rec hostname], [rec directory]];
 			}
 		}
 		
@@ -360,6 +368,7 @@
 	[record setStatusMessage:[NSString stringWithFormat:@"Connecting to %@ ...", [record hostname]]];
 	
 	[transferTable reloadData];
+	[self updateStatusLabel];
 }
 
 
@@ -374,6 +383,7 @@
 	[record setStatusMessage:[NSString stringWithFormat:@"Uploading %d files to %@", [record totalFiles], [record hostname]]];
 	
 	[transferTable reloadData];
+	[self updateStatusLabel];
 }
 
 
@@ -385,7 +395,7 @@
 {
 	NSLog(@"uploadDidProgress:toPercent:%@", percent);
 	
-	[record setStatusMessage:[NSString stringWithFormat:@"Uploading (%@) %d files to %@", percent, [record totalFiles], [record hostname]]];
+	[record setStatusMessage:[NSString stringWithFormat:@"Uploading (%@%%) %d files to %@", percent, [record totalFiles], [record hostname]]];
 	
 	[transferTable reloadData];
 }
@@ -402,6 +412,7 @@
 	[record setStatusMessage:@"Finished"];
 	
 	[transferTable reloadData];
+	[self updateStatusLabel];
 }
 
 
@@ -416,6 +427,7 @@
 	[record setStatusMessage:@"Cancelled"];
 	
 	[transferTable reloadData];
+	[self updateStatusLabel];
 }
 
 
@@ -430,6 +442,7 @@
 	[record setStatusMessage:message];
 	
 	[transferTable reloadData];
+	[self updateStatusLabel];
 }
 
 
@@ -444,6 +457,7 @@
 	[record setStatusMessage:message];
 	
 	[transferTable reloadData];	
+	[self updateStatusLabel];
 }
 
 
@@ -477,7 +491,7 @@
 	}
 	else if (tag == OWTableViewMenuItems)
 	{
-		return @"";
+		return (Location *)[savedLocations objectAtIndex:rowIndex];
 	}
 	
 	return nil;
@@ -542,6 +556,7 @@
 
 - (void)showTransfersView
 {
+	[self setupToolbar:OWTransferToolbarIdentifier forWindow:window];
 	[viewStack selectTabViewItemAtIndex:0]; 
 }
 
@@ -549,6 +564,7 @@
 
 - (void)showLocationsView
 {
+	[self setupToolbar:OWLocationToolbarIdentifier forWindow:window];
 	[viewStack selectTabViewItemAtIndex:1];
 }
 
@@ -822,15 +838,7 @@
 {	
 	NSLog(@"Running Test");
 	Location *l = [savedLocations objectAtIndex:0];
-	id <CurlClient>c = [self clientForLocation:l];
-	 
-	Upload *u = [c uploadFilesAndDirectories:[NSArray arrayWithObject:@"/Users/nrj/Desktop/test-upload"] 
-						  toHost:[l hostname] 
-						username:[l username] 
-						password:[l password]];
-	
-	[transfers addObject:u];
-	[transferTable reloadData];
+	[self startTransfer:[NSArray arrayWithObject:@"/Users/nrj/Desktop/test-upload"] toLocation:l];
 }
 
 

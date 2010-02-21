@@ -11,8 +11,8 @@ NSString * const OWApplicationName = @"OneWay";
 NSString * const OWLogFile = @"~/Library/OneWay/OneWay.log";
 
 // Notifications
-NSString * const OWQueueTransferNotification	= @"oneWayQueueTransferNotification";
-NSString * const OWQueueNewTransferNotification = @"oneWayQueueNewTransferNotification";
+NSString * const OWQueueTransferNotification	= @"OneWayQueueTransferNotification";
+NSString * const OWQueueNewTransferNotification = @"OneWayQueueNewTransferNotification";
 
 // Files & Directories
 NSString * const OWSettingsDirectory	= @"~/Library/OneWay";
@@ -28,22 +28,17 @@ NSString * const OWRestartFinderScript = @"Contents/Resources/restart_finder.sh"
 NSString * const OWPluginSourceFile			= @"Contents/Resources/OneWayPlugin.plugin";
 NSString * const OWPluginDestinationFile	= @"~/Library/Contextual Menu Items/OneWay.plugin";
 
-// Toolbar Identifiers
-NSString * const OWTransferToolbarIdentifier	= @"transferToolbarIdentifier";
-NSString * const OWTransferToolbarStopItem		= @"transferToolbarStopItem";
-NSString * const OWTransferToolbarClearItem		= @"transferToolbarClearItem";
-NSString * const OWTransferToolbarDrawerItem	= @"transferToolbarDrawerItem";
-NSString * const OWTransferToolbarTransfersItem = @"transferToolbarTransfersItem";
-NSString * const OWTransferToolbarLogItem		= @"transferToolbarLogItem";
+// Toolbar Identifier
+NSString * const OWTransferToolbarIdentifier = @"OneWayTransferToolBarIdentifier";
+NSString * const OWLocationToolbarIdentifier = @"OneWayLocationToolBarIdentifier";
 
-// Status Strings
-NSString * const OWStatusQueued				= @"Queued";
-NSString * const OWStatusConnecting			= @"Connecting";
-NSString * const OWStatusAuthenticating		= @"Authenticating";
-NSString * const OWStatusUploading			= @"Uploading";
-NSString * const OWStatusCancelled			= @"Cancelled";
-NSString * const OWStatusFinished			= @"Finished";
-NSString * const OWStatusConnectionTimeout	= @"Connection Timed Out";
-NSString * const OWStatusConnectionRefused	= @"Connection Refused";
-NSString * const OWStatusInvalidPassword	= @"Invalid Password";
-NSString * const OWStatusPermissionDenied	= @"Invalid File Permissions";
+NSString * const OWShowTransfersMenuItem	= @"OneWayShowTransfersMenuItem";
+NSString * const OWStopTransfersMenuItem	= @"OneWayStopTransfersMenuItem";
+NSString * const OWClearTransfersMenuItem	= @"OneWayClearTransfersMenuItem";
+
+NSString * const OWShowLocationsMenuItem	= @"OneWayShowLocationsMenuItem";
+NSString * const OWCreateLocationMenuItem	= @"OneWayCreateLocationMenuItem";
+NSString * const OWUpdateLocationMenuItem	= @"OneWayUpdateLocationMenuItem";
+NSString * const OWDeleteLocationMenuItem	= @"OneWayDeleteLocationMenuItem";
+
+NSString * const OWTestMenuItem				= @"OneWayTestMenuItem";

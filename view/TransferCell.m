@@ -1,5 +1,5 @@
 //
-//  TransferRenderer.m
+//  TransferCell.m
 //		
 //
 //  Created by nrj on 8/6/09.
@@ -8,7 +8,6 @@
 
 #import "TransferCell.h"
 #import "ProgressGradients.h"
-#import "OWConstants.h"
 
 
 @implementation TransferCell
@@ -35,7 +34,7 @@
 	// Subtitle attributes: system font, 10pt, gray, truncate tail
 	NSMutableDictionary * statusAttributes = [[[NSMutableDictionary alloc] initWithObjectsAndKeys:
 											   [NSColor grayColor], NSForegroundColorAttributeName,
-											   [NSFont systemFontOfSize:9.0],NSFontAttributeName,
+											   [NSFont systemFontOfSize:10.0],NSFontAttributeName,
 											   paragraphStyle, NSParagraphStyleAttributeName, nil] autorelease];
 	
 	
@@ -66,7 +65,7 @@
 	[icon setFlipped:YES];
 	
 	NSRect iconRect = NSMakeRect(outterRect.origin.x, 
-								 outterRect.origin.y,
+								 outterRect.origin.y + ((outterRect.size.height / 2) - (iconSize.height / 2)),
 								 iconSize.width, 
 								 iconSize.height);
 	
