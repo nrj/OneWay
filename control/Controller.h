@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <objective-curl/sftp.h>
+#import <objective-curl/objective-curl.h>
 
-@class Location, WelcomeView, LocationSheet, PasswordSheet;
+@class Location, WelcomeView, LocationSheet, PasswordSheet, FailureSheet;
 
 @interface Controller : NSObject 
 {	
@@ -23,6 +23,7 @@
 	WelcomeView *welcomeView;
 	LocationSheet *locationSheet;
 	PasswordSheet *passwordSheet;
+	FailureSheet *failureSheet;
 	
 	IBOutlet NSTabView *viewStack;
 	IBOutlet NSTableView *transferTable;
@@ -46,9 +47,10 @@
 @property(readwrite, assign) int totalTransfers;
 @property(readwrite, assign) int totalActiveTransfers;
 
-- (id <CurlClient>)clientForLocation:(Location *)location;
+- (id <CurlClient>)uploadClientForLocation:(Location *)location;
 
-- (void)startTransfer:(NSArray *)fileList toLocation:(Location *)loc;
+- (void)retryUpload:(Upload *)record;
+- (void)startUpload:(NSArray *)fileList toLocation:(Location *)aLocation;
 
 - (void)createLocationAndTransferFiles:(NSArray *)fileList;
 - (IBAction)createLocation:(id)sender;

@@ -55,7 +55,21 @@
         [item setAction: @selector(showLocationsView)];
 		
 		return item;
-	} 	
+	}
+ 	
+	else if ([itemIdent isEqual:OWRetryTransfersMenuItem]) 
+	{
+		NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:OWRetryTransfersMenuItem];
+		
+        [item setLabel: @"Retry"];
+        [item setPaletteLabel: @"Retry"];
+        [item setToolTip: @"Retry Selected Transfers"];
+        [item setImage: [NSImage imageNamed: @"retry.png"]];
+        [item setTarget: self];
+        [item setAction: @selector(retrySelectedTransfers:)];
+		
+		return item;
+	} 
 	
 	else if ([itemIdent isEqual:OWStopTransfersMenuItem]) 
 	{
@@ -145,6 +159,7 @@
 											OWShowLocationsMenuItem,
 											NSToolbarFlexibleSpaceItemIdentifier,
 											OWTestMenuItem,
+											OWRetryTransfersMenuItem,
 											OWStopTransfersMenuItem,
 											OWClearTransfersMenuItem, 
 											nil];
@@ -211,6 +226,24 @@
 			i = [selection indexGreaterThanIndex:i];
 		}
 	}
+	else if ([[toolbarItem itemIdentifier] isEqual:OWRetryTransfersMenuItem])
+	{
+		Upload *transfer;
+		NSIndexSet *selection = [transferTable selectedRowIndexes];
+		int i = [selection firstIndex];
+		
+		while (i != NSNotFound)
+		{
+			transfer = [transfers objectAtIndex:i];
+			if ([transfer status] == TRANSFER_STATUS_CANCELLED || [transfer status] == TRANSFER_STATUS_FAILED)
+			{
+				enable = YES;
+				break;
+			}
+			i = [selection indexGreaterThanIndex:i];
+		}
+	}
+	
 	else if ([[toolbarItem itemIdentifier] isEqual:OWDeleteLocationMenuItem])
 	{
 		NSIndexSet *selection = [menuTable selectedRowIndexes];

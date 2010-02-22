@@ -13,85 +13,65 @@
 
 @implementation LocationSheet
 
-@synthesize subtitle;
+@synthesize message;
 @synthesize location;
 @synthesize fileList;
 @synthesize shouldShowSaveOption;
 @synthesize shouldSaveLocation;
-
+@synthesize messageIsError;
+@synthesize messageColor;
 
 - (id)init
 {
 	if (self = [super initWithWindowNibName:@"LocationSheet"])
 	{
-		subtitle = [[NSString alloc] initWithFormat:@""];
+		message = [[NSString alloc] initWithFormat:@""];
+		messageColor = [NSColor darkGrayColor];
 	}
 	return self;
 }
 
 
-- (void)reset
+- (void)setMessageIsError:(BOOL)isError
 {
-	[subtitle release], subtitle = nil;
-	[location release], location = nil;
-	[fileList release], fileList = nil;
-	
-	[self setShouldSaveLocation:NO];
-	[self setShouldShowSaveOption:NO];
-}
-
-
-- (void)setFileList:(NSArray *)list
-{
-	if (list != fileList)
+	if (isError)
 	{
-		[fileList release];
-		fileList = [list retain];
-
-		// Create a subtitle string
-		NSString *str;
-		if ([fileList count] == 1)
-		{
-			str = [NSString stringWithFormat:@"Upload \"%@\"", [[[fileList objectAtIndex:0] lastPathComponent] stringWithTruncatingToLength:25]];
-		}
-		else if ([fileList count] == 2)
-		{
-			str = [NSString stringWithFormat:@"Upload \"%@\" & 1 other", [[[fileList objectAtIndex:0] lastPathComponent] stringWithTruncatingToLength:17]];
-		}
-		else if ([fileList count] < 99)
-		{
-			str = [NSString stringWithFormat:@"Upload \"%@\" & %d others", [[[fileList objectAtIndex:0] lastPathComponent] stringWithTruncatingToLength:16], [fileList count] - 1];
-		}
-		else
-		{
-			str = [NSString stringWithFormat:@"Upload  \"%@\" & %d others", [[[fileList objectAtIndex:0] lastPathComponent] stringWithTruncatingToLength:15], [fileList count] - 1];		
-		}
-		
-		[self setSubtitle:str];
+		[self setMessageColor:[NSColor redColor]];
 	}
+	else
+	{
+		[self setMessageColor:[NSColor darkGrayColor]];
+	}
+
+	messageIsError = isError;
 }
+
 
 - (void)dealloc
 {
-	[subtitle release], subtitle = nil;
+	[message release], message = nil;
 	[location release], location = nil;
 	[fileList release], fileList = nil;
 	[super dealloc];
 }
 
+
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {	
-	[subtitleLabel setStringValue:subtitle];
+	[messageLabel setStringValue:message];
 }
+
 
 - (IBAction)closeSheetOK:(id)sender
 {	
 	[NSApp endSheet:[self window] returnCode:1];
 }
 
+
 - (IBAction)closeSheetCancel:(id)sender
 {
 	[NSApp endSheet:[self window] returnCode:0];
 }
+
 
 @end

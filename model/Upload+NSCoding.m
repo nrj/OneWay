@@ -17,7 +17,6 @@
 	protocol	= [decoder decodeInt32ForKey:@"protocol"];
 	hostname	= [[decoder decodeObjectForKey:@"hostname"] retain];
 	username	= [[decoder decodeObjectForKey:@"username"] retain];
-	password	= [[decoder decodeObjectForKey:@"password"] retain];
 	path		= [[decoder decodeObjectForKey:@"path"] retain];
 	port		= [decoder decodeIntForKey:@"port"];
 	status		= [decoder decodeIntForKey:@"status"];
@@ -37,10 +36,14 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
+	if ([self isActive])
+	{
+		[self setStatus:TRANSFER_STATUS_CANCELLED];
+		[self setStatusMessage:@"Cancelled"];
+	}
 	[encoder encodeInt32:protocol forKey:@"protocol"];
 	[encoder encodeObject:hostname forKey:@"hostname"];
 	[encoder encodeObject:username forKey:@"username"];
-	[encoder encodeObject:password forKey:@"password"];
 	[encoder encodeObject:path forKey:@"path"];
 	[encoder encodeInt:port forKey:@"port"];
 	[encoder encodeInt:status forKey:@"status"];

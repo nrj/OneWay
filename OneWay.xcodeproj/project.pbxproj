@@ -50,6 +50,11 @@
 		0BAB8D531127484D00AD061A /* Controller+Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D4F1127484D00AD061A /* Controller+Toolbar.m */; };
 		0BAB8D541127484D00AD061A /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D511127484D00AD061A /* Controller.m */; };
 		0BAB8D57112748A000AD061A /* OWConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D56112748A000AD061A /* OWConstants.m */; };
+		0BBCE9181131F307001676F3 /* StatusMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBCE9171131F307001676F3 /* StatusMessage.m */; };
+		0BBCEA5B11323E01001676F3 /* FailureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBCEA5A11323E01001676F3 /* FailureSheet.xib */; };
+		0BDD2795113252E0005D7F84 /* retry.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDD2794113252E0005D7F84 /* retry.png */; };
+		0BE6F80011323F6900AA2BCF /* FailureSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6F7FF11323F6900AA2BCF /* FailureSheet.m */; };
+		0BE6F88C1132473A00AA2BCF /* restart_finder.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0BE6F88B1132473A00AA2BCF /* restart_finder.sh */; };
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -133,6 +138,13 @@
 		0BAB8D511127484D00AD061A /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
 		0BAB8D55112748A000AD061A /* OWConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWConstants.h; sourceTree = "<group>"; };
 		0BAB8D56112748A000AD061A /* OWConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWConstants.m; sourceTree = "<group>"; };
+		0BBCE9161131F307001676F3 /* StatusMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusMessage.h; path = ../extras/StatusMessage.h; sourceTree = "<group>"; };
+		0BBCE9171131F307001676F3 /* StatusMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusMessage.m; path = ../extras/StatusMessage.m; sourceTree = "<group>"; };
+		0BBCEA1A11323B79001676F3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FailureSheet.xib; sourceTree = "<group>"; };
+		0BDD2794113252E0005D7F84 /* retry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retry.png; sourceTree = "<group>"; };
+		0BE6F7FE11323F6900AA2BCF /* FailureSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FailureSheet.h; sourceTree = "<group>"; };
+		0BE6F7FF11323F6900AA2BCF /* FailureSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FailureSheet.m; sourceTree = "<group>"; };
+		0BE6F88B1132473A00AA2BCF /* restart_finder.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = restart_finder.sh; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -183,6 +195,7 @@
 		0B6E8581112762F400296175 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				0BDD2794113252E0005D7F84 /* retry.png */,
 				0B2C5D0D1130C287006C4F5B /* menu.png */,
 				0B2C5CF91130C03E006C4F5B /* delete.png */,
 				0B2C5CF61130BFB0006C4F5B /* add.png */,
@@ -219,6 +232,8 @@
 		0BAB8D0E112744EA00AD061A /* enum */ = {
 			isa = PBXGroup;
 			children = (
+				0BBCE9161131F307001676F3 /* StatusMessage.h */,
+				0BBCE9171131F307001676F3 /* StatusMessage.m */,
 				0BAB8D55112748A000AD061A /* OWConstants.h */,
 				0BAB8D56112748A000AD061A /* OWConstants.m */,
 			);
@@ -277,6 +292,8 @@
 				0B19DEAB11274C7700B13C62 /* TransferCell.m */,
 				0B19DEAC11274C7700B13C62 /* WelcomeView.h */,
 				0B19DEAD11274C7700B13C62 /* WelcomeView.m */,
+				0BE6F7FE11323F6900AA2BCF /* FailureSheet.h */,
+				0BE6F7FF11323F6900AA2BCF /* FailureSheet.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -357,6 +374,8 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				0BBCEA5A11323E01001676F3 /* FailureSheet.xib */,
+				0BE6F88B1132473A00AA2BCF /* restart_finder.sh */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -462,6 +481,9 @@
 				0B2C5CF71130BFB0006C4F5B /* add.png in Resources */,
 				0B2C5CFA1130C03E006C4F5B /* delete.png in Resources */,
 				0B2C5D0E1130C287006C4F5B /* menu.png in Resources */,
+				0BBCEA5B11323E01001676F3 /* FailureSheet.xib in Resources */,
+				0BE6F88C1132473A00AA2BCF /* restart_finder.sh in Resources */,
+				0BDD2795113252E0005D7F84 /* retry.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +538,8 @@
 				0B8EC5A31128E63100D30FF3 /* Upload+NSCoding.m in Sources */,
 				0B8EC5A61128E63C00D30FF3 /* Upload+NSCopying.m in Sources */,
 				0B2C5BF211309774006C4F5B /* LocationCell.m in Sources */,
+				0BBCE9181131F307001676F3 /* StatusMessage.m in Sources */,
+				0BE6F80011323F6900AA2BCF /* FailureSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +576,14 @@
 				0BAB8D3B1127480A00AD061A /* English */,
 			);
 			name = WelcomeView.xib;
+			sourceTree = "<group>";
+		};
+		0BBCEA5A11323E01001676F3 /* FailureSheet.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BBCEA1A11323B79001676F3 /* English */,
+			);
+			name = FailureSheet.xib;
 			sourceTree = "<group>";
 		};
 		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {

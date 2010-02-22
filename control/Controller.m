@@ -12,10 +12,11 @@
 #import "LocationSheet.h"
 #import "LocationCell.h"
 #import "PasswordSheet.h"
+#import "FailureSheet.h"
 #import "WelcomeView.h"
 #import "TransferCell.h"
 #import "OWConstants.h"
-#import "NSString+Truncate.h"
+#import "StatusMessage.h"
 
 
 
@@ -57,6 +58,7 @@
 		// Init the Sheets
 		locationSheet = [[LocationSheet alloc] init];
 		passwordSheet = [[PasswordSheet alloc] init];
+		failureSheet = [[FailureSheet alloc] init];
 		
 		// Subscribe to notifications
 		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -190,7 +192,7 @@
  * a new will be created and returned.
  *
  */
-- (id <CurlClient>)clientForLocation:(Location *)location
+- (id <CurlClient>)uploadClientForLocation:(Location *)location
 {
 	for (int i = 0; i < [clients count]; i++)
 	{
@@ -214,13 +216,14 @@
 			break;
 				
 		default:
-			NSLog(@"Unknown location type %d in clientForLocation:", [location type]);
-			break;
+			NSLog(@"Unknown location type %d in uploadClientForLocation:", [location type]);
+			return nil;
 	}
 	
 	[newClient setDelegate:self];
 	[newClient setShowProgress:YES];
 	[newClient setVerbose:NO];
+	[newClient setUsesKeychainForPasswords:YES];
 	
 	[clients addObject:newClient];
 	
@@ -229,13 +232,13 @@
 
 
 
-- (void)startTransfer:(NSArray *)fileList toLocation:(Location *)aLocation
+- (void)startUpload:(NSArray *)fileList toLocation:(Location *)aLocation
 {
 	NSLog(@"Starting upload of %d files to %@", [fileList count], [aLocation hostname]);
 
 	[self showTransfersView];
 	
-	id <CurlClient>client = [self clientForLocation:aLocation];
+	id <CurlClient>client = [self uploadClientForLocation:aLocation];
 	
 	Upload *record = [client uploadFilesAndDirectories:fileList 
 												toHost:[aLocation hostname] 
@@ -244,10 +247,31 @@
 											 directory:[aLocation directory]
 												  port:[[aLocation port] intValue]];
 	
-	
+	[record setPointer:aLocation];
 	[record setStatusMessage:@"Queued"];
 	
 	[transfers addObject:record];
+	[transferTable reloadData];
+	
+	[self updateStatusLabel];
+}
+
+
+
+- (void)retryUpload:(Upload *)record
+{	
+	[self showTransfersView];
+
+	// TODO -- create an uploadClientForUpload method.
+	Location *location = (Location *)[record pointer];
+	// Get rid of this nasty hack
+	
+	id <CurlClient>client = [self uploadClientForLocation:location];
+		
+	[record setStatusMessage:@"Queued"];
+	
+	[client upload:record];
+	
 	[transferTable reloadData];
 	
 	[self updateStatusLabel];
@@ -339,7 +363,7 @@
 	
 	[window makeKeyAndOrderFront:nil];
 	
-	[self startTransfer:filepaths toLocation:loc];
+	[self startUpload:filepaths toLocation:loc];
 }
 
 
@@ -439,7 +463,17 @@
 {
 	NSLog(@"uploadDidFailAuthentication: %@", message);
 	
-	[record setStatusMessage:message];
+//	[record setStatusMessage:message];
+	
+	[passwordSheet setTitleString:[NSString stringWithFormat:@"Password for \"%@@%@\"", [record username], [record hostname]]];
+	
+	[NSApp beginSheet:[passwordSheet window]
+	   modalForWindow:window
+		modalDelegate:self
+	   didEndSelector:@selector(passwordSheetDidEnd:returnCode:contextInfo:)
+		  contextInfo:record];
+	
+	[[passwordSheet window] makeKeyAndOrderFront:nil];
 	
 	[transferTable reloadData];
 	[self updateStatusLabel];
@@ -457,7 +491,19 @@
 	[record setStatusMessage:message];
 	
 	[transferTable reloadData];	
+
 	[self updateStatusLabel];
+
+	[failureSheet setMessage:message];
+	[failureSheet setUpload:record];
+	
+	[NSApp beginSheet:[failureSheet window]
+	   modalForWindow:window
+		modalDelegate:self
+	   didEndSelector:@selector(failureSheetDidEnd:returnCode:contextInfo:)
+		  contextInfo:nil];
+	
+	[NSApp runModalForWindow:[failureSheet window]];
 }
 
 
@@ -501,6 +547,32 @@
 
 #pragma mark Toolbar Actions
 
+
+- (void)retrySelectedTransfers:(id)sender
+{	
+	NSLog(@"Retrying selected transfers...");
+	
+	int i = [[transferTable selectedRowIndexes] firstIndex];
+	
+	while (i != NSNotFound)
+	{
+		Upload *record = (Upload *)[transfers objectAtIndex:i];
+		
+		[self retryUpload:record];
+		
+		// TODO - The framework should take care of this
+		[record setProgress:0];
+		[record setConnected:NO];
+		[record setCancelled:NO];
+		//
+		
+		i = [[transferTable selectedRowIndexes] indexGreaterThanIndex:i];
+	}
+	
+	[transferTable reloadData];	
+	
+	[self updateStatusLabel];
+}
 
 
 - (void)stopSelectedTransfers:(id)sender
@@ -582,10 +654,12 @@
 												  password:@"" 
 												 directory:@"~/"];
 	
-	[locationSheet setSubtitle:[NSString stringWithFormat:@"New Location"]];
-	[locationSheet setLocation:newLocation];
+	[locationSheet setMessage:[StatusMessage newLocationMessage]];
+	[locationSheet setMessageIsError:NO];
 	[locationSheet setShouldShowSaveOption:NO];
 	[locationSheet setShouldSaveLocation:YES];
+
+	[locationSheet setLocation:newLocation];
 	
 	[NSApp beginSheet:[locationSheet window]
 	   modalForWindow:window
@@ -601,15 +675,18 @@
 - (void)createLocationAndTransferFiles:(NSArray *)fileList
 {
 	Location *newLocation = [[Location alloc] initWithType:OWLocationTypeSFTP 
-												  hostname:@"localhost" 
-												  username:@"nrj"
-												  password:@"yaynocops"
+												  hostname:@"" 
+												  username:@""
+												  password:@""
 												 directory:@"~/"];
+
+	[locationSheet setMessage:[StatusMessage uploadFilesToNewLocationMessage:fileList]];
+	[locationSheet setMessageIsError:NO];	
+	[locationSheet setShouldShowSaveOption:YES];
+	[locationSheet setShouldSaveLocation:YES];
 
 	[locationSheet setFileList:fileList];
 	[locationSheet setLocation:newLocation];
-	[locationSheet setShouldShowSaveOption:YES];
-	[locationSheet setShouldSaveLocation:YES];
 		
 	[NSApp beginSheet:[locationSheet window]
 	   modalForWindow:window
@@ -628,7 +705,7 @@
 	{
 		Location *loc = [savedLocations objectAtIndex:[menuTable selectedRow]];
 		
-		[locationSheet setSubtitle:[NSString stringWithFormat:@"Edit Location"]];
+		[locationSheet setMessage:[StatusMessage editLocationMessage]];
 		[locationSheet setLocation:loc];
 		
 		[NSApp beginSheet:[locationSheet window]
@@ -666,9 +743,12 @@
 {
     [sheet orderOut:self];
 
+	[NSApp stopModal];
+
 	if (returnCode == 1)
 	{
 		Location *location = [locationSheet location];
+		NSArray *fileList = [[locationSheet fileList] retain];
 		int context = [(NSNumber *)contextInfo intValue];
 		
 		switch (context)
@@ -676,44 +756,37 @@
 			// Create a new location, and transfer files to it.
 			case OWContextCreateLocationAndTransferFiles:			
 			{
-				NSArray *fileList = [[locationSheet fileList] retain];
-				
 				if ([locationSheet shouldSaveLocation])
 				{
 					[savedLocations addObject:location];
-					[menuTable reloadData];
-					[self updateContextMenu];
-					[self saveUserData];
 				}
 
-				[self startTransfer:fileList toLocation:location];
+				[self startUpload:fileList toLocation:location];
 				
 				break;
 			}
-			
+							
 			// Create a new location.
 			case OWContextCreateLocation:
 			{
 				[savedLocations addObject:location];
-				[menuTable reloadData];
-				[self updateContextMenu];
+				
 				break;
 			}
 
-			// Updated an existing location
-			case OWContextUpdateLocation:
-			{
-				[menuTable reloadData];
-				[self updateContextMenu];
-				break;
-			}
 				
 			// Delete a location
 			case OWContextDeleteLocation:
 			{
 				[savedLocations removeObjectAtIndex:[menuTable selectedRow]];
-				[menuTable reloadData];
-				[self updateContextMenu];
+
+				break;
+			}
+				
+			
+			// Updated an existing location
+			case OWContextUpdateLocation:
+			{
 				break;
 			}
 			
@@ -722,71 +795,28 @@
 				NSLog(@"Unknown context in locationSheetDidEnd:returnCode:contextInfo:");
 				break;
 		}
+		
+		[transferTable reloadData];
+		[menuTable reloadData];
+		
+		[self updateContextMenu];
+		[self saveUserData];
 	}
-	
-	[locationSheet reset];
 }
 
 
-
-//- (void)passwordSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-//{
-//	[sheet orderOut:self];	
+- (void)failureSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+	[sheet orderOut:self];
 	
-//	if (returnCode == 1)
-//	{
-//		id task = (id <UploadTask>)contextInfo;
-//		
-//		if ([passwordSheet shouldSaveInKeychain])
-//		{
-//			[task setPasswordFromPrompt:[passwordSheet password]];
-//		}
-//		
-//		[task writeToPrompt:[passwordSheet password]];
-//	}
-//}
+	[NSApp stopModal];
+	
+	if (returnCode)
+	{
+		[self retryUpload:[failureSheet upload]];
+	}
+}
 
-
-
-//- (void)hostKeySheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-//{
-//	[sheet orderOut:self];	
-//	
-//	id task = (AbstractUploadTask *)contextInfo;
-//	
-//	if (returnCode == 1)
-//	{		
-//		[task writeToPrompt:@"yes"];
-//	}
-//	else
-//	{
-//		[task writeToPrompt:@"no"];
-//	}
-//}
-
-
-
-#pragma mark TransferDelegate methods
-
-
-
-//- (void)transfer:(id <TransferRecord>)aRecord requiresAuthentication:(id <UploadTask>)task
-//{
-//	Location *loc = [aRecord location];
-//	NSLog(@"transfer: %@ requiresAuthentication: %@@%@", [aRecord name], [loc username], [loc hostname]);
-//	
-//	[passwordSheet setTitleString:[NSString stringWithFormat:@"Password for \"%@@%@\"", [loc username], [loc hostname]]];
-//	
-//	[NSApp beginSheet:[passwordSheet window]
-//	   modalForWindow:window
-//		modalDelegate:self
-//	   didEndSelector:@selector(passwordSheetDidEnd:returnCode:contextInfo:)
-//		  contextInfo:task];
-//	
-//	[[passwordSheet window] makeKeyAndOrderFront:nil];
-//	
-//	[self updateStatusLabel];
-//}
 
 //- (void)transfer:(id <TransferRecord>)aRecord requiresHostKeyAcceptance:(id <UploadTask>)task message:(NSString *)aMessage
 //{
@@ -838,7 +868,7 @@
 {	
 	NSLog(@"Running Test");
 	Location *l = [savedLocations objectAtIndex:0];
-	[self startTransfer:[NSArray arrayWithObject:@"/Users/nrj/Desktop/test-upload"] toLocation:l];
+	[self startUpload:[NSArray arrayWithObject:@"/Users/nrj/Desktop/my-folder"] toLocation:l];
 }
 
 

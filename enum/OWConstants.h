@@ -49,6 +49,7 @@ NSString * const OWTransferToolbarIdentifier;
 NSString * const OWLocationToolbarIdentifier;
 
 NSString * const OWShowTransfersMenuItem;
+NSString * const OWRetryTransfersMenuItem;
 NSString * const OWStopTransfersMenuItem;
 NSString * const OWClearTransfersMenuItem;
 

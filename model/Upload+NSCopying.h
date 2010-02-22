@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <objective-curl/sftp.h>
+#import <objective-curl/objective-curl.h>
 
 @interface Upload (NSCopying)
 

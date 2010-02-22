@@ -35,7 +35,6 @@
 	[encoder encodeObject:hostname forKey:@"hostname"];
 	[encoder encodeObject:port forKey:@"port"];
 	[encoder encodeObject:username forKey:@"username"];
-	[encoder encodeObject:password forKey:@"password"];
 	[encoder encodeObject:directory forKey:@"directory"];	
 	[encoder encodeObject:uid forKey:@"uid"];
 }
@@ -46,7 +45,6 @@
 	hostname = [[decoder decodeObjectForKey:@"hostname"] retain];
 	port = [[decoder decodeObjectForKey:@"port"] retain];
 	username = [[decoder decodeObjectForKey:@"username"] retain];
-	password = [[decoder decodeObjectForKey:@"password"] retain];
 	directory = [[decoder decodeObjectForKey:@"directory"] retain];
 	uid = [[decoder decodeObjectForKey:@"uid"] retain];
 	return self;

@@ -33,6 +33,7 @@ NSString * const OWTransferToolbarIdentifier = @"OneWayTransferToolBarIdentifier
 NSString * const OWLocationToolbarIdentifier = @"OneWayLocationToolBarIdentifier";
 
 NSString * const OWShowTransfersMenuItem	= @"OneWayShowTransfersMenuItem";
+NSString * const OWRetryTransfersMenuItem	= @"OneWayRetryTransfersMenuItem";
 NSString * const OWStopTransfersMenuItem	= @"OneWayStopTransfersMenuItem";
 NSString * const OWClearTransfersMenuItem	= @"OneWayClearTransfersMenuItem";
 
