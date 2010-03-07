@@ -11,16 +11,18 @@
 #import "Location.h"
 #import "LocationSheet.h"
 #import "LocationCell.h"
+#import "TransferCell.h"
 #import "PasswordSheet.h"
 #import "FailureSheet.h"
 #import "WelcomeView.h"
-#import "TransferCell.h"
+#import "EMKeychain.h"
 #import "OWConstants.h"
 #import "StatusMessage.h"
-
+#import "NSString+Extras.h"
 
 
 @implementation Controller
+
 
 @synthesize transfers;
 
@@ -54,7 +56,19 @@
 			NSLog(@"No saved transfer data found");
 			transfers = [[NSMutableArray alloc] init];
 		}
-			
+		
+		// Transfer/Password map, this contains passwords for transfers that should be saved 
+		// to the keychain upon the transfer successfully authenticating
+		transferPasswords = [[NSMapTable alloc] initWithKeyOptions:NSPointerFunctionsZeroingWeakMemory 
+													  valueOptions:NSPointerFunctionsZeroingWeakMemory 
+														  capacity:-1];
+		
+		// TODO, use NSPointerArray with weak keys for this too
+		failedTransfers = [[NSMutableArray alloc] init];
+		
+		
+		
+		
 		// Init the Sheets
 		locationSheet = [[LocationSheet alloc] init];
 		passwordSheet = [[PasswordSheet alloc] init];
@@ -83,6 +97,8 @@
 {
 	[savedLocations release], savedLocations = nil;
 	[transfers release], transfers = nil;
+	[failedTransfers release], failedTransfers = nil;
+	[transferPasswords release], transferPasswords = nil;
 	
 	int count = [clients count];
 	while (count--) { [[clients objectAtIndex:count] release]; }
@@ -192,12 +208,12 @@
  * a new will be created and returned.
  *
  */
-- (id <CurlClient>)uploadClientForLocation:(Location *)location
+- (id <CurlClient>)uploadClientForProtocol:(SecProtocolType)protocol
 {
 	for (int i = 0; i < [clients count]; i++)
 	{
-		if (([location type] == OWLocationTypeSFTP && [[clients objectAtIndex:i] isMemberOfClass:[CurlSFTP class]]) ||
-			([location type] == OWLocationTypeFTP && [[clients objectAtIndex:i] isMemberOfClass:[CurlFTP class]]))
+		if ((protocol == kSecProtocolTypeSSH && [[clients objectAtIndex:i] isMemberOfClass:[CurlSFTP class]]) ||
+			(protocol == kSecProtocolTypeFTP && [[clients objectAtIndex:i] isMemberOfClass:[CurlFTP class]]))
 		{
 			return (id <CurlClient>)[clients objectAtIndex:i];
 		}
@@ -205,25 +221,24 @@
 	
 	id <CurlClient>newClient;
 	
-	switch ([location type])
+	switch (protocol)
 	{
-		case OWLocationTypeSFTP:
+		case kSecProtocolTypeSSH:
 			newClient = [[[CurlSFTP alloc] init] autorelease];
 			break;
 			
-		case OWLocationTypeFTP:
+		case kSecProtocolTypeFTP:
 			newClient = [[[CurlFTP alloc] init] autorelease];
 			break;
 				
 		default:
-			NSLog(@"Unknown location type %d in uploadClientForLocation:", [location type]);
+			NSLog(@"uploadClientForProtocol - Unknown Protocol %d", protocol);
 			return nil;
 	}
 	
 	[newClient setDelegate:self];
 	[newClient setShowProgress:YES];
 	[newClient setVerbose:NO];
-	[newClient setUsesKeychainForPasswords:YES];
 	
 	[clients addObject:newClient];
 	
@@ -232,28 +247,35 @@
 
 
 
-- (void)startUpload:(NSArray *)fileList toLocation:(Location *)aLocation
+- (Upload *)startUpload:(NSArray *)fileList toLocation:(Location *)location
 {
-	NSLog(@"Starting upload of %d files to %@", [fileList count], [aLocation hostname]);
+	NSLog(@"Starting upload of %d files to %@", [fileList count], [location hostname]);
 
 	[self showTransfersView];
 	
-	id <CurlClient>client = [self uploadClientForLocation:aLocation];
+	id <CurlClient>client = [self uploadClientForProtocol:[location protocol]];
+	
+	if ([location password] == nil || [[location password] isEqualToString:@""])
+	{
+		[location setPassword:[self getPasswordFromKeychain:[location hostname] 
+												   username:[location username] 
+													   port:[location port] 
+												   protocol:[location protocol]]];
+	}
 	
 	Upload *record = [client uploadFilesAndDirectories:fileList 
-												toHost:[aLocation hostname] 
-											  username:[aLocation username]
-											  password:[aLocation password]
-											 directory:[aLocation directory]
-												  port:[[aLocation port] intValue]];
+												toHost:[location hostname] 
+											  username:[location username]
+											  password:[location password]
+											 directory:[location directory]
+												  port:[location port]];
 	
-	[record setPointer:aLocation];
 	[record setStatusMessage:@"Queued"];
-	
-	[transfers addObject:record];
+
 	[transferTable reloadData];
-	
 	[self updateStatusLabel];
+	
+	return record;
 }
 
 
@@ -262,18 +284,21 @@
 {	
 	[self showTransfersView];
 
-	// TODO -- create an uploadClientForUpload method.
-	Location *location = (Location *)[record pointer];
-	// Get rid of this nasty hack
+	id <CurlClient>client = [self uploadClientForProtocol:[record protocol]];
 	
-	id <CurlClient>client = [self uploadClientForLocation:location];
-		
-	[record setStatusMessage:@"Queued"];
+	if ([record password] == nil || [[record password] isEqualToString:@""])
+	{
+		[record setPassword:[self getPasswordFromKeychain:[record hostname] 
+												 username:[record username] 
+													 port:[record port]
+												 protocol:[record protocol]]];
+	}
 	
 	[client upload:record];
 	
-	[transferTable reloadData];
+	[record setStatusMessage:@"Queued"];
 	
+	[transferTable reloadData];	
 	[self updateStatusLabel];
 }
 
@@ -363,7 +388,10 @@
 	
 	[window makeKeyAndOrderFront:nil];
 	
-	[self startUpload:filepaths toLocation:loc];
+	Upload *upload = [self startUpload:filepaths toLocation:loc];
+	
+	[transfers addObject:upload];
+	[transferTable reloadData];
 }
 
 
@@ -377,9 +405,7 @@
 }
 
 
-
 #pragma mark UploadDelegate methods
-
 
 
 /*
@@ -405,6 +431,17 @@
 	NSLog(@"uploadDidBegin");
 	
 	[record setStatusMessage:[NSString stringWithFormat:@"Uploading %d files to %@", [record totalFiles], [record hostname]]];
+	
+	if ([transferPasswords objectForKey:record]) 	// password was correct, add it to the keychain if we're supposed to
+	{
+		[self savePasswordToKeychain:[record password] 
+						 forHostname:[record hostname] 
+							username:[record username] 
+								port:[record port] 
+							protocol:[record protocol]];
+		
+		[transferPasswords removeObjectForKey:record];
+	}
 	
 	[transferTable reloadData];
 	[self updateStatusLabel];
@@ -463,8 +500,6 @@
 {
 	NSLog(@"uploadDidFailAuthentication: %@", message);
 	
-//	[record setStatusMessage:message];
-	
 	[passwordSheet setTitleString:[NSString stringWithFormat:@"Password for \"%@@%@\"", [record username], [record hostname]]];
 	
 	[NSApp beginSheet:[passwordSheet window]
@@ -472,8 +507,6 @@
 		modalDelegate:self
 	   didEndSelector:@selector(passwordSheetDidEnd:returnCode:contextInfo:)
 		  contextInfo:record];
-	
-	[[passwordSheet window] makeKeyAndOrderFront:nil];
 	
 	[transferTable reloadData];
 	[self updateStatusLabel];
@@ -489,27 +522,20 @@
 	NSLog(@"uploadDidFail: %@", message);		
 	
 	[record setStatusMessage:message];
+	[self updateStatusLabel];
 	
 	[transferTable reloadData];	
-
-	[self updateStatusLabel];
-
-	[failureSheet setMessage:message];
-	[failureSheet setUpload:record];
 	
-	[NSApp beginSheet:[failureSheet window]
-	   modalForWindow:window
-		modalDelegate:self
-	   didEndSelector:@selector(failureSheetDidEnd:returnCode:contextInfo:)
-		  contextInfo:nil];
-	
-	[NSApp runModalForWindow:[failureSheet window]];
+	[failedTransfers addObject:record];
+
+	if ([window attachedSheet] == nil)
+	{
+		[self displayNextError];
+	}
 }
 
 
-
 #pragma mark TableView Delegate methods
-
 
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
@@ -559,13 +585,7 @@
 		Upload *record = (Upload *)[transfers objectAtIndex:i];
 		
 		[self retryUpload:record];
-		
-		// TODO - The framework should take care of this
-		[record setProgress:0];
-		[record setConnected:NO];
-		[record setCancelled:NO];
-		//
-		
+			
 		i = [[transferTable selectedRowIndexes] indexGreaterThanIndex:i];
 	}
 	
@@ -655,7 +675,6 @@
 												 directory:@"~/"];
 	
 	[locationSheet setMessage:[StatusMessage newLocationMessage]];
-	[locationSheet setMessageIsError:NO];
 	[locationSheet setShouldShowSaveOption:NO];
 	[locationSheet setShouldSaveLocation:YES];
 
@@ -681,7 +700,6 @@
 												 directory:@"~/"];
 
 	[locationSheet setMessage:[StatusMessage uploadFilesToNewLocationMessage:fileList]];
-	[locationSheet setMessageIsError:NO];	
 	[locationSheet setShouldShowSaveOption:YES];
 	[locationSheet setShouldSaveLocation:YES];
 
@@ -737,14 +755,15 @@
 }
 
 
-
+- (void)passwordSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+	[sheet orderOut:self];
+}
 
 - (void)locationSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
     [sheet orderOut:self];
-
-	[NSApp stopModal];
-
+	
 	if (returnCode == 1)
 	{
 		Location *location = [locationSheet location];
@@ -761,11 +780,18 @@
 					[savedLocations addObject:location];
 				}
 
-				[self startUpload:fileList toLocation:location];
+				Upload *upload = [self startUpload:fileList toLocation:location];
+				
+				if ([location savePassword])
+				{
+					[transferPasswords setObject:[NSNumber numberWithInt:1] forKey:upload];
+				}
+				
+				[transfers addObject:upload];
 				
 				break;
 			}
-							
+				
 			// Create a new location.
 			case OWContextCreateLocation:
 			{
@@ -806,15 +832,15 @@
 
 
 - (void)failureSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
+{		
 	[sheet orderOut:self];
-	
-	[NSApp stopModal];
 	
 	if (returnCode)
 	{
 		[self retryUpload:[failureSheet upload]];
 	}
+	
+	[self displayNextError];
 }
 
 
@@ -863,13 +889,46 @@
 }
 
 
-
-- (void)runUploadTest
-{	
-	NSLog(@"Running Test");
-	Location *l = [savedLocations objectAtIndex:0];
-	[self startUpload:[NSArray arrayWithObject:@"/Users/nrj/Desktop/my-folder"] toLocation:l];
+- (NSString *)getPasswordFromKeychain:(NSString *)hostname username:(NSString *)username port:(int)port protocol:(SecProtocolType)protocol
+{
+	EMInternetKeychainItem *keychainItem = [EMInternetKeychainItem internetKeychainItemForServer:hostname 
+																					withUsername:username
+																							path:@""
+																							port:port 
+																						protocol:protocol];
+	
+	return [keychainItem password] ? [keychainItem password] : @"";	
 }
 
+
+
+- (void)savePasswordToKeychain:(NSString *)password forHostname:(NSString *)hostname username:(NSString *)username port:(int)port protocol:(SecProtocolType)protocol
+{
+	[EMInternetKeychainItem addInternetKeychainItemForServer:hostname 
+												withUsername:username
+													password:password
+														path:@""
+														port:port
+													protocol:protocol];
+}
+
+
+- (void)displayNextError
+{	
+	if ([failedTransfers count] > 0)
+	{
+		Upload *record = [failedTransfers objectAtIndex:0];
+		
+		[failureSheet setUpload:record];
+		
+		[failedTransfers removeObjectAtIndex:0];;
+		
+		[NSApp beginSheet:[failureSheet window]
+		   modalForWindow:window
+			modalDelegate:self
+		   didEndSelector:@selector(failureSheetDidEnd:returnCode:contextInfo:)
+			  contextInfo:nil];
+	}
+}
 
 @end

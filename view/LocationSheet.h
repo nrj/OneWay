@@ -23,7 +23,7 @@
 
 	BOOL shouldShowSaveOption;
 	BOOL shouldSaveLocation;
-	BOOL messageIsError;
+
 	NSColor *messageColor;
 }
 
@@ -32,7 +32,6 @@
 @property(readwrite, copy) NSString *message;
 @property(readwrite, assign) BOOL shouldShowSaveOption;
 @property(readwrite, assign) BOOL shouldSaveLocation;
-@property(readwrite, assign) BOOL messageIsError;
 @property(readwrite, retain) NSColor *messageColor;
 
 - (IBAction)closeSheetOK:(id)sender;

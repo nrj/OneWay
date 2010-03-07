@@ -17,7 +17,6 @@
 		0B19DEB111274C7700B13C62 /* TransferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEAB11274C7700B13C62 /* TransferCell.m */; };
 		0B19DEB211274C7700B13C62 /* WelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEAD11274C7700B13C62 /* WelcomeView.m */; };
 		0B19DEB511274C8C00B13C62 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEB411274C8C00B13C62 /* Location.m */; };
-		0B19DEC611274CFB00B13C62 /* NSString+Truncate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEC311274CFB00B13C62 /* NSString+Truncate.m */; };
 		0B19DEC711274CFB00B13C62 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEC511274CFB00B13C62 /* NSString+UUID.m */; };
 		0B2C5BEE11309699006C4F5B /* networkDrive.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5BED11309699006C4F5B /* networkDrive.png */; };
 		0B2C5BF211309774006C4F5B /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C5BF111309774006C4F5B /* LocationCell.m */; };
@@ -52,6 +51,9 @@
 		0BAB8D57112748A000AD061A /* OWConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D56112748A000AD061A /* OWConstants.m */; };
 		0BBCE9181131F307001676F3 /* StatusMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBCE9171131F307001676F3 /* StatusMessage.m */; };
 		0BBCEA5B11323E01001676F3 /* FailureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBCEA5A11323E01001676F3 /* FailureSheet.xib */; };
+		0BD618861134446500050C25 /* NSString+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618851134446500050C25 /* NSString+Extras.m */; };
+		0BD618BB113446B400050C25 /* EMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618BA113446B400050C25 /* EMKeychain.m */; };
+		0BD6195411344D7E00050C25 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD6195311344D7E00050C25 /* Security.framework */; };
 		0BDD2795113252E0005D7F84 /* retry.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDD2794113252E0005D7F84 /* retry.png */; };
 		0BE6F80011323F6900AA2BCF /* FailureSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6F7FF11323F6900AA2BCF /* FailureSheet.m */; };
 		0BE6F88C1132473A00AA2BCF /* restart_finder.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0BE6F88B1132473A00AA2BCF /* restart_finder.sh */; };
@@ -95,8 +97,6 @@
 		0B19DEAD11274C7700B13C62 /* WelcomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeView.m; sourceTree = "<group>"; };
 		0B19DEB311274C8C00B13C62 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		0B19DEB411274C8C00B13C62 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
-		0B19DEC211274CFB00B13C62 /* NSString+Truncate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Truncate.h"; sourceTree = "<group>"; };
-		0B19DEC311274CFB00B13C62 /* NSString+Truncate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Truncate.m"; sourceTree = "<group>"; };
 		0B19DEC411274CFB00B13C62 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
 		0B19DEC511274CFB00B13C62 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
 		0B2C5BED11309699006C4F5B /* networkDrive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = networkDrive.png; sourceTree = "<group>"; };
@@ -141,6 +141,11 @@
 		0BBCE9161131F307001676F3 /* StatusMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusMessage.h; path = ../extras/StatusMessage.h; sourceTree = "<group>"; };
 		0BBCE9171131F307001676F3 /* StatusMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusMessage.m; path = ../extras/StatusMessage.m; sourceTree = "<group>"; };
 		0BBCEA1A11323B79001676F3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FailureSheet.xib; sourceTree = "<group>"; };
+		0BD618841134446500050C25 /* NSString+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extras.h"; sourceTree = "<group>"; };
+		0BD618851134446500050C25 /* NSString+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extras.m"; sourceTree = "<group>"; };
+		0BD618B9113446B400050C25 /* EMKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychain.h; sourceTree = "<group>"; };
+		0BD618BA113446B400050C25 /* EMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychain.m; sourceTree = "<group>"; };
+		0BD6195311344D7E00050C25 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0BDD2794113252E0005D7F84 /* retry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retry.png; sourceTree = "<group>"; };
 		0BE6F7FE11323F6900AA2BCF /* FailureSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FailureSheet.h; sourceTree = "<group>"; };
 		0BE6F7FF11323F6900AA2BCF /* FailureSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FailureSheet.m; sourceTree = "<group>"; };
@@ -171,6 +176,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				0BAB8D221127476700AD061A /* objective-curl.framework in Frameworks */,
 				0B19DE50112749EF00B13C62 /* Sparkle.framework in Frameworks */,
+				0BD6195411344D7E00050C25 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +220,8 @@
 		0BAB8D0C112744DB00AD061A /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				0BD618B9113446B400050C25 /* EMKeychain.h */,
+				0BD618BA113446B400050C25 /* EMKeychain.m */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -221,10 +229,10 @@
 		0BAB8D0D112744E300AD061A /* extras */ = {
 			isa = PBXGroup;
 			children = (
-				0B19DEC211274CFB00B13C62 /* NSString+Truncate.h */,
-				0B19DEC311274CFB00B13C62 /* NSString+Truncate.m */,
 				0B19DEC411274CFB00B13C62 /* NSString+UUID.h */,
 				0B19DEC511274CFB00B13C62 /* NSString+UUID.m */,
+				0BD618841134446500050C25 /* NSString+Extras.h */,
+				0BD618851134446500050C25 /* NSString+Extras.m */,
 			);
 			path = extras;
 			sourceTree = "<group>";
@@ -311,6 +319,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BD6195311344D7E00050C25 /* Security.framework */,
 				0B19DE4F112749EF00B13C62 /* Sparkle.framework */,
 				0BAB8D211127476700AD061A /* objective-curl.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
@@ -530,7 +539,6 @@
 				0B19DEB111274C7700B13C62 /* TransferCell.m in Sources */,
 				0B19DEB211274C7700B13C62 /* WelcomeView.m in Sources */,
 				0B19DEB511274C8C00B13C62 /* Location.m in Sources */,
-				0B19DEC611274CFB00B13C62 /* NSString+Truncate.m in Sources */,
 				0B19DEC711274CFB00B13C62 /* NSString+UUID.m in Sources */,
 				0B6E84B71127540600296175 /* Controller+Scripting.m in Sources */,
 				0B6E84B81127540600296175 /* Location+Scripting.m in Sources */,
@@ -540,6 +548,8 @@
 				0B2C5BF211309774006C4F5B /* LocationCell.m in Sources */,
 				0BBCE9181131F307001676F3 /* StatusMessage.m in Sources */,
 				0BE6F80011323F6900AA2BCF /* FailureSheet.m in Sources */,
+				0BD618861134446500050C25 /* NSString+Extras.m in Sources */,
+				0BD618BB113446B400050C25 /* EMKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

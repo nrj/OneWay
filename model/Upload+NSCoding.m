@@ -15,6 +15,7 @@
 - (id)initWithCoder:(NSCoder *)decoder
 {
 	protocol	= [decoder decodeInt32ForKey:@"protocol"];
+	protocolPrefix = [[decoder decodeObjectForKey:@"protocolPrefix"] retain];
 	hostname	= [[decoder decodeObjectForKey:@"hostname"] retain];
 	username	= [[decoder decodeObjectForKey:@"username"] retain];
 	path		= [[decoder decodeObjectForKey:@"path"] retain];
@@ -42,6 +43,7 @@
 		[self setStatusMessage:@"Cancelled"];
 	}
 	[encoder encodeInt32:protocol forKey:@"protocol"];
+	[encoder encodeObject:protocolPrefix forKey:@"protocolPrefix"];
 	[encoder encodeObject:hostname forKey:@"hostname"];
 	[encoder encodeObject:username forKey:@"username"];
 	[encoder encodeObject:path forKey:@"path"];

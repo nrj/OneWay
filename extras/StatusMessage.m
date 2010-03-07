@@ -7,7 +7,7 @@
 //
 
 #import "StatusMessage.h"
-#import "NSString+Truncate.h"
+#import "NSString+Extras.h"
 
 @implementation StatusMessage
 

@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <objective-curl/objective-curl.h>
 
+
 @class Location, WelcomeView, LocationSheet, PasswordSheet, FailureSheet;
 
 @interface Controller : NSObject 
@@ -19,6 +20,10 @@
 	NSMutableArray *clients;
 	NSMutableArray *transfers;
 	NSMutableArray *savedLocations;	
+
+	// TODO, use NSPointerArray instead
+	NSMutableArray *failedTransfers;	
+	NSMapTable *transferPasswords;
 	
 	WelcomeView *welcomeView;
 	LocationSheet *locationSheet;
@@ -47,10 +52,11 @@
 @property(readwrite, assign) int totalTransfers;
 @property(readwrite, assign) int totalActiveTransfers;
 
-- (id <CurlClient>)uploadClientForLocation:(Location *)location;
+- (id <CurlClient>)uploadClientForProtocol:(SecProtocolType)protocol;
 
 - (void)retryUpload:(Upload *)record;
-- (void)startUpload:(NSArray *)fileList toLocation:(Location *)aLocation;
+- (Upload *)startUpload:(NSArray *)fileList toLocation:(Location *)location;
+- (void)displayNextError;
 
 - (void)createLocationAndTransferFiles:(NSArray *)fileList;
 - (IBAction)createLocation:(id)sender;
@@ -66,9 +72,15 @@
 
 - (void)requireSettingsDirectory;
 
-/*
- *
- */
-- (void)runUploadTest;
+- (NSString *)getPasswordFromKeychain:(NSString *)hostname 
+							 username:(NSString *)username 
+								 port:(int)port 
+							 protocol:(SecProtocolType)protocol;
+
+- (void)savePasswordToKeychain:(NSString *)password 
+				   forHostname:(NSString *)hostname 
+					  username:(NSString *)username 
+						  port:(int)port 
+					  protocol:(SecProtocolType)protocol;
 
 @end

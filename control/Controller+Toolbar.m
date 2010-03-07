@@ -155,22 +155,22 @@
 {	
 	if ([[toolbar identifier] isEqual:OWTransferToolbarIdentifier])
 	{
-		return [NSArray arrayWithObjects:	OWShowTransfersMenuItem,
-											OWShowLocationsMenuItem,
-											NSToolbarFlexibleSpaceItemIdentifier,
-											OWTestMenuItem,
-											OWRetryTransfersMenuItem,
+		return [NSArray arrayWithObjects:	OWRetryTransfersMenuItem,
 											OWStopTransfersMenuItem,
-											OWClearTransfersMenuItem, 
+											OWClearTransfersMenuItem,
+											NSToolbarFlexibleSpaceItemIdentifier,
+											OWShowLocationsMenuItem,
+											OWShowTransfersMenuItem, 
 											nil];
+		
 	}
 	else
 	{
-		return [NSArray arrayWithObjects:	OWShowTransfersMenuItem,
-											OWShowLocationsMenuItem,
-											NSToolbarFlexibleSpaceItemIdentifier,
-											OWCreateLocationMenuItem,
+		return [NSArray arrayWithObjects:	OWCreateLocationMenuItem,
 											OWDeleteLocationMenuItem,
+											NSToolbarFlexibleSpaceItemIdentifier,
+											OWShowLocationsMenuItem,
+											OWShowTransfersMenuItem,
 											nil];
 	}	
 }
@@ -178,13 +178,7 @@
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar 
 {	
-		return [NSArray arrayWithObjects:OWShowTransfersMenuItem,
-				OWShowLocationsMenuItem,
-				NSToolbarFlexibleSpaceItemIdentifier,
-				OWTestMenuItem,
-				OWStopTransfersMenuItem,
-				OWClearTransfersMenuItem, 
-				nil];
+	return [self toolbarDefaultItemIdentifiers:toolbar];
 }
 
 
@@ -235,7 +229,7 @@
 		while (i != NSNotFound)
 		{
 			transfer = [transfers objectAtIndex:i];
-			if ([transfer status] == TRANSFER_STATUS_CANCELLED || [transfer status] == TRANSFER_STATUS_FAILED)
+			if ([transfer status] == TRANSFER_STATUS_CANCELLED || [transfer status] == TRANSFER_STATUS_FAILED || [transfer status] == TRANSFER_STATUS_COMPLETE)
 			{
 				enable = YES;
 				break;

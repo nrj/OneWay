@@ -1,12 +1,20 @@
 //
-//  NSString+Truncate.m
+//  NSString+Extras.m
 //  OneWay
 //
-//  Created by nrj on 8/29/09.
-//  Copyright 2009. All rights reserved.
+//  Created by nrj on 2/23/10.
+//  Copyright 2010 cocoaism.com. All rights reserved.
 //
 
-#import "NSString+Truncate.h"
+#import "NSString+Extras.h"
+
+
+@implementation NSString (Extras)
+
+- (BOOL)isEmptyOrNil
+{
+	return (self == nil || self == NULL || [self length] == 0); 
+}
 
 typedef enum {
 	NSTruncateStart = 0,
@@ -67,5 +75,6 @@ typedef enum {
 	[pieces removeLastObject];
 	return [pieces componentsJoinedByString:character];
 }
+
 
 @end

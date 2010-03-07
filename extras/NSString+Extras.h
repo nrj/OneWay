@@ -1,14 +1,17 @@
 //
-//  NSString+Truncate.h
+//  NSString+Extras.h
 //  OneWay
 //
-//  Created by nrj on 8/29/09.
-//  Copyright 2009. All rights reserved.
+//  Created by nrj on 2/23/10.
+//  Copyright 2010 cocoaism.com. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
-@interface NSString (Truncate)
+
+@interface NSString (Extras)
+
+- (BOOL)isEmptyOrNil;
 
 - (NSString *)stringWithTruncatingToLength:(unsigned)length;
 

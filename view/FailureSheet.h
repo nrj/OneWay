@@ -6,19 +6,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <objective-curl/objective-curl.h>
 
-@class Upload;
 
 @interface FailureSheet : NSWindowController 
 {
-	NSString *message;
-
 	Upload *upload;
 	
 	IBOutlet NSTextView *textView;
 }
 
-@property(readwrite, copy) NSString *message;
 @property(readwrite, assign) Upload *upload;
 
 - (IBAction)closeSheetTryAgain:(id)sender;

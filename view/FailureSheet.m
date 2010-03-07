@@ -10,14 +10,13 @@
 
 @implementation FailureSheet
 
-@synthesize message;
 @synthesize upload;
 
 - (id)init
 {
 	if (self = [super initWithWindowNibName:@"FailureSheet" owner:self])
 	{
-		message = @"";
+
 	}
 	
 	return self;
@@ -30,7 +29,7 @@
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {	
-	[textView setString:message];
+	[textView setString:[upload statusMessage]];
 }
 
 - (IBAction)closeSheetTryAgain:(id)sender

@@ -16,6 +16,7 @@
     Upload *copy = [[self class] allocWithZone: zone];
 	
 	[copy setProtocol:protocol];
+	[copy setProtocolPrefix:protocolPrefix];
 	[copy setHostname:hostname];
 	[copy setUsername:username];
 	[copy setPassword:password];

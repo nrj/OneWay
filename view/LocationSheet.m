@@ -8,18 +8,18 @@
 
 #import "LocationSheet.h"
 #import "Location.h"
-#import "NSString+Truncate.h"
+#import "NSString+Extras.h"
 
 
 @implementation LocationSheet
 
 @synthesize message;
+@synthesize messageColor;
 @synthesize location;
 @synthesize fileList;
 @synthesize shouldShowSaveOption;
 @synthesize shouldSaveLocation;
-@synthesize messageIsError;
-@synthesize messageColor;
+
 
 - (id)init
 {
@@ -29,21 +29,6 @@
 		messageColor = [NSColor darkGrayColor];
 	}
 	return self;
-}
-
-
-- (void)setMessageIsError:(BOOL)isError
-{
-	if (isError)
-	{
-		[self setMessageColor:[NSColor redColor]];
-	}
-	else
-	{
-		[self setMessageColor:[NSColor darkGrayColor]];
-	}
-
-	messageIsError = isError;
 }
 
 
