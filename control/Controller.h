@@ -39,6 +39,8 @@
 	IBOutlet NSButton *deleteButton;
 	
 	IBOutlet NSTextField *statusLabel;
+	
+	NSSegmentedControl *toggleView;
 		
 	int totalTransfers;
 	int totalActiveTransfers;
@@ -67,6 +69,7 @@
 - (void)updateContextMenu;
 - (void)updateStatusLabel;
 
+- (void)toggleView:(id)sender;
 - (void)showTransfersView;
 - (void)showLocationsView;
 

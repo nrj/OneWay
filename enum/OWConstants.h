@@ -48,14 +48,11 @@ NSString * const OWPluginDestinationFile;
 NSString * const OWTransferToolbarIdentifier;
 NSString * const OWLocationToolbarIdentifier;
 
-NSString * const OWShowTransfersMenuItem;
+NSString * const OWViewToggleMenuItem;
+
 NSString * const OWRetryTransfersMenuItem;
 NSString * const OWStopTransfersMenuItem;
 NSString * const OWClearTransfersMenuItem;
 
-NSString * const OWShowLocationsMenuItem;
 NSString * const OWCreateLocationMenuItem;
-NSString * const OWUpdateLocationMenuItem;
 NSString * const OWDeleteLocationMenuItem;
-
-NSString * const OWTestMenuItem;

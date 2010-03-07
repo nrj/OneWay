@@ -11,18 +11,11 @@
 
 @implementation NSString (Extras)
 
-- (BOOL)isEmptyOrNil
-{
-	return (self == nil || self == NULL || [self length] == 0); 
-}
-
 typedef enum {
 	NSTruncateStart = 0,
 	NSTruncateMiddle = 1,
 	NSTruncateEnd = 2
 } NSTruncateTypes;
-
-@implementation NSString (Truncate)
 
 - (NSString *)stringWithTruncatingToLength:(unsigned)length {
 	return [self stringTruncatedToLength:length direction:NSTruncateStart];

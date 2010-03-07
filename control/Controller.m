@@ -17,7 +17,8 @@
 #import "WelcomeView.h"
 #import "EMKeychain.h"
 #import "OWConstants.h"
-#import "StatusMessage.h"
+#import "UploadName.h"
+#import "LocationMessage.h"
 #import "NSString+Extras.h"
 
 
@@ -269,7 +270,7 @@
 											  password:[location password]
 											 directory:[location directory]
 												  port:[location port]];
-	
+	[record setName:[UploadName nameForFileList:fileList]];
 	[record setStatusMessage:@"Queued"];
 
 	[transferTable reloadData];
@@ -646,18 +647,35 @@
 
 
 
-- (void)showTransfersView
+- (void)toggleView:(id)sender
 {
-	[self setupToolbar:OWTransferToolbarIdentifier forWindow:window];
-	[viewStack selectTabViewItemAtIndex:0]; 
+	int selected = [toggleView selectedSegment];
+
+	switch (selected)
+	{
+		case 0:
+			[self showTransfersView];
+			break;
+		case 1:
+			[self showLocationsView];
+			break;
+		default:
+			break;
+	}
 }
 
+
+- (void)showTransfersView
+{
+	[viewStack selectTabViewItemAtIndex:0];
+	[self setupToolbar:OWTransferToolbarIdentifier forWindow:window];
+}
 
 
 - (void)showLocationsView
 {
-	[self setupToolbar:OWLocationToolbarIdentifier forWindow:window];
 	[viewStack selectTabViewItemAtIndex:1];
+	[self setupToolbar:OWLocationToolbarIdentifier forWindow:window];
 }
 
 
@@ -674,7 +692,7 @@
 												  password:@"" 
 												 directory:@"~/"];
 	
-	[locationSheet setMessage:[StatusMessage newLocationMessage]];
+	[locationSheet setMessage:[LocationMessage newLocationMessage]];
 	[locationSheet setShouldShowSaveOption:NO];
 	[locationSheet setShouldSaveLocation:YES];
 
@@ -699,7 +717,7 @@
 												  password:@""
 												 directory:@"~/"];
 
-	[locationSheet setMessage:[StatusMessage uploadFilesToNewLocationMessage:fileList]];
+	[locationSheet setMessage:[LocationMessage uploadFilesToNewLocationMessage:fileList]];
 	[locationSheet setShouldShowSaveOption:YES];
 	[locationSheet setShouldSaveLocation:YES];
 
@@ -723,7 +741,7 @@
 	{
 		Location *loc = [savedLocations objectAtIndex:[menuTable selectedRow]];
 		
-		[locationSheet setMessage:[StatusMessage editLocationMessage]];
+		[locationSheet setMessage:[LocationMessage editLocationMessage]];
 		[locationSheet setLocation:loc];
 		
 		[NSApp beginSheet:[locationSheet window]

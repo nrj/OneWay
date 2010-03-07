@@ -49,7 +49,8 @@
 		0BAB8D531127484D00AD061A /* Controller+Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D4F1127484D00AD061A /* Controller+Toolbar.m */; };
 		0BAB8D541127484D00AD061A /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D511127484D00AD061A /* Controller.m */; };
 		0BAB8D57112748A000AD061A /* OWConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D56112748A000AD061A /* OWConstants.m */; };
-		0BBCE9181131F307001676F3 /* StatusMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBCE9171131F307001676F3 /* StatusMessage.m */; };
+		0BB3ED3811444656008CC281 /* UploadName.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3ED3711444656008CC281 /* UploadName.m */; };
+		0BBCE9181131F307001676F3 /* LocationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBCE9171131F307001676F3 /* LocationMessage.m */; };
 		0BBCEA5B11323E01001676F3 /* FailureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBCEA5A11323E01001676F3 /* FailureSheet.xib */; };
 		0BD618861134446500050C25 /* NSString+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618851134446500050C25 /* NSString+Extras.m */; };
 		0BD618BB113446B400050C25 /* EMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618BA113446B400050C25 /* EMKeychain.m */; };
@@ -138,8 +139,10 @@
 		0BAB8D511127484D00AD061A /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
 		0BAB8D55112748A000AD061A /* OWConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OWConstants.h; sourceTree = "<group>"; };
 		0BAB8D56112748A000AD061A /* OWConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWConstants.m; sourceTree = "<group>"; };
-		0BBCE9161131F307001676F3 /* StatusMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusMessage.h; path = ../extras/StatusMessage.h; sourceTree = "<group>"; };
-		0BBCE9171131F307001676F3 /* StatusMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusMessage.m; path = ../extras/StatusMessage.m; sourceTree = "<group>"; };
+		0BB3ED3611444656008CC281 /* UploadName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadName.h; sourceTree = "<group>"; };
+		0BB3ED3711444656008CC281 /* UploadName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadName.m; sourceTree = "<group>"; };
+		0BBCE9161131F307001676F3 /* LocationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationMessage.h; path = ../extras/LocationMessage.h; sourceTree = "<group>"; };
+		0BBCE9171131F307001676F3 /* LocationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationMessage.m; path = ../extras/LocationMessage.m; sourceTree = "<group>"; };
 		0BBCEA1A11323B79001676F3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FailureSheet.xib; sourceTree = "<group>"; };
 		0BD618841134446500050C25 /* NSString+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extras.h"; sourceTree = "<group>"; };
 		0BD618851134446500050C25 /* NSString+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extras.m"; sourceTree = "<group>"; };
@@ -240,8 +243,10 @@
 		0BAB8D0E112744EA00AD061A /* enum */ = {
 			isa = PBXGroup;
 			children = (
-				0BBCE9161131F307001676F3 /* StatusMessage.h */,
-				0BBCE9171131F307001676F3 /* StatusMessage.m */,
+				0BBCE9161131F307001676F3 /* LocationMessage.h */,
+				0BBCE9171131F307001676F3 /* LocationMessage.m */,
+				0BB3ED3611444656008CC281 /* UploadName.h */,
+				0BB3ED3711444656008CC281 /* UploadName.m */,
 				0BAB8D55112748A000AD061A /* OWConstants.h */,
 				0BAB8D56112748A000AD061A /* OWConstants.m */,
 			);
@@ -546,10 +551,11 @@
 				0B8EC5A31128E63100D30FF3 /* Upload+NSCoding.m in Sources */,
 				0B8EC5A61128E63C00D30FF3 /* Upload+NSCopying.m in Sources */,
 				0B2C5BF211309774006C4F5B /* LocationCell.m in Sources */,
-				0BBCE9181131F307001676F3 /* StatusMessage.m in Sources */,
+				0BBCE9181131F307001676F3 /* LocationMessage.m in Sources */,
 				0BE6F80011323F6900AA2BCF /* FailureSheet.m in Sources */,
 				0BD618861134446500050C25 /* NSString+Extras.m in Sources */,
 				0BD618BB113446B400050C25 /* EMKeychain.m in Sources */,
+				0BB3ED3811444656008CC281 /* UploadName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

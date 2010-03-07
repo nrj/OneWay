@@ -29,125 +29,72 @@
 
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdent willBeInsertedIntoToolbar:(BOOL)willBeInserted 
 {	
-    if ([itemIdent isEqual:OWShowTransfersMenuItem]) 
-	{
-		NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:OWShowTransfersMenuItem];
-		
-        [item setLabel: @"Transfers"];
-        [item setPaletteLabel: @"Transfers"];
-        [item setToolTip: @"Show Transfers"];
-        [item setImage: [NSImage imageNamed: @"transfers.png"]];
-        [item setTarget: self];
-        [item setAction: @selector(showTransfersView)];
-		
-		return item;
-	}
+	NSToolbarItem *item = [[[NSToolbarItem alloc] initWithItemIdentifier:itemIdent] autorelease];
 	
-	else if ([itemIdent isEqual:OWShowLocationsMenuItem]) 
+    if ([itemIdent isEqual:OWViewToggleMenuItem]) 
 	{
-		NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:OWShowLocationsMenuItem];
-		
-        [item setLabel: @"Menu"];
-        [item setPaletteLabel: @"Menu"];
-        [item setToolTip: @"Show Menu Items"];
-        [item setImage: [NSImage imageNamed: @"menu.png"]];
-        [item setTarget: self];
-        [item setAction: @selector(showLocationsView)];
-		
-		return item;
+		NSSegmentedControl *tv = toggleView ? toggleView : [self newToggleViewControl];
+		[item setView:tv];
+		[item setTarget: self];
+		[item setAction: @selector(toggleView:)];
 	}
- 	
+	 	
 	else if ([itemIdent isEqual:OWRetryTransfersMenuItem]) 
 	{
-		NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:OWRetryTransfersMenuItem];
-		
-        [item setLabel: @"Retry"];
-        [item setPaletteLabel: @"Retry"];
-        [item setToolTip: @"Retry Selected Transfers"];
+        [item setLabel: @"Reload"];
+        [item setPaletteLabel: @"Reload"];
+        [item setToolTip: @"Reload Selected Transfers"];
         [item setImage: [NSImage imageNamed: @"retry.png"]];
         [item setTarget: self];
         [item setAction: @selector(retrySelectedTransfers:)];
-		
-		return item;
 	} 
 	
 	else if ([itemIdent isEqual:OWStopTransfersMenuItem]) 
 	{
-		NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:OWStopTransfersMenuItem];
-		
         [item setLabel: @"Stop"];
         [item setPaletteLabel: @"Stop"];
         [item setToolTip: @"Stop Selected Transfers"];
         [item setImage: [NSImage imageNamed: @"stop.png"]];
         [item setTarget: self];
         [item setAction: @selector(stopSelectedTransfers:)];
-		
-		return item;
 	} 
 	
 	else if ([itemIdent isEqual:OWClearTransfersMenuItem]) 
 	{
-		NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:OWClearTransfersMenuItem];
-		
         [item setLabel: @"Clear"];
         [item setPaletteLabel: @"Clear"];
         [item setToolTip: @"Clear Selected Transfers"];
         [item setImage: [NSImage imageNamed: @"clear.png"]];
         [item setTarget: self];
         [item setAction: @selector(clearSelectedTransfers:)];
-		
-		return item;
 	}
 	
 	else if ([itemIdent isEqual:OWCreateLocationMenuItem]) 
 	{
-		NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:OWCreateLocationMenuItem];
-		
         [item setLabel: @"New Menu Item"];
         [item setPaletteLabel: @"New Menu Item"];
         [item setToolTip: @"New Menu Item"];
         [item setImage: [NSImage imageNamed: @"add.png"]];
         [item setTarget: self];
         [item setAction: @selector(createLocation:)];
-		
-		return item;
 	}
 	
 	else if ([itemIdent isEqual:OWDeleteLocationMenuItem]) 
 	{
-		NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:OWDeleteLocationMenuItem];
-		
         [item setLabel: @"Delete Menu Item"];
         [item setPaletteLabel: @"Delete Menu Item"];
         [item setToolTip: @"Delete Menu Item"];
         [item setImage: [NSImage imageNamed: @"delete.png"]];
         [item setTarget: self];
         [item setAction: @selector(deleteLocation:)];
-		
-		return item;
 	}
 		
-	else if ([itemIdent isEqual:NSToolbarFlexibleSpaceItemIdentifier])
+	else
 	{
-		NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:NSToolbarFlexibleSpaceItemIdentifier];
-		return item;
-	}
-
-	else if ([itemIdent isEqual:OWTestMenuItem]) 
-	{
-		NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:OWTestMenuItem];
-		
-        [item setLabel: @"Test"];
-        [item setPaletteLabel: @"Test"];
-        [item setToolTip: @"Run Upload Test"];
-        [item setImage: [NSImage imageNamed: @"log.png"]];
-        [item setTarget: self];
-        [item setAction: @selector(runUploadTest)];
-		
-		return item;
+		return nil;
 	}
 	
-	return nil;
+	return item;
 }
 
 
@@ -159,8 +106,7 @@
 											OWStopTransfersMenuItem,
 											OWClearTransfersMenuItem,
 											NSToolbarFlexibleSpaceItemIdentifier,
-											OWShowLocationsMenuItem,
-											OWShowTransfersMenuItem, 
+											OWViewToggleMenuItem,
 											nil];
 		
 	}
@@ -169,8 +115,7 @@
 		return [NSArray arrayWithObjects:	OWCreateLocationMenuItem,
 											OWDeleteLocationMenuItem,
 											NSToolbarFlexibleSpaceItemIdentifier,
-											OWShowLocationsMenuItem,
-											OWShowTransfersMenuItem,
+											OWViewToggleMenuItem,
 											nil];
 	}	
 }
@@ -178,7 +123,14 @@
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar 
 {	
-	return [self toolbarDefaultItemIdentifiers:toolbar];
+	return [NSArray arrayWithObjects:	OWRetryTransfersMenuItem,
+										OWStopTransfersMenuItem,
+										OWClearTransfersMenuItem,
+										OWCreateLocationMenuItem,
+										OWDeleteLocationMenuItem,
+										OWViewToggleMenuItem,
+										NSToolbarFlexibleSpaceItemIdentifier,
+										nil];
 }
 
 
@@ -252,5 +204,21 @@
 	}
     return enable;
 }
+
+
+- (NSSegmentedControl *)newToggleViewControl
+{
+	toggleView = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(0,0,175,25)];
+	
+	[toggleView setSegmentCount:2];
+	[toggleView setSegmentStyle:NSSegmentStyleTexturedRounded];
+	[toggleView setLabel:@"Transfers" forSegment:0];
+	[toggleView setLabel:@"Bookmarks" forSegment:1];
+	[toggleView setSelectedSegment:0];
+	[[toggleView cell] setTrackingMode:NSSegmentSwitchTrackingSelectOne];
+	
+	return toggleView;
+}
+
 
 @end

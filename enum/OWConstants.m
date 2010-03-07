@@ -32,14 +32,11 @@ NSString * const OWPluginDestinationFile	= @"~/Library/Contextual Menu Items/One
 NSString * const OWTransferToolbarIdentifier = @"OneWayTransferToolBarIdentifier";
 NSString * const OWLocationToolbarIdentifier = @"OneWayLocationToolBarIdentifier";
 
-NSString * const OWShowTransfersMenuItem	= @"OneWayShowTransfersMenuItem";
+NSString * const OWViewToggleMenuItem		= @"OneWayViewToggleMenuItem";
+
 NSString * const OWRetryTransfersMenuItem	= @"OneWayRetryTransfersMenuItem";
 NSString * const OWStopTransfersMenuItem	= @"OneWayStopTransfersMenuItem";
 NSString * const OWClearTransfersMenuItem	= @"OneWayClearTransfersMenuItem";
 
-NSString * const OWShowLocationsMenuItem	= @"OneWayShowLocationsMenuItem";
 NSString * const OWCreateLocationMenuItem	= @"OneWayCreateLocationMenuItem";
-NSString * const OWUpdateLocationMenuItem	= @"OneWayUpdateLocationMenuItem";
 NSString * const OWDeleteLocationMenuItem	= @"OneWayDeleteLocationMenuItem";
-
-NSString * const OWTestMenuItem				= @"OneWayTestMenuItem";

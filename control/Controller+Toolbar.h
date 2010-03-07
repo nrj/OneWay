@@ -14,4 +14,6 @@
 
 - (void)setupToolbar:(NSString *)identifier forWindow:(NSWindow *)theWindow;
 
+- (NSSegmentedControl *)newToggleViewControl;
+
 @end

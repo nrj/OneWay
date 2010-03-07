@@ -11,8 +11,6 @@
 
 @interface NSString (Extras)
 
-- (BOOL)isEmptyOrNil;
-
 - (NSString *)stringWithTruncatingToLength:(unsigned)length;
 
 - (NSString *)stringTruncatedToLength:(unsigned int)length direction:(unsigned)truncateFrom;
