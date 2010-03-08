@@ -13,7 +13,7 @@
 	<key>CFBundleIconFile</key>
 	<string>OneWay.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.onewayapp.${PRODUCT_NAME:identifier}</string>
+	<string>com.cocoaism.${PRODUCT_NAME:identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,7 +27,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://onewayapp.com/update</string>
+	<string>http://appcast.cocoaism.com/oneway</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
 	<key>SUPublicDSAKeyFile</key>
