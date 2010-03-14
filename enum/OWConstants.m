@@ -24,7 +24,7 @@ NSString * const OWMenuItemsFile		= @"~/Library/OneWay/.menuItems";
 // Script Locations
 NSString * const OWRestartFinderScript = @"Contents/Resources/restart_finder.sh";
 
-// Plugin Source/Destination
+// Plugin Source/Destination - for 10.5
 NSString * const OWPluginSourceFile			= @"Contents/Resources/OneWayPlugin.plugin";
 NSString * const OWPluginDestinationFile	= @"~/Library/Contextual Menu Items/OneWay.plugin";
 
@@ -40,3 +40,10 @@ NSString * const OWClearTransfersMenuItem	= @"OneWayClearTransfersMenuItem";
 
 NSString * const OWCreateLocationMenuItem	= @"OneWayCreateLocationMenuItem";
 NSString * const OWDeleteLocationMenuItem	= @"OneWayDeleteLocationMenuItem";
+
+// Service Constants
+
+NSString * const OWServiceDirectory			= @"~/Library/Services";
+NSString * const OWServiceWorkflowTemplate	= @"Contents/Resources/template.wflow";
+NSString * const OWServicePListTemplate		= @"Contents/Resources/template.plist";
+NSString * const OWServiceThumbnail			= @"Contents/Resources/Thumbnail.png";

@@ -117,6 +117,24 @@
 	}
 }
 
+
+- (NSString *)protocolString
+{
+	NSString *str;
+	
+	if (type == OWLocationTypeSFTP)
+	{
+		str = @"SFTP";
+	}
+	else if (type == OWLocationTypeFTP)
+	{
+		str = @"FTP";
+	}
+
+	return str;
+}
+
+
 - (void)dealloc
 {
 	[hostname release], hostname = nil;

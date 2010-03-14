@@ -56,3 +56,10 @@ NSString * const OWClearTransfersMenuItem;
 
 NSString * const OWCreateLocationMenuItem;
 NSString * const OWDeleteLocationMenuItem;
+
+// Service Constants
+
+NSString * const OWServiceDirectory;
+NSString * const OWServiceWorkflowTemplate;
+NSString * const OWServicePListTemplate;
+NSString * const OWServiceThumbnail;

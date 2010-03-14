@@ -23,6 +23,7 @@
 		0B2C5CF71130BFB0006C4F5B /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5CF61130BFB0006C4F5B /* add.png */; };
 		0B2C5CFA1130C03E006C4F5B /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5CF91130C03E006C4F5B /* delete.png */; };
 		0B2C5D0E1130C287006C4F5B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5D0D1130C287006C4F5B /* menu.png */; };
+		0B4627A2114D9DCA00198C23 /* LocationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4627A1114D9DCA00198C23 /* LocationMessage.m */; };
 		0B6E84B71127540600296175 /* Controller+Scripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B21127540600296175 /* Controller+Scripting.m */; };
 		0B6E84B81127540600296175 /* Location+Scripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B41127540600296175 /* Location+Scripting.m */; };
 		0B6E84B91127540600296175 /* QueueNewScriptCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B61127540600296175 /* QueueNewScriptCommand.m */; };
@@ -50,8 +51,11 @@
 		0BAB8D541127484D00AD061A /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D511127484D00AD061A /* Controller.m */; };
 		0BAB8D57112748A000AD061A /* OWConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D56112748A000AD061A /* OWConstants.m */; };
 		0BB3ED3811444656008CC281 /* UploadName.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3ED3711444656008CC281 /* UploadName.m */; };
-		0BBCE9181131F307001676F3 /* LocationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBCE9171131F307001676F3 /* LocationMessage.m */; };
 		0BBCEA5B11323E01001676F3 /* FailureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBCEA5A11323E01001676F3 /* FailureSheet.xib */; };
+		0BCBD273114D597D006C12BE /* FinderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCBD272114D597D006C12BE /* FinderService.m */; };
+		0BCBD276114D5A9D006C12BE /* template.wflow in Resources */ = {isa = PBXBuildFile; fileRef = 0BCBD275114D5A9D006C12BE /* template.wflow */; };
+		0BCBD278114D5C2F006C12BE /* template.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BCBD277114D5C2F006C12BE /* template.plist */; };
+		0BCBD27D114D5DFB006C12BE /* Thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BCBD27C114D5DFB006C12BE /* Thumbnail.png */; };
 		0BD618861134446500050C25 /* NSString+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618851134446500050C25 /* NSString+Extras.m */; };
 		0BD618BB113446B400050C25 /* EMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618BA113446B400050C25 /* EMKeychain.m */; };
 		0BD6195411344D7E00050C25 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD6195311344D7E00050C25 /* Security.framework */; };
@@ -106,6 +110,8 @@
 		0B2C5CF61130BFB0006C4F5B /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		0B2C5CF91130C03E006C4F5B /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		0B2C5D0D1130C287006C4F5B /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		0B4627A0114D9DCA00198C23 /* LocationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMessage.h; sourceTree = "<group>"; };
+		0B4627A1114D9DCA00198C23 /* LocationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMessage.m; sourceTree = "<group>"; };
 		0B6E84B11127540600296175 /* Controller+Scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+Scripting.h"; sourceTree = "<group>"; };
 		0B6E84B21127540600296175 /* Controller+Scripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Controller+Scripting.m"; sourceTree = "<group>"; };
 		0B6E84B31127540600296175 /* Location+Scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Location+Scripting.h"; sourceTree = "<group>"; };
@@ -141,9 +147,12 @@
 		0BAB8D56112748A000AD061A /* OWConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWConstants.m; sourceTree = "<group>"; };
 		0BB3ED3611444656008CC281 /* UploadName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadName.h; sourceTree = "<group>"; };
 		0BB3ED3711444656008CC281 /* UploadName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadName.m; sourceTree = "<group>"; };
-		0BBCE9161131F307001676F3 /* LocationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationMessage.h; path = ../extras/LocationMessage.h; sourceTree = "<group>"; };
-		0BBCE9171131F307001676F3 /* LocationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationMessage.m; path = ../extras/LocationMessage.m; sourceTree = "<group>"; };
 		0BBCEA1A11323B79001676F3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FailureSheet.xib; sourceTree = "<group>"; };
+		0BCBD271114D597D006C12BE /* FinderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderService.h; sourceTree = "<group>"; };
+		0BCBD272114D597D006C12BE /* FinderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderService.m; sourceTree = "<group>"; };
+		0BCBD275114D5A9D006C12BE /* template.wflow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = template.wflow; sourceTree = "<group>"; };
+		0BCBD277114D5C2F006C12BE /* template.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = template.plist; sourceTree = "<group>"; };
+		0BCBD27C114D5DFB006C12BE /* Thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Thumbnail.png; sourceTree = "<group>"; };
 		0BD618841134446500050C25 /* NSString+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extras.h"; sourceTree = "<group>"; };
 		0BD618851134446500050C25 /* NSString+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extras.m"; sourceTree = "<group>"; };
 		0BD618B9113446B400050C25 /* EMKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychain.h; sourceTree = "<group>"; };
@@ -243,8 +252,8 @@
 		0BAB8D0E112744EA00AD061A /* enum */ = {
 			isa = PBXGroup;
 			children = (
-				0BBCE9161131F307001676F3 /* LocationMessage.h */,
-				0BBCE9171131F307001676F3 /* LocationMessage.m */,
+				0B4627A0114D9DCA00198C23 /* LocationMessage.h */,
+				0B4627A1114D9DCA00198C23 /* LocationMessage.m */,
 				0BB3ED3611444656008CC281 /* UploadName.h */,
 				0BB3ED3711444656008CC281 /* UploadName.m */,
 				0BAB8D55112748A000AD061A /* OWConstants.h */,
@@ -317,8 +326,20 @@
 				0B19DE8411274B4E00B13C62 /* AppleScript.c */,
 				0B19DE8511274B4E00B13C62 /* AppleScript.h */,
 				0B19DE8611274B4E00B13C62 /* Plugin.c */,
+				0BCBD271114D597D006C12BE /* FinderService.h */,
+				0BCBD272114D597D006C12BE /* FinderService.m */,
 			);
 			path = plugin;
+			sourceTree = "<group>";
+		};
+		0BCBD274114D5A7F006C12BE /* workflow */ = {
+			isa = PBXGroup;
+			children = (
+				0BCBD27C114D5DFB006C12BE /* Thumbnail.png */,
+				0BCBD275114D5A9D006C12BE /* template.wflow */,
+				0BCBD277114D5C2F006C12BE /* template.plist */,
+			);
+			path = workflow;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -375,6 +396,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0BCBD274114D5A7F006C12BE /* workflow */,
 				0B6E8581112762F400296175 /* icons */,
 				0BAB8D3F1127482300AD061A /* dsa_public.pem */,
 				0BAB8D401127482300AD061A /* OneWay.sdef */,
@@ -498,6 +520,9 @@
 				0BBCEA5B11323E01001676F3 /* FailureSheet.xib in Resources */,
 				0BE6F88C1132473A00AA2BCF /* restart_finder.sh in Resources */,
 				0BDD2795113252E0005D7F84 /* retry.png in Resources */,
+				0BCBD276114D5A9D006C12BE /* template.wflow in Resources */,
+				0BCBD278114D5C2F006C12BE /* template.plist in Resources */,
+				0BCBD27D114D5DFB006C12BE /* Thumbnail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,11 +576,12 @@
 				0B8EC5A31128E63100D30FF3 /* Upload+NSCoding.m in Sources */,
 				0B8EC5A61128E63C00D30FF3 /* Upload+NSCopying.m in Sources */,
 				0B2C5BF211309774006C4F5B /* LocationCell.m in Sources */,
-				0BBCE9181131F307001676F3 /* LocationMessage.m in Sources */,
 				0BE6F80011323F6900AA2BCF /* FailureSheet.m in Sources */,
 				0BD618861134446500050C25 /* NSString+Extras.m in Sources */,
 				0BD618BB113446B400050C25 /* EMKeychain.m in Sources */,
 				0BB3ED3811444656008CC281 /* UploadName.m in Sources */,
+				0BCBD273114D597D006C12BE /* FinderService.m in Sources */,
+				0B4627A2114D9DCA00198C23 /* LocationMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "Controller.h"
 #import "Controller+Toolbar.h"
+#import "FinderService.h"
 #import "Location.h"
 #import "LocationSheet.h"
 #import "LocationCell.h"
@@ -144,7 +145,7 @@
 	[menuTable sizeToFit];
 	
 	// Update the status
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 }
 
 
@@ -186,6 +187,9 @@
 		// Update the last launched version to this one
 		[[NSUserDefaults standardUserDefaults] setObject:version forKey:@"lastLaunchedVersion"];	
 	}
+	
+	[FinderService updateForLocations:savedLocations];
+	[FinderService reload];
 }
 
 
@@ -274,7 +278,7 @@
 	[record setStatusMessage:@"Queued"];
 
 	[transferTable reloadData];
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 	
 	return record;
 }
@@ -300,7 +304,8 @@
 	[record setStatusMessage:@"Queued"];
 	
 	[transferTable reloadData];	
-	[self updateStatusLabel];
+	
+	[self updateActiveTransfersLabel];
 }
 
 
@@ -356,11 +361,13 @@
 		[mgr removeFileAtPath:[OWMenuItemsFile stringByExpandingTildeInPath] handler:nil];
 	}
 	
+	
+	
 	[mgr release];
 }
 
 
-- (void)updateStatusLabel
+- (void)updateActiveTransfersLabel
 {
 	int activeTransfers = 0;
 	Upload *t;
@@ -419,7 +426,7 @@
 	[record setStatusMessage:[NSString stringWithFormat:@"Connecting to %@ ...", [record hostname]]];
 	
 	[transferTable reloadData];
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 }
 
 
@@ -445,7 +452,7 @@
 	}
 	
 	[transferTable reloadData];
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 }
 
 
@@ -474,7 +481,7 @@
 	[record setStatusMessage:@"Finished"];
 	
 	[transferTable reloadData];
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 }
 
 
@@ -489,7 +496,7 @@
 	[record setStatusMessage:@"Cancelled"];
 	
 	[transferTable reloadData];
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 }
 
 
@@ -510,7 +517,7 @@
 		  contextInfo:record];
 	
 	[transferTable reloadData];
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 }
 
 
@@ -523,7 +530,7 @@
 	NSLog(@"uploadDidFail: %@", message);		
 	
 	[record setStatusMessage:message];
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 	
 	[transferTable reloadData];	
 	
@@ -592,7 +599,7 @@
 	
 	[transferTable reloadData];	
 	
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 }
 
 
@@ -616,7 +623,7 @@
 	
 	[transferTable deselectAll:nil];
 	[transferTable reloadData];	
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 }
 
 
@@ -642,7 +649,7 @@
 	[transfers removeObjectsInArray:discardedItems];	
 	[transferTable deselectAll:nil];
 	[transferTable reloadData];
-	[self updateStatusLabel];
+	[self updateActiveTransfersLabel];
 }
 
 
@@ -796,6 +803,9 @@
 				if ([locationSheet shouldSaveLocation])
 				{
 					[savedLocations addObject:location];
+					
+					[FinderService createServiceForLocation:location atIndex:[savedLocations count] - 1];
+					[FinderService reload];
 				}
 
 				Upload *upload = [self startUpload:fileList toLocation:location];
@@ -815,6 +825,9 @@
 			{
 				[savedLocations addObject:location];
 				
+				[FinderService createServiceForLocation:location atIndex:[savedLocations count] - 1];
+				[FinderService reload];
+				
 				break;
 			}
 
@@ -824,6 +837,9 @@
 			{
 				[savedLocations removeObjectAtIndex:[menuTable selectedRow]];
 
+				[FinderService removeServiceFromLocations:savedLocations atIndex:[menuTable selectedRow]];
+				[FinderService reload];
+				
 				break;
 			}
 				
@@ -879,7 +895,7 @@
 //					  task, 
 //					  aMessage);
 //
-//	[self updateStatusLabel];
+//	[self updateActiveTransfersLabel];
 //}
 
 

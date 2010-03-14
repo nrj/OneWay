@@ -67,7 +67,7 @@
 
 - (void)saveUserData;
 - (void)updateContextMenu;
-- (void)updateStatusLabel;
+- (void)updateActiveTransfersLabel;
 
 - (void)toggleView:(id)sender;
 - (void)showTransfersView;

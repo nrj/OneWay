@@ -39,4 +39,6 @@
 
 - (void)setProtocolDefaults;
 
+- (NSString *)protocolString;
+
 @end
