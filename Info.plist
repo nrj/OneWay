@@ -35,8 +35,8 @@
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_public.pem</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.2</string>
+	<string>0.0.3</string>
 	<key>OWVersionRequiresFinderRestart</key>
-	<string>YES</string>
+	<string>NO</string>
 </dict>
 </plist>
