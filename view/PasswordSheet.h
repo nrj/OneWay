@@ -7,22 +7,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <objective-curl/objective-curl.h>
 
+@class Upload;
 
 @interface PasswordSheet : NSWindowController 
 {
+	Upload *upload;
+	BOOL savePassword;
+	
 	IBOutlet NSTextField *titleLabel;
 	IBOutlet NSTextField *passwordField;
-	BOOL shouldSaveInKeychain;
-	
-	NSString *titleString;
-	NSString *password;
 }
 
-@property(readwrite, copy) NSString *password;
-@property(readwrite, copy) NSString *titleString;
-@property(readwrite, assign) BOOL shouldSaveInKeychain;
-
+@property(readwrite, assign) Upload *upload;
+@property(readwrite, assign) BOOL savePassword;
 
 - (IBAction)closeSheetOK:(id)sender;
 - (IBAction)closeSheetCancel:(id)sender;

@@ -210,6 +210,11 @@ NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}
 	NSTask *task;
 	task = [[NSTask alloc] init];
 	[task setLaunchPath: @"/System/Library/CoreServices/pbs"];
+	
+	NSArray *args;
+    args = [NSArray arrayWithObjects: @"en", nil];
+    [task setArguments: args];
+	
 	[task launch];
 }
 	 

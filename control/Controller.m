@@ -21,6 +21,7 @@
 #import "UploadName.h"
 #import "LocationMessage.h"
 #import "NSString+Extras.h"
+#import "SystemVersion.h"
 
 
 @implementation Controller
@@ -171,13 +172,15 @@
 		   toPath:[OWPluginDestinationFile stringByExpandingTildeInPath] 
 		  handler:nil];
 	
+	
 	if (![version isEqualToString:lastLaunchedVersion])
 	{
 		// First time launching the app, or we've updated to a new version
 		
-		BOOL versionNeedsFinderRestart = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"OWVersionRequiresFinderRestart"] boolValue];
+		BOOL versionNeedsFinderRestart = [[[[NSBundle mainBundle] infoDictionary] 
+										   objectForKey:@"OWVersionRequiresFinderRestart"] boolValue];
 		
-		if (version == nil || versionNeedsFinderRestart)
+		if ((version == nil || versionNeedsFinderRestart) && [SystemVersion isLeopard])
 		{
 			// If this is the first time, or an update that requires a Finder restart do it
 			welcomeView = [[WelcomeView alloc] initRelativeToWindow:window];
@@ -508,13 +511,13 @@
 {
 	NSLog(@"uploadDidFailAuthentication: %@", message);
 	
-	[passwordSheet setTitleString:[NSString stringWithFormat:@"Password for \"%@@%@\"", [record username], [record hostname]]];
+	[passwordSheet setUpload:record];
 	
 	[NSApp beginSheet:[passwordSheet window]
 	   modalForWindow:window
 		modalDelegate:self
 	   didEndSelector:@selector(passwordSheetDidEnd:returnCode:contextInfo:)
-		  contextInfo:record];
+		  contextInfo:nil];
 	
 	[transferTable reloadData];
 	[self updateActiveTransfersLabel];
@@ -783,7 +786,21 @@
 - (void)passwordSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
 	[sheet orderOut:self];
+	
+	if (returnCode == 1)
+	{
+		Upload *upload = [passwordSheet upload];
+		
+		if ([passwordSheet savePassword])
+		{
+			[transferPasswords setObject:[NSNumber numberWithInt:1] forKey:upload];
+		}
+		
+		[self retryUpload:upload];
+	}
 }
+
+
 
 - (void)locationSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {

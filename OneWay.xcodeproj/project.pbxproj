@@ -24,6 +24,7 @@
 		0B2C5CFA1130C03E006C4F5B /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5CF91130C03E006C4F5B /* delete.png */; };
 		0B2C5D0E1130C287006C4F5B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5D0D1130C287006C4F5B /* menu.png */; };
 		0B4627A2114D9DCA00198C23 /* LocationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4627A1114D9DCA00198C23 /* LocationMessage.m */; };
+		0B4627D1114DB4A600198C23 /* SystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4627D0114DB4A600198C23 /* SystemVersion.m */; };
 		0B6E84B71127540600296175 /* Controller+Scripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B21127540600296175 /* Controller+Scripting.m */; };
 		0B6E84B81127540600296175 /* Location+Scripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B41127540600296175 /* Location+Scripting.m */; };
 		0B6E84B91127540600296175 /* QueueNewScriptCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B61127540600296175 /* QueueNewScriptCommand.m */; };
@@ -112,6 +113,8 @@
 		0B2C5D0D1130C287006C4F5B /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		0B4627A0114D9DCA00198C23 /* LocationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMessage.h; sourceTree = "<group>"; };
 		0B4627A1114D9DCA00198C23 /* LocationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMessage.m; sourceTree = "<group>"; };
+		0B4627CF114DB4A600198C23 /* SystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemVersion.h; sourceTree = "<group>"; };
+		0B4627D0114DB4A600198C23 /* SystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemVersion.m; sourceTree = "<group>"; };
 		0B6E84B11127540600296175 /* Controller+Scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+Scripting.h"; sourceTree = "<group>"; };
 		0B6E84B21127540600296175 /* Controller+Scripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Controller+Scripting.m"; sourceTree = "<group>"; };
 		0B6E84B31127540600296175 /* Location+Scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Location+Scripting.h"; sourceTree = "<group>"; };
@@ -198,6 +201,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0B4627CE114DB48900198C23 /* util */,
 				0BAB8D131127451800AD061A /* plugin */,
 				0BAB8D121127450B00AD061A /* view */,
 				0BAB8D111127450500AD061A /* model */,
@@ -208,6 +212,15 @@
 				0BAB8D0C112744DB00AD061A /* lib */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		0B4627CE114DB48900198C23 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				0B4627CF114DB4A600198C23 /* SystemVersion.h */,
+				0B4627D0114DB4A600198C23 /* SystemVersion.m */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 		0B6E8581112762F400296175 /* icons */ = {
@@ -582,6 +595,7 @@
 				0BB3ED3811444656008CC281 /* UploadName.m in Sources */,
 				0BCBD273114D597D006C12BE /* FinderService.m in Sources */,
 				0B4627A2114D9DCA00198C23 /* LocationMessage.m in Sources */,
+				0B4627D1114DB4A600198C23 /* SystemVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
