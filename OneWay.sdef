@@ -1,67 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
 <dictionary title="OneWay Dictionary">
-	<suite name="Standard Suite" code="????" description="Common classes and commands for most applications.">
-		<cocoa name="NSCoreSuite"/>
-		<command name="count" code="corecnte" description="Return the number of elements of a particular class within an object.">
-			<cocoa class="NSCountCommand"/>
-			<direct-parameter description="the object whose elements are to be counted" type="specifier"/>
-			<parameter name="each" code="kocl" description="The class of objects to be counted." type="type" optional="yes">
-				<cocoa key="ObjectClass"/>
-			</parameter>
-			<result description="the number of elements" type="integer"/>
-		</command>
-		<command name="delete" code="coredelo" description="Delete an object.">
-			<cocoa class="NSDeleteCommand"/>
-			<direct-parameter description="the object to delete" type="specifier"/>
-		</command>
-		<command name="exists" code="coredoex" description="Verify if an object exists.">
-			<cocoa class="NSExistsCommand"/>
-			<direct-parameter description="the object in question" type="specifier"/>
-			<result description="true if it exists, false if not" type="boolean"/>
-		</command>
-		<command name="make" code="corecrel" description="Make a new object.">
-			<cocoa name="Create" class="NSCreateCommand"/>
-			<parameter name="new" code="kocl" description="The class of the new object." type="type">
-				<cocoa key="ObjectClass"/>
-			</parameter>
-			<parameter name="at" code="insh" description="The location at which to insert the object." type="location specifier" optional="yes">
-				<cocoa key="Location"/>
-			</parameter>
-			<parameter name="with data" code="data" description="The initial data for the object." type="any" optional="yes">
-				<cocoa key="ObjectData"/>
-			</parameter>
-			<parameter name="with properties" code="prdt" description="The initial values for properties of the object." type="record" optional="yes">
-				<cocoa key="KeyDictionary"/>
-			</parameter>
-			<result description="to the new object" type="specifier"/>
-		</command>
-	</suite>
 	<suite name="OneWay Suite" code="oWAS" description="The OneWay suite">
 		<class name="application" code="capp" description="An application&apos;s top level scripting object.">
 			<cocoa class="NSApplication"/>
-			<element description="The saved FTP/SFTP locations" type="location">
+			<element description="The saved FTP/SFTP locations" type="location" access="r">
 				<cocoa key="savedLocations"/>
 			</element>
-			<property name="name" code="pnam" description="The name of the application." type="text" access="r"/>
-			<property name="frontmost" code="pisf" description="Is this the frontmost (active) application?" type="boolean" access="r">
-				<cocoa key="isActive"/>
-			</property>
-			<property name="version" code="vers" description="The version of the application." type="text" access="r"/>
 		</class>
 		<class name="location" code="oLOC" description="A saved FTP/SFTP location." plural="locations">
 			<cocoa class="Location"/>
-			<property name="name" code="pnam" description="The location name." type="text">
-				<cocoa key="name"/>
-			</property>
-			<property name="hostname" code="pHST" description="The location hostname." type="text"/>
+			<property name="uid" code="pnam" description="The name of the application." type="text" access="r"/>
 			<responds-to command="queue transfer">
 				<cocoa method="queueTransfer:"/>
 			</responds-to>
 		</class>
 		<command name="queue transfer" code="oWASTRNS" description="Start a file transfer.">
 			<direct-parameter description="The saved FTP/SFTP location" type="location"/>
-			<parameter name="with files" code="oFIL" description="A list of files to transfer">
+			<parameter name="with files" code="oWFI" description="A list of files to transfer">
 				<cocoa key="theFiles"/>
 				<type type="text" list="yes"/>
 			</parameter>

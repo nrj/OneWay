@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="57"/>
+			<integer value="106"/>
 			<integer value="806"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -401,7 +401,7 @@
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
-				<string key="NSWindowContentMinSize">{260, 210}</string>
+				<string key="NSWindowContentMinSize">{375, 210}</string>
 				<object class="NSView" key="NSWindowView" id="454906822">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -731,7 +731,7 @@
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
-				<string key="NSMinSize">{260, 232}</string>
+				<string key="NSMinSize">{375, 232}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<string key="NSFrameAutosaveName">__OneWay__</string>
 			</object>
@@ -922,18 +922,18 @@
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="1050"/>
-						<reference key="destination" ref="311068641"/>
-					</object>
-					<int key="connectionID">960</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">delegate</string>
 						<reference key="source" ref="295575696"/>
 						<reference key="destination" ref="311068641"/>
 					</object>
 					<int key="connectionID">961</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="1050"/>
+						<reference key="destination" ref="311068641"/>
+					</object>
+					<int key="connectionID">978</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1558,7 +1558,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{645, 774}, {164, 23}}</string>
+					<string>{{705, 663}, {161, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{596, 852}, {216, 23}}</string>
@@ -1628,7 +1628,7 @@
 					<string>{{424, 98}, {339, 316}}</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
-					<string>{260, 210}</string>
+					<string>{375, 210}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{438, 744}, {171, 53}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1695,7 +1695,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">977</int>
+			<int key="maxID">982</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1716,11 +1716,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>createLocation:</string>
 							<string>deleteLocation:</string>
+							<string>runTest:</string>
 							<string>toggleView:</string>
 							<string>updateLocation:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

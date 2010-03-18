@@ -21,9 +21,11 @@
 	NSMutableArray *transfers;
 	NSMutableArray *savedLocations;	
 
+	NSMapTable *passwordsToSave;
+	NSMapTable *knownHosts;
 	// TODO, use NSPointerArray instead
-	NSMutableArray *failedTransfers;	
-	NSMapTable *transferPasswords;
+	NSMutableArray *failedTransfers;
+	NSPointerArray *retryQueue;
 	
 	WelcomeView *welcomeView;
 	LocationSheet *locationSheet;
@@ -85,5 +87,22 @@
 					  username:(NSString *)username 
 						  port:(int)port 
 					  protocol:(SecProtocolType)protocol;
+
+
+// Upload Queue Stuff
+
+- (int)numberOfQueuedUploadsForURI:(NSString *)uri;
+
+- (void)runAllQueuedUploadsWithURI:(NSString *)uri;
+
+- (void)runNextQueuedUploadWithURI:(NSString *)uri;
+
+- (void)updateQueuedUploadsUsername:(NSString *)username 
+						andPassword:(NSString *)password 
+							withURI:(NSString *)uri;
+
+- (void)cancelQueuedUploadsWithURI:(NSString *)uri 
+							status:(int)status 
+						   message:(NSString *)message;
 
 @end

@@ -37,7 +37,7 @@ NSString * const OWUploadToExistingLocationScript;
 
 + (void)createServiceForLocation:(Location *)location atIndex:(int)index;
 
-+ (void)removeServiceFromLocations:(NSArray *)locations atIndex:(int)index;
++ (void)removeServiceAtIndex:(int)index;
 
 + (void)createServiceDirectory;
 

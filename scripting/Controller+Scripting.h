@@ -15,7 +15,6 @@
 
 - (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key;
 - (unsigned int)countOfSavedLocations;
-- (Location *)valueInSavedLocationsAtIndex:(unsigned int)index;
-- (Location *)valueInSavedLocationsWithName:(NSString *)name;
+- (Location *)objectInSavedLocationsAtIndex:(unsigned int)index;
 
 @end

@@ -13,6 +13,7 @@
 #import "LocationSheet.h"
 #import "LocationCell.h"
 #import "TransferCell.h"
+#import "UploadSheet.h"
 #import "PasswordSheet.h"
 #import "FailureSheet.h"
 #import "WelcomeView.h"
@@ -34,7 +35,6 @@
 @synthesize totalTransfers;
 
 @synthesize totalActiveTransfers;
-
 
 
 - (id)init
@@ -60,15 +60,22 @@
 			transfers = [[NSMutableArray alloc] init];
 		}
 		
-		// Transfer/Password map, this contains passwords for transfers that should be saved 
-		// to the keychain upon the transfer successfully authenticating
-		transferPasswords = [[NSMapTable alloc] initWithKeyOptions:NSPointerFunctionsZeroingWeakMemory 
-													  valueOptions:NSPointerFunctionsZeroingWeakMemory 
-														  capacity:-1];
+		
+		// Contains uploads whos passwords we should save if they are correct
+		passwordsToSave = [[NSMapTable alloc] initWithKeyOptions:NSPointerFunctionsZeroingWeakMemory 
+													valueOptions:NSPointerFunctionsZeroingWeakMemory 
+														capacity:-1];
+		
+		// Holds the users choices for how to handle unknown/mismatched host keys
+		knownHosts		= [[NSMapTable alloc] initWithKeyOptions:NSPointerFunctionsZeroingWeakMemory
+												valueOptions:NSPointerFunctionsZeroingWeakMemory 
+														capacity:-1];
 		
 		// TODO, use NSPointerArray with weak keys for this too
 		failedTransfers = [[NSMutableArray alloc] init];
 		
+		// Queue of transfers that are waiting to be retried
+		retryQueue = [[NSPointerArray alloc] initWithOptions:NSPointerFunctionsZeroingWeakMemory];
 		
 		
 		
@@ -101,7 +108,7 @@
 	[savedLocations release], savedLocations = nil;
 	[transfers release], transfers = nil;
 	[failedTransfers release], failedTransfers = nil;
-	[transferPasswords release], transferPasswords = nil;
+	[passwordsToSave release], passwordsToSave = nil;
 	
 	int count = [clients count];
 	while (count--) { [[clients objectAtIndex:count] release]; }
@@ -277,6 +284,7 @@
 											  password:[location password]
 											 directory:[location directory]
 												  port:[location port]];
+	
 	[record setName:[UploadName nameForFileList:fileList]];
 	[record setStatusMessage:@"Queued"];
 
@@ -423,9 +431,7 @@
  * Called when the upload starts the connection process.
  */
 - (void)uploadIsConnecting:(Upload *)record
-{
-	NSLog(@"uploadIsConnecting");
-	
+{	
 	[record setStatusMessage:[NSString stringWithFormat:@"Connecting to %@ ...", [record hostname]]];
 	
 	[transferTable reloadData];
@@ -439,11 +445,10 @@
  */ 
 - (void)uploadDidBegin:(Upload *)record
 {
-	NSLog(@"uploadDidBegin");
-	
 	[record setStatusMessage:[NSString stringWithFormat:@"Uploading %d files to %@", [record totalFiles], [record hostname]]];
 	
-	if ([transferPasswords objectForKey:record]) 	// password was correct, add it to the keychain if we're supposed to
+	// password was correct, add it to the keychain if we're supposed to
+	if ([passwordsToSave objectForKey:record]) 	
 	{
 		[self savePasswordToKeychain:[record password] 
 						 forHostname:[record hostname] 
@@ -451,8 +456,10 @@
 								port:[record port] 
 							protocol:[record protocol]];
 		
-		[transferPasswords removeObjectForKey:record];
+		[passwordsToSave removeObjectForKey:record];
 	}
+	
+	[self runAllQueuedUploadsWithURI:[record uri]];
 	
 	[transferTable reloadData];
 	[self updateActiveTransfersLabel];
@@ -465,8 +472,6 @@
  */
 - (void)uploadDidProgress:(Upload *)record toPercent:(NSNumber *)percent
 {
-	NSLog(@"uploadDidProgress:toPercent:%@", percent);
-	
 	[record setStatusMessage:[NSString stringWithFormat:@"Uploading (%@%%) %d files to %@", percent, [record totalFiles], [record hostname]]];
 	
 	[transferTable reloadData];
@@ -479,8 +484,6 @@
  */
 - (void)uploadDidFinish:(Upload *)record
 {
-	NSLog(@"uploadDidFinish");
-	
 	[record setStatusMessage:@"Finished"];
 	
 	[transferTable reloadData];
@@ -494,30 +497,7 @@
  */
 - (void)uploadWasCancelled:(Upload *)record
 {
-	NSLog(@"uploadWasCancelled");
-	
 	[record setStatusMessage:@"Cancelled"];
-	
-	[transferTable reloadData];
-	[self updateActiveTransfersLabel];
-}
-
-
-
-/*
- * Called if the upload has failed because of authentication.
- */
-- (void)uploadDidFailAuthentication:(Upload *)record message:(NSString *)message
-{
-	NSLog(@"uploadDidFailAuthentication: %@", message);
-	
-	[passwordSheet setUpload:record];
-	
-	[NSApp beginSheet:[passwordSheet window]
-	   modalForWindow:window
-		modalDelegate:self
-	   didEndSelector:@selector(passwordSheetDidEnd:returnCode:contextInfo:)
-		  contextInfo:nil];
 	
 	[transferTable reloadData];
 	[self updateActiveTransfersLabel];
@@ -529,11 +509,8 @@
  * Called when the upload has failed. The message will contain a useful description of what went wrong.
  */
 - (void)uploadDidFail:(Upload *)record message:(NSString *)message
-{
-	NSLog(@"uploadDidFail: %@", message);		
-	
+{	
 	[record setStatusMessage:message];
-	[self updateActiveTransfersLabel];
 	
 	[transferTable reloadData];	
 	
@@ -543,10 +520,286 @@
 	{
 		[self displayNextError];
 	}
+	
+	[self updateActiveTransfersLabel];
+}
+
+
+
+/*
+ * Called when the remote host key is unknown.
+ */
+- (int)acceptUnknownHostFingerprint:(NSString *)fingerprint forUpload:(Upload *)record;
+{	
+	int choice = CURLKHSTAT_DEFER;
+	
+	if ([knownHosts objectForKey:record])
+	{
+		choice = [[knownHosts objectForKey:record] intValue];
+
+		[knownHosts removeObjectForKey:record];
+	}
+	else
+	{
+		NSBeginAlertSheet([NSString stringWithFormat:@"The host '%@' is unknown to this system.", [record hostname]], 
+						  @"Yes, add to known hosts", 
+						  @"No", 
+						  @"Yes",
+						  window, 
+						  self, 
+						  @selector(hostKeySheetDidEnd:returnCode:contextInfo:), 
+						  nil, 
+						  record, 
+						  [NSString stringWithFormat:@"RSA key fingerprint is %@.\n\nAre you sure you want to continue connecting?", fingerprint]);
+	}
+	
+	[self updateActiveTransfersLabel];
+	
+	return choice;
+}
+
+
+
+/*
+ * Called when the remote host key is unknown.
+ */
+- (int)acceptMismatchedHostFingerprint:(NSString *)fingerprint forUpload:(Upload *)record;
+{
+	int choice = CURLKHSTAT_DEFER;
+	
+	if ([knownHosts objectForKey:record])
+	{
+		choice = [[knownHosts objectForKey:record] intValue];
+		
+		[knownHosts removeObjectForKey:record];
+	}
+	else
+	{
+		NSBeginAlertSheet([NSString stringWithFormat:@"WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!"], 
+						  @"Yes, update known hosts", 
+						  @"No", 
+						  @"Yes", 
+						  window, 
+						  self, 
+						  @selector(hostKeySheetDidEnd:returnCode:contextInfo:), 
+						  nil, 
+						  record, 
+						  [NSString stringWithFormat:@"Someone could be eavesdropping on you right now (man-in-the-middle attack)! It is also possible that the RSA host key has just been changed. The fingerprint for the RSA key sent by '%@' is %@.\n\nAre you sure you want to continue connecting?", [record hostname], fingerprint]);
+	}
+	
+	[self updateActiveTransfersLabel];
+	
+	return choice;
+}
+
+
+#pragma mark Sheet Handlers
+
+
+- (void)locationSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{	
+	if (returnCode == 1)
+	{
+		Location *location = [locationSheet location];
+		NSArray *fileList = [[locationSheet fileList] retain];
+		int context = [(NSNumber *)contextInfo intValue];
+		
+		switch (context)
+		{
+			// Create a new location, and transfer files to it.
+			case OWContextCreateLocationAndTransferFiles:			
+			{
+				if ([locationSheet shouldSaveLocation])
+				{
+					[savedLocations addObject:location];
+					
+					[FinderService createServiceForLocation:location 
+													atIndex:[savedLocations count] - 1];
+					[FinderService reload];
+				}
+
+				Upload *upload = [self startUpload:fileList toLocation:location];
+				
+				if ([location savePassword])
+				{
+					[passwordsToSave setObject:[NSNumber numberWithInt:1] 
+										forKey:upload];
+				}
+				
+				[transfers addObject:upload];
+				
+				break;
+			}
+				
+			// Create a new location.
+			case OWContextCreateLocation:
+			{
+				[savedLocations addObject:location];
+				
+				[FinderService createServiceForLocation:location 
+												atIndex:[savedLocations count] - 1];
+				[FinderService reload];
+				
+				break;
+			}
+
+				
+			// Delete a location
+			case OWContextDeleteLocation:
+			{				
+				[FinderService removeServiceAtIndex:[savedLocations count] - 1];				
+				[savedLocations removeObjectAtIndex:[menuTable selectedRow]];
+				[FinderService reload];
+				break;
+			}
+				
+			
+			// Updated an existing location
+			case OWContextUpdateLocation:
+			{
+				break;
+			}
+			
+				
+			default:
+				NSLog(@"Unknown context in locationSheetDidEnd:returnCode:contextInfo:");
+				break;
+		}
+		
+		[transferTable reloadData];
+		[menuTable reloadData];
+		
+		[self updateContextMenu];
+		[self saveUserData];
+	}
+}
+
+
+- (void)hostKeySheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{
+	Upload *record = (Upload *)contextInfo;
+	
+	if (returnCode == 1)   // Add to known_hosts
+	{
+		[knownHosts setObject:[NSNumber numberWithInt:CURLKHSTAT_FINE_ADD_TO_FILE] 
+					   forKey:record];
+	}
+	else if (returnCode == -1) // Continue.
+	{
+		[knownHosts setObject:[NSNumber numberWithInt:CURLKHSTAT_FINE] 
+					   forKey:record];		
+	}
+	else
+	{
+		[self cancelQueuedUploadsWithURI:[record uri] 
+								  status:[record status] 
+								 message:[record statusMessage]];
+		return;
+	}
+	
+	[self retryUpload:record];
+}
+
+
+- (void)passwordSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{	
+	Upload *upload = [passwordSheet upload];
+	
+	if (returnCode == 1)		// Try Again
+	{
+		if ([passwordSheet savePassword])
+		{
+			[passwordsToSave setObject:[NSNumber numberWithInt:1] 
+								forKey:upload];
+		}
+
+		[self updateQueuedUploadsUsername:[upload username] 
+							  andPassword:[upload password]
+								  withURI:[upload uri]];
+	
+		[self retryUpload:upload];
+	}
+	else if (returnCode == 0)	// Cancel
+	{
+		[self runNextQueuedUploadWithURI:[upload uri]];
+	}
+	else						// Cancel All
+	{	
+		[self cancelQueuedUploadsWithURI:[upload uri] 
+								  status:[upload status] 
+								 message:[upload statusMessage]];
+	}
+
+	
+	[transferTable reloadData];
+	
+	[self displayNextError];
+}
+
+
+- (void)failureSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
+{		
+	Upload *record = [failureSheet upload];
+	
+	if (returnCode == 1)		// Try Again
+	{		
+		[self retryUpload:record];
+	}
+	else if (returnCode == 0)	// Cancel
+	{
+		[self runNextQueuedUploadWithURI:[record uri]];
+	}
+	else						// Cancel All
+	{
+		[self cancelQueuedUploadsWithURI:[record uri] 
+								  status:[record status] 
+								 message:[record statusMessage]];
+	}
+	
+	[transferTable reloadData];
+	
+	[self displayNextError];
+}
+
+
+- (void)displayNextError
+{	
+	if ([failedTransfers count] > 0)
+	{
+		Upload *record = [failedTransfers objectAtIndex:0];
+		id <UploadSheet>sheet = nil;
+		SEL callback = nil;
+		int numberInQueue = [self numberOfQueuedUploadsForURI:[record uri]];
+		
+		switch ([record status])
+		{
+			case TRANSFER_STATUS_LOGIN_DENIED:
+				sheet = passwordSheet;
+				callback = @selector(passwordSheetDidEnd:returnCode:contextInfo:);
+				break;
+				
+			default:
+				sheet = failureSheet;
+				callback = @selector(failureSheetDidEnd:returnCode:contextInfo:);
+				break;
+		}
+		
+		[sheet setNumberInQueue:numberInQueue];
+		[sheet setUpload:record];
+		
+		[failedTransfers removeObjectAtIndex:0];
+		
+		[NSApp beginSheet:[sheet window]
+		   modalForWindow:window
+			modalDelegate:self
+		   didEndSelector:callback
+			  contextInfo:nil];
+	}
 }
 
 
 #pragma mark TableView Delegate methods
+
 
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView
@@ -581,7 +834,6 @@
 }
 
 
-
 #pragma mark Toolbar Actions
 
 
@@ -591,15 +843,27 @@
 	
 	int i = [[transferTable selectedRowIndexes] firstIndex];
 	
+	NSMapTable *selectedTransfers = [NSMapTable mapTableWithWeakToWeakObjects]; 
+
 	while (i != NSNotFound)
 	{
 		Upload *record = (Upload *)[transfers objectAtIndex:i];
 		
-		[self retryUpload:record];
-			
+		if (![selectedTransfers objectForKey:[record uri]])
+		{
+			[selectedTransfers setObject:record forKey:[record uri]];
+			[self retryUpload:record];
+		}
+		else
+		{
+			[retryQueue addPointer:record];
+			[record setStatus:TRANSFER_STATUS_QUEUED];
+			[record setStatusMessage:@"Queued"];
+		}
+		
 		i = [[transferTable selectedRowIndexes] indexGreaterThanIndex:i];
 	}
-	
+									 
 	[transferTable reloadData];	
 	
 	[self updateActiveTransfersLabel];
@@ -660,7 +924,7 @@
 - (void)toggleView:(id)sender
 {
 	int selected = [toggleView selectedSegment];
-
+	
 	switch (selected)
 	{
 		case 0:
@@ -689,9 +953,150 @@
 }
 
 
+#pragma mark Convenience Methods
+
+
+- (void)requireSettingsDirectory
+{
+	// Make sure the settings directory exists and create it if it doesn't.
+	NSFileManager *mgr = [[NSFileManager alloc] init];
+
+	if (![mgr fileExistsAtPath:[OWSettingsDirectory stringByExpandingTildeInPath]])
+	{
+		[mgr createDirectoryAtPath:[OWSettingsDirectory stringByExpandingTildeInPath]
+						attributes:nil];
+	}
+	if (![mgr fileExistsAtPath:[OWPluginDirectory stringByExpandingTildeInPath]])
+	{
+		[mgr createDirectoryAtPath:[OWPluginDirectory stringByExpandingTildeInPath]
+						attributes:nil];
+	}
+	[mgr release];
+}
+
+
+#pragma mark Keychain Functions
+
+
+- (NSString *)getPasswordFromKeychain:(NSString *)hostname username:(NSString *)username port:(int)port protocol:(SecProtocolType)protocol
+{
+	EMInternetKeychainItem *keychainItem = [EMInternetKeychainItem internetKeychainItemForServer:hostname 
+																					withUsername:username
+																							path:@""
+																							port:port 
+																						protocol:protocol];
+	
+	return [keychainItem password] ? [keychainItem password] : @"";	
+}
+
+
+
+- (void)savePasswordToKeychain:(NSString *)password forHostname:(NSString *)hostname username:(NSString *)username port:(int)port protocol:(SecProtocolType)protocol
+{
+	[EMInternetKeychainItem addInternetKeychainItemForServer:hostname 
+												withUsername:username
+													password:password
+														path:@""
+														port:port
+													protocol:protocol];
+}
+
+
+#pragma mark Transfer Queue Functions
+
+
+- (void)updateQueuedUploadsUsername:(NSString *)username andPassword:(NSString *)password withURI:(NSString *)uri
+{
+	for (int i = 0; i < [retryQueue count]; i++)
+	{
+		Upload *queuedUpload = [retryQueue pointerAtIndex:i];
+		
+		if ([[queuedUpload uri] isEqualToString:uri])
+		{
+			[queuedUpload setUsername:username];
+			[queuedUpload setPassword:password];
+		}
+	}		
+}
+
+
+- (void)runAllQueuedUploadsWithURI:(NSString *)uri
+{
+	int i = 0;
+	while (i < [retryQueue count])
+	{
+		Upload *queuedUpload = [retryQueue pointerAtIndex:i];
+
+		if ([[queuedUpload uri] isEqualToString:uri])
+		{
+			[self retryUpload:queuedUpload];
+			[retryQueue removePointerAtIndex:i];
+			continue;
+		}
+		
+		i++;
+	}	
+}
+
+
+- (void)runNextQueuedUploadWithURI:(NSString *)uri
+{
+	int i = 0;
+	while (i < [retryQueue count])
+	{
+		Upload *queuedUpload = [retryQueue pointerAtIndex:i];
+		
+		if ([[queuedUpload uri] isEqualToString:uri])
+		{
+			[self retryUpload:queuedUpload];
+			[retryQueue removePointerAtIndex:i];
+			return;
+		}
+		
+		i++;
+	}	
+}
+
+
+- (int)numberOfQueuedUploadsForURI:(NSString *)uri
+{
+	int total = 0;
+	
+	for (int i = 0; i < [retryQueue count]; i++)
+	{
+		Upload *queuedUpload = [retryQueue pointerAtIndex:i];
+		
+		if ([[queuedUpload uri] isEqualToString:uri])
+		{
+			total++;
+		}
+	}
+	
+	return total;
+}
+
+
+- (void)cancelQueuedUploadsWithURI:(NSString *)uri status:(int)status message:(NSString *)message
+{
+	int i = 0;
+	while (i < [retryQueue count])
+	{
+		Upload *queuedUpload = [retryQueue pointerAtIndex:i];
+		
+		if ([[queuedUpload uri] isEqualToString:uri])
+		{
+			[queuedUpload setStatus:status];
+			[queuedUpload setStatusMessage:message];
+			[retryQueue removePointerAtIndex:i];
+			continue;
+		}
+		 
+		i++;
+	}	
+}
+
 
 #pragma mark Location CRUD
-
 
 
 - (IBAction)createLocation:(id)sender
@@ -705,7 +1110,7 @@
 	[locationSheet setMessage:[LocationMessage newLocationMessage]];
 	[locationSheet setShouldShowSaveOption:NO];
 	[locationSheet setShouldSaveLocation:YES];
-
+	
 	[locationSheet setLocation:newLocation];
 	
 	[NSApp beginSheet:[locationSheet window]
@@ -726,14 +1131,14 @@
 												  username:@""
 												  password:@""
 												 directory:@"~/"];
-
+	
 	[locationSheet setMessage:[LocationMessage uploadFilesToNewLocationMessage:fileList]];
 	[locationSheet setShouldShowSaveOption:YES];
 	[locationSheet setShouldSaveLocation:YES];
-
+	
 	[locationSheet setFileList:fileList];
 	[locationSheet setLocation:newLocation];
-		
+	
 	[NSApp beginSheet:[locationSheet window]
 	   modalForWindow:window
 		modalDelegate:self
@@ -783,203 +1188,5 @@
 }
 
 
-- (void)passwordSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-	[sheet orderOut:self];
-	
-	if (returnCode == 1)
-	{
-		Upload *upload = [passwordSheet upload];
-		
-		if ([passwordSheet savePassword])
-		{
-			[transferPasswords setObject:[NSNumber numberWithInt:1] forKey:upload];
-		}
-		
-		[self retryUpload:upload];
-	}
-}
-
-
-
-- (void)locationSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{
-    [sheet orderOut:self];
-	
-	if (returnCode == 1)
-	{
-		Location *location = [locationSheet location];
-		NSArray *fileList = [[locationSheet fileList] retain];
-		int context = [(NSNumber *)contextInfo intValue];
-		
-		switch (context)
-		{
-			// Create a new location, and transfer files to it.
-			case OWContextCreateLocationAndTransferFiles:			
-			{
-				if ([locationSheet shouldSaveLocation])
-				{
-					[savedLocations addObject:location];
-					
-					[FinderService createServiceForLocation:location atIndex:[savedLocations count] - 1];
-					[FinderService reload];
-				}
-
-				Upload *upload = [self startUpload:fileList toLocation:location];
-				
-				if ([location savePassword])
-				{
-					[transferPasswords setObject:[NSNumber numberWithInt:1] forKey:upload];
-				}
-				
-				[transfers addObject:upload];
-				
-				break;
-			}
-				
-			// Create a new location.
-			case OWContextCreateLocation:
-			{
-				[savedLocations addObject:location];
-				
-				[FinderService createServiceForLocation:location atIndex:[savedLocations count] - 1];
-				[FinderService reload];
-				
-				break;
-			}
-
-				
-			// Delete a location
-			case OWContextDeleteLocation:
-			{
-				[savedLocations removeObjectAtIndex:[menuTable selectedRow]];
-
-				[FinderService removeServiceFromLocations:savedLocations atIndex:[menuTable selectedRow]];
-				[FinderService reload];
-				
-				break;
-			}
-				
-			
-			// Updated an existing location
-			case OWContextUpdateLocation:
-			{
-				break;
-			}
-			
-			// Invalid context...	
-			default:
-				NSLog(@"Unknown context in locationSheetDidEnd:returnCode:contextInfo:");
-				break;
-		}
-		
-		[transferTable reloadData];
-		[menuTable reloadData];
-		
-		[self updateContextMenu];
-		[self saveUserData];
-	}
-}
-
-
-- (void)failureSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
-{		
-	[sheet orderOut:self];
-	
-	if (returnCode)
-	{
-		[self retryUpload:[failureSheet upload]];
-	}
-	
-	[self displayNextError];
-}
-
-
-//- (void)transfer:(id <TransferRecord>)aRecord requiresHostKeyAcceptance:(id <UploadTask>)task message:(NSString *)aMessage
-//{
-//	Location *loc = [aRecord location];
-//	
-//	NSLog(@"transfer: %@ requiresHostKeyAcceptance: %@", [aRecord name], aMessage);
-//
-//	NSBeginAlertSheet([NSString stringWithFormat:@"Unknown host key for \"%@\"", [loc hostname]], 
-//					  @"Allow", 
-//					  @"Deny", 
-//					  nil, 
-//					  window, 
-//					  self, 
-//					  @selector(hostKeySheetDidEnd:returnCode:contextInfo:), 
-//					  nil, 
-//					  task, 
-//					  aMessage);
-//
-//	[self updateActiveTransfersLabel];
-//}
-
-
-
-#pragma mark Convenience Methods
-
-
-
-- (void)requireSettingsDirectory
-{
-	// Make sure the settings directory exists and create it if it doesn't.
-	NSFileManager *mgr = [[NSFileManager alloc] init];
-
-	if (![mgr fileExistsAtPath:[OWSettingsDirectory stringByExpandingTildeInPath]])
-	{
-		[mgr createDirectoryAtPath:[OWSettingsDirectory stringByExpandingTildeInPath]
-						attributes:nil];
-	}
-	if (![mgr fileExistsAtPath:[OWPluginDirectory stringByExpandingTildeInPath]])
-	{
-		[mgr createDirectoryAtPath:[OWPluginDirectory stringByExpandingTildeInPath]
-						attributes:nil];
-	}
-	[mgr release];
-}
-
-
-- (NSString *)getPasswordFromKeychain:(NSString *)hostname username:(NSString *)username port:(int)port protocol:(SecProtocolType)protocol
-{
-	EMInternetKeychainItem *keychainItem = [EMInternetKeychainItem internetKeychainItemForServer:hostname 
-																					withUsername:username
-																							path:@""
-																							port:port 
-																						protocol:protocol];
-	
-	return [keychainItem password] ? [keychainItem password] : @"";	
-}
-
-
-
-- (void)savePasswordToKeychain:(NSString *)password forHostname:(NSString *)hostname username:(NSString *)username port:(int)port protocol:(SecProtocolType)protocol
-{
-	[EMInternetKeychainItem addInternetKeychainItemForServer:hostname 
-												withUsername:username
-													password:password
-														path:@""
-														port:port
-													protocol:protocol];
-}
-
-
-- (void)displayNextError
-{	
-	if ([failedTransfers count] > 0)
-	{
-		Upload *record = [failedTransfers objectAtIndex:0];
-		
-		[failureSheet setUpload:record];
-		
-		[failedTransfers removeObjectAtIndex:0];;
-		
-		[NSApp beginSheet:[failureSheet window]
-		   modalForWindow:window
-			modalDelegate:self
-		   didEndSelector:@selector(failureSheetDidEnd:returnCode:contextInfo:)
-			  contextInfo:nil];
-	}
-}
 
 @end

@@ -25,27 +25,24 @@
 
 - (unsigned int)countOfSavedLocations 
 {
+	NSLog(@"Total Locations = %d", [savedLocations count]);
 	return [savedLocations count]; 
 }
 
 
-- (Location *)valueInSavedLocationsAtIndex:(unsigned int)index
+- (Location *)objectInSavedLocationsAtIndex:(unsigned int)index
 {
+	NSLog(@"Getting Location at Index %d", index);
 	return [savedLocations objectAtIndex:index];
 }
 
 
-- (Location *)valueInSavedLocationsWithName:(NSString*)name 
-{
-	int i, u = [savedLocations count];
-	for (i = 0; i < u; i++)
-	{
-		Location *location = (Location *)[savedLocations objectAtIndex:i];
-		if ([[location uid] caseInsensitiveCompare:name] == NSOrderedSame)
-			return [savedLocations objectAtIndex:i];
-	}
-	return nil;
-}
+- (void) returnError:(int)n string:(NSString*)s { 
+    NSScriptCommand* c = [NSScriptCommand currentCommand]; 
+    [c setScriptErrorNumber:n]; 
+    if (s) [c setScriptErrorString:s]; 
+} 
+
 
 
 @end

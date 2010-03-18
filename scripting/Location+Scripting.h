@@ -14,5 +14,6 @@
 
 - (NSScriptObjectSpecifier *)objectSpecifier;
 - (void)queueTransfer:(NSScriptCommand*)command;
+- (NSString *)locationName;
 
 @end

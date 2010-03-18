@@ -8,12 +8,16 @@
 
 #import "FinderService.h"
 #import "Location.h"
+#import "NSString+UUID.h"
 #import "OWConstants.h"
 
 
 NSString * const OWXPathForPListTitleNode = @"./plist/dict/array/dict/dict/string";
-
 NSString * const OWXPathForWorkflowScriptNode = @"./plist/dict/array/dict/dict/dict[4]/string";
+NSString * const OWXPathForInputUID	= @"./plist/dict/array/dict/dict/string[7]";
+NSString * const OWXPathForOutputUID = @"./plist/dict/array/dict/dict/string[8]";
+NSString * const OWXPathForUID = @"./plist/dict/array/dict/dict/string[9]";
+
 
 NSString * const OWUploadToNewLocationBundleName = @"OneWayUploadToNewLocation.workflow";
 
@@ -23,7 +27,7 @@ NSString * const OWUploadToNewLocationScript = @"on run {input, parameters}\n\tt
 
 NSString * const OWUploadToExistingLocationBundleName = @"OneWayUploadToLocation-%d.workflow";
 
-NSString * const OWUploadToExistingLocationTitle = @"Upload to %@ [%@]";
+NSString * const OWUploadToExistingLocationTitle = @"Upload to %@ (%@)";
 
 NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}\n\ttell application \"OneWay\"\n\t\tset x to location %d\n\t\tqueue transfer x with files input\n\tend tell\n\treturn input\nend run";
 
@@ -83,18 +87,18 @@ NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}
 	[titleNode setStringValue:[NSString stringWithFormat:OWUploadToExistingLocationTitle, 
 							   [location hostname], [locationInfo componentsJoinedByString:@", "]]];
 
-	[scriptNode setStringValue:[NSString stringWithFormat:OWUploadToExistingLocationScript, index]];
+	[scriptNode setStringValue:[NSString stringWithFormat:OWUploadToExistingLocationScript, (index + 1)]];
 	
-	[FinderService createServiceBundle:[NSString stringWithFormat:OWUploadToExistingLocationBundleName, index]
+	[FinderService createServiceBundle:[NSString stringWithFormat:OWUploadToExistingLocationBundleName, (index + 1)]
 					  withWorkflowData:wflowDoc 
 							 plistData:plistDoc];	
 }
 
 
-+ (void)removeServiceFromLocations:(NSArray *)locations atIndex:(int)index
++ (void)removeServiceAtIndex:(int)index
 {
 	NSString *bundlePath = [[OWServiceDirectory stringByExpandingTildeInPath] 
-							stringByAppendingPathComponent:[NSString stringWithFormat:OWUploadToExistingLocationBundleName, index]];
+							stringByAppendingPathComponent:[NSString stringWithFormat:OWUploadToExistingLocationBundleName, (index + 1)]];
 	
 	NSFileManager *mgr = [[NSFileManager alloc] init];
 	
@@ -104,8 +108,6 @@ NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}
 	}
 	
 	[mgr release];
-	
-	[FinderService updateForLocations:locations];
 }
 
 	 
@@ -171,6 +173,19 @@ NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}
 + (void)createServiceBundle:(NSString *)name withWorkflowData:(NSXMLDocument *)workflow plistData:(NSXMLDocument *)plist
 {
 	[FinderService createServiceDirectory];
+	
+	NSXMLNode *uidNode	= [[workflow nodesForXPath:OWXPathForUID
+											 error:nil] objectAtIndex:0];
+	
+	NSXMLNode *inputUidNode	= [[workflow nodesForXPath:OWXPathForInputUID
+												 error:nil] objectAtIndex:0];
+
+	NSXMLNode *outputUidNode = [[workflow nodesForXPath:OWXPathForOutputUID 
+												  error:nil] objectAtIndex:0];
+
+	[inputUidNode	setStringValue:[NSString stringWithNewUUID]];
+	[outputUidNode	setStringValue:[NSString stringWithNewUUID]];
+	[uidNode		setStringValue:[NSString stringWithNewUUID]];
 	
 	NSString *bundlePath = [[OWServiceDirectory stringByExpandingTildeInPath] stringByAppendingPathComponent:name];	
 	NSString *contentsPath = [bundlePath stringByAppendingPathComponent:@"Contents"];

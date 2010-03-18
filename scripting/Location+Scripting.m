@@ -13,15 +13,20 @@
 @implementation Location (Scripting)
 
 
-- (NSScriptObjectSpecifier *)objectSpecifier
-{
-	NSScriptClassDescription *containerClassDesc = (NSScriptClassDescription *)
-    [NSScriptClassDescription classDescriptionForClass:[NSApp class]];
-	return [[[NSNameSpecifier alloc] initWithContainerClassDescription:containerClassDesc
+- (NSScriptObjectSpecifier *)objectSpecifier 
+{ 
+    NSScriptClassDescription *appDesc = (NSScriptClassDescription*)[NSApp classDescription]; 
+    return [[[NSNameSpecifier alloc] initWithContainerClassDescription:appDesc 
 													containerSpecifier:nil 
-																   key:@"savedLocations"
-																  name:[self uid]] autorelease];
-}
+																   key:@"savedLocations" 
+																  name:[self uid]] autorelease]; 
+} 
+
+- (NSString *)locationName 
+{
+	return uid;
+} 
+
 
 - (void)queueTransfer:(NSScriptCommand*)command 
 {
@@ -38,5 +43,12 @@
 					  object:self
 					userInfo:info];
 }
+
+- (void) returnError:(int)n string:(NSString*)s { 
+    NSScriptCommand* c = [NSScriptCommand currentCommand]; 
+    [c setScriptErrorNumber:n]; 
+    if (s) [c setScriptErrorString:s]; 
+} 
+
 
 @end

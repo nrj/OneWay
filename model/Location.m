@@ -99,7 +99,7 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<Location %@:%@>", hostname, directory];
+	return [NSString stringWithFormat:@"<Location %@/%@>", hostname, directory];
 }
 
 

@@ -111,6 +111,7 @@
 		0B2C5CF61130BFB0006C4F5B /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		0B2C5CF91130C03E006C4F5B /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		0B2C5D0D1130C287006C4F5B /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		0B3824CD114F3B2B00F5E8A4 /* UploadSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadSheet.h; sourceTree = "<group>"; };
 		0B4627A0114D9DCA00198C23 /* LocationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMessage.h; sourceTree = "<group>"; };
 		0B4627A1114D9DCA00198C23 /* LocationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMessage.m; sourceTree = "<group>"; };
 		0B4627CF114DB4A600198C23 /* SystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemVersion.h; sourceTree = "<group>"; };
@@ -329,6 +330,7 @@
 				0B19DEAD11274C7700B13C62 /* WelcomeView.m */,
 				0BE6F7FE11323F6900AA2BCF /* FailureSheet.h */,
 				0BE6F7FF11323F6900AA2BCF /* FailureSheet.m */,
+				0B3824CD114F3B2B00F5E8A4 /* UploadSheet.h */,
 			);
 			path = view;
 			sourceTree = "<group>";

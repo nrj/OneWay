@@ -62,7 +62,7 @@
 				<key>CanShowSelectedItemsWhenRun</key>
 				<false/>
 				<key>CanShowWhenRun</key>
-				<true/>
+				<false/>
 				<key>Category</key>
 				<array>
 					<string>AMCategoryUtilities</string>
@@ -70,15 +70,15 @@
 				<key>Class Name</key>
 				<string>RunScriptAction</string>
 				<key>InputUUID</key>
-				<string>9D833858-0738-4DBA-9045-8169B0C81A92</string>
+				<string>{INPUT_ID}</string>
 				<key>Keywords</key>
 				<array>
 					<string>Run</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>ABEF59F3-A21D-40EA-8293-B9FCEEC4B8AD</string>
+				<string>{OUTPUT_ID}</string>
 				<key>UUID</key>
-				<string>6EDE5B4D-567C-45B3-A0EF-416CBCF8F5C9</string>
+				<string>{UUID}</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>

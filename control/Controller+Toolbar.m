@@ -20,7 +20,7 @@
     [toolbar setAllowsUserCustomization: NO];
     [toolbar setAutosavesConfiguration: NO];
     [toolbar setDisplayMode: NSToolbarDisplayModeIconOnly];
-	[toolbar setSizeMode:NSToolbarSizeModeRegular];
+	[toolbar setSizeMode:NSToolbarSizeModeSmall];
     [toolbar setDelegate:self];
 	
     [theWindow setToolbar:toolbar];
@@ -107,6 +107,10 @@
 											OWClearTransfersMenuItem,
 											NSToolbarFlexibleSpaceItemIdentifier,
 											OWViewToggleMenuItem,
+											NSToolbarFlexibleSpaceItemIdentifier,
+											NSToolbarSpaceItemIdentifier,
+											NSToolbarSpaceItemIdentifier,
+											NSToolbarSpaceItemIdentifier,
 											nil];
 		
 	}
@@ -116,6 +120,9 @@
 											OWDeleteLocationMenuItem,
 											NSToolbarFlexibleSpaceItemIdentifier,
 											OWViewToggleMenuItem,
+											NSToolbarFlexibleSpaceItemIdentifier,							
+											NSToolbarSpaceItemIdentifier,
+											NSToolbarSpaceItemIdentifier,
 											nil];
 	}	
 }
@@ -130,6 +137,7 @@
 										OWDeleteLocationMenuItem,
 										OWViewToggleMenuItem,
 										NSToolbarFlexibleSpaceItemIdentifier,
+										NSToolbarSpaceItemIdentifier,
 										nil];
 }
 
@@ -181,7 +189,7 @@
 		while (i != NSNotFound)
 		{
 			transfer = [transfers objectAtIndex:i];
-			if ([transfer status] == TRANSFER_STATUS_CANCELLED || [transfer status] == TRANSFER_STATUS_FAILED || [transfer status] == TRANSFER_STATUS_COMPLETE)
+			if (![transfer isActive])
 			{
 				enable = YES;
 				break;
