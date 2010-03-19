@@ -9,6 +9,7 @@
 #import "Controller.h"
 #import "Controller+Toolbar.h"
 #import "FinderService.h"
+#import "FinderItem.h"
 #import "Location.h"
 #import "LocationSheet.h"
 #import "LocationCell.h"
@@ -353,15 +354,9 @@
 		
 		for (int i = 0; i < [savedLocations count]; i++)
 		{
-			Location *rec = [savedLocations objectAtIndex:i];
-			if ([rec type] == OWLocationTypeSFTP)
-			{
-				[str appendFormat:@"sftp://%@/%@\n", [rec hostname], [rec directory]];
-			}
-			else if ([rec type] == OWLocationTypeFTP)
-			{
-				[str appendFormat:@"ftp://%@/%@\n", [rec hostname], [rec directory]];
-			}
+			Location *loc = [savedLocations objectAtIndex:i];
+			
+			[str appendFormat:@"%@\n", [FinderItem labelForLocation:loc]];
 		}
 		
 		[fh writeData:[str dataUsingEncoding:NSUTF8StringEncoding]];

@@ -409,7 +409,7 @@ static OSStatus CreateProcessSubmenu(Str255* theSupercommandText, AEDescList* io
 		fclose(file);
 	}
 	
-	AddCommandToAEDescList(CFSTR("New Location"), -1, &theSubmenuCommands);
+	AddCommandToAEDescList(CFSTR("Upload to ..."), -1, &theSubmenuCommands);
 	
 	// create the supercommand which will "own" the subcommands.
 	anErr = AECreateList( NULL, 0, true, &theSupercommand );

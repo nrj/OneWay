@@ -8,8 +8,9 @@
 
 #import "FinderService.h"
 #import "Location.h"
-#import "NSString+UUID.h"
+#import "FinderItem.h"
 #import "OWConstants.h"
+#import "NSString+UUID.h"
 
 
 NSString * const OWXPathForPListTitleNode = @"./plist/dict/array/dict/dict/string";
@@ -21,13 +22,9 @@ NSString * const OWXPathForUID = @"./plist/dict/array/dict/dict/string[9]";
 
 NSString * const OWUploadToNewLocationBundleName = @"OneWayUploadToNewLocation.workflow";
 
-NSString * const OWUploadToNewLocationTitle = @"Upload to ...";
-
 NSString * const OWUploadToNewLocationScript = @"on run {input, parameters}\n\ttell application \"OneWay\"\n\t\tqueue new transfer input\n\tend tell\n\treturn input\nend run";
 
 NSString * const OWUploadToExistingLocationBundleName = @"OneWayUploadToLocation-%d.workflow";
-
-NSString * const OWUploadToExistingLocationTitle = @"Upload to %@ (%@)";
 
 NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}\n\ttell application \"OneWay\"\n\t\tset x to location %d\n\t\tqueue transfer x with files input\n\tend tell\n\treturn input\nend run";
 
@@ -37,6 +34,8 @@ NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}
 
 + (void)updateForLocations:(NSArray *)locations
 {
+	[FinderService removeAllServices];
+	
 	[FinderService createServiceForNewLocation];
 	
 	for (int i = 0; i < [locations count]; i++)
@@ -58,7 +57,8 @@ NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}
 	NSXMLNode *scriptNode = [[wflowDoc nodesForXPath:OWXPathForWorkflowScriptNode
 											error:nil] objectAtIndex:0];
 	
-	[titleNode setStringValue:OWUploadToNewLocationTitle];
+	[titleNode setStringValue:[FinderItem labelForNewLocation]];
+	
 	[scriptNode setStringValue:OWUploadToNewLocationScript];
 		
 	[FinderService createServiceBundle:OWUploadToNewLocationBundleName 
@@ -77,21 +77,27 @@ NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}
 	
 	NSXMLNode *scriptNode = [[wflowDoc nodesForXPath:OWXPathForWorkflowScriptNode
 											   error:nil] objectAtIndex:0];
-	
-	NSMutableArray *locationInfo = [[NSMutableArray alloc] initWithCapacity:2];
-	NSString *uploadPath = [[location directory] lastPathComponent];
-	
-	[locationInfo addObject:[location protocolString]];
-	[locationInfo addObject:uploadPath];
-	
-	[titleNode setStringValue:[NSString stringWithFormat:OWUploadToExistingLocationTitle, 
-							   [location hostname], [locationInfo componentsJoinedByString:@", "]]];
+		
+	[titleNode setStringValue:[FinderItem labelForLocation:location]];
 
 	[scriptNode setStringValue:[NSString stringWithFormat:OWUploadToExistingLocationScript, (index + 1)]];
 	
 	[FinderService createServiceBundle:[NSString stringWithFormat:OWUploadToExistingLocationBundleName, (index + 1)]
 					  withWorkflowData:wflowDoc 
 							 plistData:plistDoc];	
+}
+
+
++ (void)removeAllServices
+{
+	NSTask *task;
+	task = [[[NSTask alloc] init] autorelease];
+
+	NSString * scriptPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], OWRemoveServicesScript];
+	
+	[task setLaunchPath:scriptPath];	
+	[task launch];
+	[task waitUntilExit];
 }
 
 
@@ -223,7 +229,7 @@ NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}
 + (void)reload
 {
 	NSTask *task;
-	task = [[NSTask alloc] init];
+	task = [[[NSTask alloc] init] autorelease];
 	[task setLaunchPath: @"/System/Library/CoreServices/pbs"];
 	
 	NSArray *args;
