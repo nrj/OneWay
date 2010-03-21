@@ -25,8 +25,6 @@
 		0B2C5D0E1130C287006C4F5B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5D0D1130C287006C4F5B /* menu.png */; };
 		0B4627A2114D9DCA00198C23 /* LocationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4627A1114D9DCA00198C23 /* LocationMessage.m */; };
 		0B4627D1114DB4A600198C23 /* SystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4627D0114DB4A600198C23 /* SystemVersion.m */; };
-		0B55AAC41152F21A002B56D4 /* FinderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B55AAC31152F21A002B56D4 /* FinderItem.m */; };
-		0B55AB331152F9B0002B56D4 /* remove_services.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0B55AB321152F9B0002B56D4 /* remove_services.sh */; };
 		0B6E84B71127540600296175 /* Controller+Scripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B21127540600296175 /* Controller+Scripting.m */; };
 		0B6E84B81127540600296175 /* Location+Scripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B41127540600296175 /* Location+Scripting.m */; };
 		0B6E84B91127540600296175 /* QueueNewScriptCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B61127540600296175 /* QueueNewScriptCommand.m */; };
@@ -118,9 +116,6 @@
 		0B4627A1114D9DCA00198C23 /* LocationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMessage.m; sourceTree = "<group>"; };
 		0B4627CF114DB4A600198C23 /* SystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemVersion.h; sourceTree = "<group>"; };
 		0B4627D0114DB4A600198C23 /* SystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemVersion.m; sourceTree = "<group>"; };
-		0B55AAC21152F21A002B56D4 /* FinderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderItem.h; sourceTree = "<group>"; };
-		0B55AAC31152F21A002B56D4 /* FinderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderItem.m; sourceTree = "<group>"; };
-		0B55AB321152F9B0002B56D4 /* remove_services.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = remove_services.sh; sourceTree = "<group>"; };
 		0B6E84B11127540600296175 /* Controller+Scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+Scripting.h"; sourceTree = "<group>"; };
 		0B6E84B21127540600296175 /* Controller+Scripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Controller+Scripting.m"; sourceTree = "<group>"; };
 		0B6E84B31127540600296175 /* Location+Scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Location+Scripting.h"; sourceTree = "<group>"; };
@@ -348,8 +343,6 @@
 				0B19DE8611274B4E00B13C62 /* Plugin.c */,
 				0BCBD271114D597D006C12BE /* FinderService.h */,
 				0BCBD272114D597D006C12BE /* FinderService.m */,
-				0B55AAC21152F21A002B56D4 /* FinderItem.h */,
-				0B55AAC31152F21A002B56D4 /* FinderItem.m */,
 			);
 			path = plugin;
 			sourceTree = "<group>";
@@ -434,7 +427,6 @@
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 				0BBCEA5A11323E01001676F3 /* FailureSheet.xib */,
 				0BE6F88B1132473A00AA2BCF /* restart_finder.sh */,
-				0B55AB321152F9B0002B56D4 /* remove_services.sh */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -546,7 +538,6 @@
 				0BCBD276114D5A9D006C12BE /* template.wflow in Resources */,
 				0BCBD278114D5C2F006C12BE /* template.plist in Resources */,
 				0BCBD27D114D5DFB006C12BE /* Thumbnail.png in Resources */,
-				0B55AB331152F9B0002B56D4 /* remove_services.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,7 +598,6 @@
 				0BCBD273114D597D006C12BE /* FinderService.m in Sources */,
 				0B4627A2114D9DCA00198C23 /* LocationMessage.m in Sources */,
 				0B4627D1114DB4A600198C23 /* SystemVersion.m in Sources */,
-				0B55AAC41152F21A002B56D4 /* FinderItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

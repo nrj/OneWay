@@ -23,7 +23,6 @@ NSString * const OWMenuItemsFile		= @"~/Library/OneWay/.menuItems";
 
 // Script Locations
 NSString * const OWRestartFinderScript = @"Contents/Resources/restart_finder.sh";
-NSString * const OWRemoveServicesScript = @"Contents/Resources/remove_services.sh";
 
 // Plugin Source/Destination - for 10.5
 NSString * const OWPluginSourceFile			= @"Contents/Resources/OneWayPlugin.plugin";

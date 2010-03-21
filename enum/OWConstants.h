@@ -39,7 +39,6 @@ NSString * const OWMenuItemsFile;
 
 // Script Locations
 NSString * const OWRestartFinderScript;
-NSString * const OWRemoveServicesScript;
 
 // Plugin Source/Destination
 NSString * const OWPluginSourceFile;
