@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B19DE50112749EF00B13C62 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B19DE4F112749EF00B13C62 /* Sparkle.framework */; };
-		0B19DE59112749FA00B13C62 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B19DE4F112749EF00B13C62 /* Sparkle.framework */; };
 		0B19DE8711274B4E00B13C62 /* AppleScript.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DE8411274B4E00B13C62 /* AppleScript.c */; };
 		0B19DE8811274B4E00B13C62 /* Plugin.c in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DE8611274B4E00B13C62 /* Plugin.c */; };
 		0B19DEAE11274C7700B13C62 /* LocationSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEA511274C7700B13C62 /* LocationSheet.m */; };
@@ -35,8 +33,16 @@
 		0B6E85931127631800296175 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E85891127631800296175 /* stop.png */; };
 		0B6E85941127631800296175 /* transfers.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E858A1127631800296175 /* transfers.png */; };
 		0B6E85951127631800296175 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E858B1127631800296175 /* upArrow.png */; };
+		0B72FE001156D21D00085DCD /* FinderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B72FDFE1156D21D00085DCD /* FinderItem.m */; };
+		0B72FE021156D22A00085DCD /* remove_services.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0B72FE011156D22A00085DCD /* remove_services.sh */; };
+		0B86BBFE1157BEF9005C44E4 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B86BBFD1157BEF9005C44E4 /* Growl.framework */; };
+		0B86BC061157BF01005C44E4 /* Growl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B86BBFD1157BEF9005C44E4 /* Growl.framework */; };
+		0B86BC0B1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 0B86BC0A1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict */; };
+		0B86BC971157C201005C44E4 /* Controller+Growl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B86BC961157C201005C44E4 /* Controller+Growl.m */; };
 		0B8EC5A31128E63100D30FF3 /* Upload+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8EC5A21128E63100D30FF3 /* Upload+NSCoding.m */; };
 		0B8EC5A61128E63C00D30FF3 /* Upload+NSCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8EC5A51128E63C00D30FF3 /* Upload+NSCopying.m */; };
+		0BA0815B1156D097003A1910 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA0815A1156D097003A1910 /* Sparkle.framework */; };
+		0BA081641156D0A0003A1910 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA0815A1156D097003A1910 /* Sparkle.framework */; };
 		0BAB8D221127476700AD061A /* objective-curl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAB8D211127476700AD061A /* objective-curl.framework */; };
 		0BAB8D341127476E00AD061A /* objective-curl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAB8D211127476700AD061A /* objective-curl.framework */; };
 		0BAB8D3C1127480A00AD061A /* LocationSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D361127480A00AD061A /* LocationSheet.xib */; };
@@ -76,7 +82,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0B19DE59112749FA00B13C62 /* Sparkle.framework in Copy Frameworks */,
+				0B86BC061157BF01005C44E4 /* Growl.framework in Copy Frameworks */,
+				0BA081641156D0A0003A1910 /* Sparkle.framework in Copy Frameworks */,
 				0BAB8D341127476E00AD061A /* objective-curl.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
@@ -86,7 +93,6 @@
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0B19DE4F112749EF00B13C62 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = "../Frameworks/Sparkle 1.5b6/Sparkle.framework"; sourceTree = SOURCE_ROOT; };
 		0B19DE7D11274B1700B13C62 /* OneWayPlugin.plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneWayPlugin.plugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B19DE8411274B4E00B13C62 /* AppleScript.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AppleScript.c; sourceTree = "<group>"; };
 		0B19DE8511274B4E00B13C62 /* AppleScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppleScript.h; sourceTree = "<group>"; };
@@ -95,8 +101,8 @@
 		0B19DEA511274C7700B13C62 /* LocationSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSheet.m; sourceTree = "<group>"; };
 		0B19DEA611274C7700B13C62 /* PasswordSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordSheet.h; sourceTree = "<group>"; };
 		0B19DEA711274C7700B13C62 /* PasswordSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordSheet.m; sourceTree = "<group>"; };
-		0B19DEA811274C7700B13C62 /* ProgressGradients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressGradients.h; sourceTree = "<group>"; };
-		0B19DEA911274C7700B13C62 /* ProgressGradients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressGradients.m; sourceTree = "<group>"; };
+		0B19DEA811274C7700B13C62 /* ProgressGradients.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProgressGradients.h; path = ../view/ProgressGradients.h; sourceTree = "<group>"; };
+		0B19DEA911274C7700B13C62 /* ProgressGradients.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProgressGradients.m; path = ../view/ProgressGradients.m; sourceTree = "<group>"; };
 		0B19DEAA11274C7700B13C62 /* TransferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferCell.h; sourceTree = "<group>"; };
 		0B19DEAB11274C7700B13C62 /* TransferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferCell.m; sourceTree = "<group>"; };
 		0B19DEAC11274C7700B13C62 /* WelcomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeView.h; sourceTree = "<group>"; };
@@ -129,10 +135,18 @@
 		0B6E85891127631800296175 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		0B6E858A1127631800296175 /* transfers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transfers.png; sourceTree = "<group>"; };
 		0B6E858B1127631800296175 /* upArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upArrow.png; sourceTree = "<group>"; };
+		0B72FDFE1156D21D00085DCD /* FinderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderItem.m; sourceTree = "<group>"; };
+		0B72FDFF1156D21D00085DCD /* FinderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderItem.h; sourceTree = "<group>"; };
+		0B72FE011156D22A00085DCD /* remove_services.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = remove_services.sh; sourceTree = "<group>"; };
+		0B86BBFD1157BEF9005C44E4 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = "/Users/nrj/Code/Cocoa/Frameworks/Growl-1.2.1-Framework/Growl.framework"; sourceTree = "<absolute>"; };
+		0B86BC0A1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
+		0B86BC951157C201005C44E4 /* Controller+Growl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+Growl.h"; sourceTree = "<group>"; };
+		0B86BC961157C201005C44E4 /* Controller+Growl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Controller+Growl.m"; sourceTree = "<group>"; };
 		0B8EC5A11128E63100D30FF3 /* Upload+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Upload+NSCoding.h"; sourceTree = "<group>"; };
 		0B8EC5A21128E63100D30FF3 /* Upload+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Upload+NSCoding.m"; sourceTree = "<group>"; };
 		0B8EC5A41128E63C00D30FF3 /* Upload+NSCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Upload+NSCopying.h"; sourceTree = "<group>"; };
 		0B8EC5A51128E63C00D30FF3 /* Upload+NSCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Upload+NSCopying.m"; sourceTree = "<group>"; };
+		0BA0815A1156D097003A1910 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Users/nrj/Code/Cocoa/Frameworks/Sparkle/Sparkle.framework; sourceTree = "<absolute>"; };
 		0BAB8D211127476700AD061A /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "../objective-curl/build/Release/objective-curl.framework"; sourceTree = SOURCE_ROOT; };
 		0BAB8D371127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LocationSheet.xib; sourceTree = "<group>"; };
 		0BAB8D391127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PasswordSheet.xib; sourceTree = "<group>"; };
@@ -191,8 +205,9 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				0BAB8D221127476700AD061A /* objective-curl.framework in Frameworks */,
-				0B19DE50112749EF00B13C62 /* Sparkle.framework in Frameworks */,
 				0BD6195411344D7E00050C25 /* Security.framework in Frameworks */,
+				0BA0815B1156D097003A1910 /* Sparkle.framework in Frameworks */,
+				0B86BBFE1157BEF9005C44E4 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +233,8 @@
 		0B4627CE114DB48900198C23 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				0B19DEA811274C7700B13C62 /* ProgressGradients.h */,
+				0B19DEA911274C7700B13C62 /* ProgressGradients.m */,
 				0B4627CF114DB4A600198C23 /* SystemVersion.h */,
 				0B4627D0114DB4A600198C23 /* SystemVersion.m */,
 			);
@@ -241,6 +258,20 @@
 				0B6E858B1127631800296175 /* upArrow.png */,
 			);
 			path = icons;
+			sourceTree = "<group>";
+		};
+		0B86BBE01157B91E005C44E4 /* sheets */ = {
+			isa = PBXGroup;
+			children = (
+				0B3824CD114F3B2B00F5E8A4 /* UploadSheet.h */,
+				0BE6F7FE11323F6900AA2BCF /* FailureSheet.h */,
+				0BE6F7FF11323F6900AA2BCF /* FailureSheet.m */,
+				0B19DEA411274C7700B13C62 /* LocationSheet.h */,
+				0B19DEA511274C7700B13C62 /* LocationSheet.m */,
+				0B19DEA611274C7700B13C62 /* PasswordSheet.h */,
+				0B19DEA711274C7700B13C62 /* PasswordSheet.m */,
+			);
+			name = sheets;
 			sourceTree = "<group>";
 		};
 		0BAB8D0C112744DB00AD061A /* lib */ = {
@@ -279,6 +310,8 @@
 		0BAB8D0F112744F000AD061A /* control */ = {
 			isa = PBXGroup;
 			children = (
+				0B86BC951157C201005C44E4 /* Controller+Growl.h */,
+				0B86BC961157C201005C44E4 /* Controller+Growl.m */,
 				0BAB8D4E1127484D00AD061A /* Controller+Toolbar.h */,
 				0BAB8D4F1127484D00AD061A /* Controller+Toolbar.m */,
 				0BAB8D501127484D00AD061A /* Controller.h */,
@@ -316,21 +349,13 @@
 		0BAB8D121127450B00AD061A /* view */ = {
 			isa = PBXGroup;
 			children = (
-				0B19DEA411274C7700B13C62 /* LocationSheet.h */,
-				0B19DEA511274C7700B13C62 /* LocationSheet.m */,
-				0B19DEA611274C7700B13C62 /* PasswordSheet.h */,
-				0B19DEA711274C7700B13C62 /* PasswordSheet.m */,
-				0B19DEA811274C7700B13C62 /* ProgressGradients.h */,
-				0B19DEA911274C7700B13C62 /* ProgressGradients.m */,
+				0B86BBE01157B91E005C44E4 /* sheets */,
 				0B2C5BF011309774006C4F5B /* LocationCell.h */,
 				0B2C5BF111309774006C4F5B /* LocationCell.m */,
 				0B19DEAA11274C7700B13C62 /* TransferCell.h */,
 				0B19DEAB11274C7700B13C62 /* TransferCell.m */,
 				0B19DEAC11274C7700B13C62 /* WelcomeView.h */,
 				0B19DEAD11274C7700B13C62 /* WelcomeView.m */,
-				0BE6F7FE11323F6900AA2BCF /* FailureSheet.h */,
-				0BE6F7FF11323F6900AA2BCF /* FailureSheet.m */,
-				0B3824CD114F3B2B00F5E8A4 /* UploadSheet.h */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -338,6 +363,8 @@
 		0BAB8D131127451800AD061A /* plugin */ = {
 			isa = PBXGroup;
 			children = (
+				0B72FDFE1156D21D00085DCD /* FinderItem.m */,
+				0B72FDFF1156D21D00085DCD /* FinderItem.h */,
 				0B19DE8411274B4E00B13C62 /* AppleScript.c */,
 				0B19DE8511274B4E00B13C62 /* AppleScript.h */,
 				0B19DE8611274B4E00B13C62 /* Plugin.c */,
@@ -361,9 +388,10 @@
 			isa = PBXGroup;
 			children = (
 				0BD6195311344D7E00050C25 /* Security.framework */,
-				0B19DE4F112749EF00B13C62 /* Sparkle.framework */,
 				0BAB8D211127476700AD061A /* objective-curl.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				0BA0815A1156D097003A1910 /* Sparkle.framework */,
+				0B86BBFD1157BEF9005C44E4 /* Growl.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -411,6 +439,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0B72FE011156D22A00085DCD /* remove_services.sh */,
 				0BCBD274114D5A7F006C12BE /* workflow */,
 				0B6E8581112762F400296175 /* icons */,
 				0BAB8D3F1127482300AD061A /* dsa_public.pem */,
@@ -427,6 +456,7 @@
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 				0BBCEA5A11323E01001676F3 /* FailureSheet.xib */,
 				0BE6F88B1132473A00AA2BCF /* restart_finder.sh */,
+				0B86BC0A1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -538,6 +568,8 @@
 				0BCBD276114D5A9D006C12BE /* template.wflow in Resources */,
 				0BCBD278114D5C2F006C12BE /* template.plist in Resources */,
 				0BCBD27D114D5DFB006C12BE /* Thumbnail.png in Resources */,
+				0B72FE021156D22A00085DCD /* remove_services.sh in Resources */,
+				0B86BC0B1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +630,8 @@
 				0BCBD273114D597D006C12BE /* FinderService.m in Sources */,
 				0B4627A2114D9DCA00198C23 /* LocationMessage.m in Sources */,
 				0B4627D1114DB4A600198C23 /* SystemVersion.m in Sources */,
+				0B72FE001156D21D00085DCD /* FinderItem.m in Sources */,
+				0B86BC971157C201005C44E4 /* Controller+Growl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +744,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../objective-curl/build/Release\"",
 					"\"$(SRCROOT)/../Frameworks/Sparkle 1.5b6\"",
+					"\"$(SRCROOT)/../Frameworks/Sparkle\"",
+					"\"$(SRCROOT)/../Frameworks/Growl-1.2.1-Framework\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -732,6 +768,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../objective-curl/build/Release\"",
 					"\"$(SRCROOT)/../Frameworks/Sparkle 1.5b6\"",
+					"\"$(SRCROOT)/../Frameworks/Sparkle\"",
+					"\"$(SRCROOT)/../Frameworks/Growl-1.2.1-Framework\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

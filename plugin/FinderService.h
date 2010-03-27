@@ -17,13 +17,9 @@ NSString * const OWXPathForWorkflowScriptNode;
 
 NSString * const OWUploadToNewLocationBundleName;
 
-NSString * const OWUploadToNewLocationTitle;
-
 NSString * const OWUploadToNewLocationScript;
 
 NSString * const OWUploadToExistingLocationBundleName;
-
-NSString * const OWUploadToExistingLocationTitle;
 
 NSString * const OWUploadToExistingLocationScript;
 
@@ -38,6 +34,8 @@ NSString * const OWUploadToExistingLocationScript;
 + (void)createServiceForLocation:(Location *)location atIndex:(int)index;
 
 + (void)removeServiceAtIndex:(int)index;
+
++ (void)removeAllServices;
 
 + (void)createServiceDirectory;
 

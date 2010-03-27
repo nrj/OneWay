@@ -8,7 +8,10 @@
 
 #import "Controller.h"
 #import "Controller+Toolbar.h"
+#import "Controller+Growl.h"
+
 #import "FinderService.h"
+#import "FinderItem.h"
 #import "Location.h"
 #import "LocationSheet.h"
 #import "LocationCell.h"
@@ -154,6 +157,9 @@
 	
 	// Update the status
 	[self updateActiveTransfersLabel];
+	
+	// Init Growl
+	[self initGrowl];
 }
 
 
@@ -210,8 +216,6 @@
  */
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-	NSLog(@"Exiting... Saving user data...");
-	
 	[self updateContextMenu];
 	[self saveUserData];
 }
@@ -353,15 +357,9 @@
 		
 		for (int i = 0; i < [savedLocations count]; i++)
 		{
-			Location *rec = [savedLocations objectAtIndex:i];
-			if ([rec type] == OWLocationTypeSFTP)
-			{
-				[str appendFormat:@"sftp://%@/%@\n", [rec hostname], [rec directory]];
-			}
-			else if ([rec type] == OWLocationTypeFTP)
-			{
-				[str appendFormat:@"ftp://%@/%@\n", [rec hostname], [rec directory]];
-			}
+			Location *loc = [savedLocations objectAtIndex:i];
+			
+			[str appendFormat:@"%@\n", [FinderItem labelForLocation:loc]];
 		}
 		
 		[fh writeData:[str dataUsingEncoding:NSUTF8StringEncoding]];
@@ -471,7 +469,7 @@
  * Called when the upload has progressed, 1-100%.
  */
 - (void)uploadDidProgress:(Upload *)record toPercent:(NSNumber *)percent
-{
+{	
 	[record setStatusMessage:[NSString stringWithFormat:@"Uploading (%@%%) %d files to %@", percent, [record totalFiles], [record hostname]]];
 	
 	[transferTable reloadData];
@@ -483,7 +481,13 @@
  * Called when the upload process has finished successfully.
  */
 - (void)uploadDidFinish:(Upload *)record
-{
+{	
+	NSLog(@"Logged uploadDidFinish");
+	
+	[self displayGrowlNotification:@"Upload Finished" 
+						   message:[NSString stringWithFormat:@"Finished uploading %d files to %@", 
+									[record totalFiles], [record hostname]]];
+	
 	[record setStatusMessage:@"Finished"];
 	
 	[transferTable reloadData];
@@ -496,7 +500,7 @@
  * Called if the upload was cancelled.
  */
 - (void)uploadWasCancelled:(Upload *)record
-{
+{	
 	[record setStatusMessage:@"Cancelled"];
 	
 	[transferTable reloadData];
@@ -504,12 +508,18 @@
 }
 
 
-
 /*
  * Called when the upload has failed. The message will contain a useful description of what went wrong.
  */
 - (void)uploadDidFail:(Upload *)record message:(NSString *)message
 {	
+	NSLog(@"Upload Failed: %@", message);
+	
+	if ([record status] == TRANSFER_STATUS_FAILED)
+	{
+		[self displayGrowlNotification:@"Upload Failed" message:message];
+	}
+	
 	[record setStatusMessage:message];
 	
 	[transferTable reloadData];	

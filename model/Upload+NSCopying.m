@@ -33,6 +33,12 @@
 	[copy setTotalFiles:totalFiles];
 	[copy setTotalFilesUploaded:totalFilesUploaded];
 
+	[copy setProgressInfo:progressInfo];
+	[copy setTotalBytes:totalBytes];
+	[copy setTotalBytesUploaded:totalBytesUploaded];
+	[copy setBytesPerSecond:bytesPerSecond];
+	[copy setSecondsRemaining:secondsRemaining];
+	
     return copy;
 }
 

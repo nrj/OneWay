@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="830"/>
 			<integer value="106"/>
-			<integer value="806"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -543,7 +543,7 @@
 																		<bytes key="NSWhite">MC41AA</bytes>
 																	</object>
 																</object>
-																<double key="NSRowHeight">60</double>
+																<double key="NSRowHeight">68</double>
 																<int key="NSTvFlags">448790528</int>
 																<reference key="NSDelegate"/>
 																<reference key="NSDataSource"/>
@@ -588,7 +588,7 @@
 												<reference key="NSVScroller" ref="1021327282"/>
 												<reference key="NSHScroller" ref="939539231"/>
 												<reference key="NSContentView" ref="660121499"/>
-												<bytes key="NSScrollAmts">QSAAAEEgAABCeAAAQngAAA</bytes>
+												<bytes key="NSScrollAmts">QSAAAEEgAABCjAAAQowAAA</bytes>
 											</object>
 										</object>
 										<string key="NSFrameSize">{339, 288}</string>
@@ -934,6 +934,14 @@
 						<reference key="destination" ref="311068641"/>
 					</object>
 					<int key="connectionID">978</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="1021"/>
+						<reference key="destination" ref="311068641"/>
+					</object>
+					<int key="connectionID">983</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1623,9 +1631,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{424, 98}, {339, 316}}</string>
+					<string>{{571, 241}, {339, 316}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{424, 98}, {339, 316}}</string>
+					<string>{{571, 241}, {339, 316}}</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<string>{375, 210}</string>
@@ -1695,11 +1703,18 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">982</int>
+			<int key="maxID">983</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">Controller</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">control/Controller+Growl.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">Controller</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1716,13 +1731,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>createLocation:</string>
 							<string>deleteLocation:</string>
-							<string>runTest:</string>
 							<string>toggleView:</string>
 							<string>updateLocation:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -1767,36 +1780,6 @@
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">scripting/Controller+Scripting.h</string>
 					</object>
-				</object>
-			</object>
-			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.1+">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBDocumentRelativeSource</string>
-						<string key="minorKey">../../Frameworks/Sparkle 1.5b6/Sparkle.framework/Versions/A/Headers/SUAppcast.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="223191007">
-						<string key="majorKey">IBDocumentRelativeSource</string>
-						<string key="minorKey">../../Frameworks/Sparkle 1.5b6/Sparkle.framework/Versions/A/Headers/SUUpdater.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">SUUpdater</string>
-					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">checkForUpdates:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">delegate</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<reference key="sourceIdentifier" ref="223191007"/>
 				</object>
 			</object>
 			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.2+">
@@ -2212,6 +2195,13 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">Foundation.framework/Headers/NSURLDownload.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">Growl.framework/Headers/GrowlApplicationBridge.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

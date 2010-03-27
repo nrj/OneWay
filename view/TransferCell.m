@@ -131,17 +131,18 @@
 		}
 	}
 	
-//	NSRect substatusRect = NSMakeRect(progressOutline.origin.x,
-//									  progressOutline.origin.y + statusSize.height - 1.5,
-//									  fullWidth,
-//									  statusSize.height);
+	NSRect substatusRect = NSMakeRect(progressOutline.origin.x,
+									  progressOutline.origin.y + statusSize.height + .5,
+									  fullWidth,
+									  statusSize.height);
 	
-//	if ([status isEqualToString:OWStatusUploading])
-//	{
-//		NSString *substatus = [NSString stringWithFormat:@"File: %@", [[self objectValue] valueForKey:@"currentFile"]];
-	
-//		[substatus drawInRect:substatusRect withAttributes:statusAttributes];
-//	}
+
+	if ([record status] == TRANSFER_STATUS_UPLOADING || [record status] == TRANSFER_STATUS_COMPLETE || [record status] == TRANSFER_STATUS_CANCELLED)
+	{
+		NSString *substatus = [NSString stringWithFormat:@"%.1f of %.1f MB", ([record totalBytesUploaded] / 1048576), ([record totalBytes] / 1048576)];
+
+		[substatus drawInRect:substatusRect withAttributes:statusAttributes];
+	}
 	
 } 
 

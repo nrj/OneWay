@@ -7,12 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Growl/Growl.h>
 #import <objective-curl/objective-curl.h>
 
 
 @class Location, WelcomeView, LocationSheet, PasswordSheet, FailureSheet;
 
-@interface Controller : NSObject 
+@interface Controller : NSObject <GrowlApplicationBridgeDelegate>
 {	
 	IBOutlet NSWindow *window;
 	IBOutlet NSDrawer *drawer;
