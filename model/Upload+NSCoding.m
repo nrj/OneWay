@@ -25,13 +25,13 @@
 	cancelled			= [decoder decodeBoolForKey:@"cancelled"];
 	name				= [[decoder decodeObjectForKey:@"name"] retain];
 	statusMessage		= [[decoder decodeObjectForKey:@"statusMessage"] retain];
-	currentFile			= [[decoder decodeObjectForKey:@"currentFile"] retain];
+//	current			= [[decoder decodeObjectForKey:@"currentFile"] retain];
 	localFiles			= [[decoder decodeObjectForKey:@"localFiles"] retain];
 	progress			= [decoder decodeIntForKey:@"progress"];
 	totalFiles			= [decoder decodeIntForKey:@"totalFiles"];
 	totalFilesUploaded	= [decoder decodeIntForKey:@"totalFilesUploaded"];
 	
-	progressInfo		= [[decoder decodeObjectForKey:@"progressInfo"] retain];
+//	progressInfo		= [[decoder decodeObjectForKey:@"progressInfo"] retain];
 	totalBytes			= [decoder decodeDoubleForKey:@"totalBytes"];
 	totalBytesUploaded	= [decoder decodeDoubleForKey:@"totalBytesUploaded"];
 	bytesPerSecond		= [decoder decodeDoubleForKey:@"bytesPerSecond"];
@@ -62,13 +62,13 @@
 	[encoder encodeBool:cancelled forKey:@"cancelled"];
 	[encoder encodeObject:name forKey:@"name"];
 	[encoder encodeObject:statusMessage forKey:@"statusMessage"];
-	[encoder encodeObject:currentFile forKey:@"currentFile"];
+//	[encoder encodeObject:currentFile forKey:@"currentFile"];
 	[encoder encodeObject:localFiles forKey:@"localFiles"];
 	[encoder encodeInt:progress forKey:@"progress"];
 	[encoder encodeInt:totalFiles forKey:@"totalFiles"];
 	[encoder encodeInt:totalFilesUploaded forKey:@"totalFilesUploaded"];
 
-	[encoder encodeObject:progressInfo forKey:@"progressInfo"];
+//	[encoder encodeObject:progressInfo forKey:@"progressInfo"];
 	[encoder encodeDouble:totalBytes forKey:@"totalBytes"];
 	[encoder encodeDouble:totalBytesUploaded forKey:@"totalBytesUploaded"];	
 	[encoder encodeDouble:bytesPerSecond forKey:@"bytesPerSecond"];	

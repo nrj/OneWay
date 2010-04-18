@@ -8,6 +8,7 @@
 
 #import "TransferCell.h"
 #import "ProgressGradients.h"
+#import "ProgressMeter.h"
 
 
 @implementation TransferCell
@@ -105,7 +106,7 @@
 	NSRect progressOutline = NSMakeRect(statusRect.origin.x,
 										statusRect.origin.y + statusSize.height + 1.5, 
 										fullWidth, 
-										NSProgressIndicatorPreferredSmallThickness);
+										NSProgressIndicatorPreferredSmallThickness + .5);
 	
 	[[ProgressGradients progressLightGrayGradient] drawInRect:progressOutline angle:90];
 	
@@ -115,7 +116,7 @@
 	{
 		NSRect progressFill = NSMakeRect(progressOutline.origin.x, 
 										 progressOutline.origin.y + 0.5,
-										 progress, NSProgressIndicatorPreferredSmallThickness - 1);
+										 progress, NSProgressIndicatorPreferredSmallThickness - .5);
 		
 		if ([record status] == TRANSFER_STATUS_UPLOADING)
 		{
@@ -139,8 +140,19 @@
 
 	if ([record status] == TRANSFER_STATUS_UPLOADING || [record status] == TRANSFER_STATUS_COMPLETE || [record status] == TRANSFER_STATUS_CANCELLED)
 	{
-		NSString *substatus = [NSString stringWithFormat:@"%.1f of %.1f MB", ([record totalBytesUploaded] / 1048576), ([record totalBytes] / 1048576)];
-
+		NSString *substatus;
+		
+		if ([record isActive] && [record bytesPerSecond] > 0 && [record secondsRemaining] > 0)
+		{
+			substatus = [NSString stringWithFormat:@"%@ - %@ remaining", 
+							[ProgressMeter uploadedAmount:record], [ProgressMeter uploadTimeRemaining:record]];
+		}
+		else
+		{
+			substatus = [ProgressMeter uploadedAmount:record];
+			
+		}
+		
 		[substatus drawInRect:substatusRect withAttributes:statusAttributes];
 	}
 	

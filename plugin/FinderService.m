@@ -28,7 +28,6 @@ NSString * const OWUploadToExistingLocationBundleName = @"OneWayUploadToLocation
 
 NSString * const OWUploadToExistingLocationScript = @"on run {input, parameters}\n\ttell application \"OneWay\"\n\t\tset x to location %d\n\t\tqueue transfer x with files input\n\tend tell\n\treturn input\nend run";
 
-
 @implementation FinderService
 
 

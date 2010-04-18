@@ -27,13 +27,13 @@
 	[copy setCancelled:cancelled];
 	[copy setName:name];
 	[copy setStatusMessage:statusMessage];
-	[copy setCurrentFile:currentFile];
+//	[copy setCurrentFile:currentFile];
 	[copy setLocalFiles:localFiles];
 	[copy setProgress:progress];
 	[copy setTotalFiles:totalFiles];
 	[copy setTotalFilesUploaded:totalFilesUploaded];
 
-	[copy setProgressInfo:progressInfo];
+//	[copy setProgressInfo:progressInfo];
 	[copy setTotalBytes:totalBytes];
 	[copy setTotalBytesUploaded:totalBytesUploaded];
 	[copy setBytesPerSecond:bytesPerSecond];

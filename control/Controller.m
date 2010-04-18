@@ -12,6 +12,9 @@
 
 #import "FinderService.h"
 #import "FinderItem.h"
+
+#import "FNGlue.h"
+
 #import "Location.h"
 #import "LocationSheet.h"
 #import "LocationCell.h"
@@ -257,7 +260,7 @@
 	
 	[newClient setDelegate:self];
 	[newClient setShowProgress:YES];
-	[newClient setVerbose:NO];
+	[newClient setVerbose:YES];
 	
 	[clients addObject:newClient];
 	
@@ -443,7 +446,7 @@
  */ 
 - (void)uploadDidBegin:(Upload *)record
 {
-	[record setStatusMessage:[NSString stringWithFormat:@"Uploading %d files to %@", [record totalFiles], [record hostname]]];
+	[record setStatusMessage:[NSString stringWithFormat:@"Uploading (0%) %d files to %@", [record totalFiles], [record hostname]]];
 	
 	// password was correct, add it to the keychain if we're supposed to
 	if ([passwordsToSave objectForKey:record]) 	
@@ -481,9 +484,7 @@
  * Called when the upload process has finished successfully.
  */
 - (void)uploadDidFinish:(Upload *)record
-{	
-	NSLog(@"Logged uploadDidFinish");
-	
+{		
 	[self displayGrowlNotification:@"Upload Finished" 
 						   message:[NSString stringWithFormat:@"Finished uploading %d files to %@", 
 									[record totalFiles], [record hostname]]];
@@ -667,6 +668,8 @@
 			// Updated an existing location
 			case OWContextUpdateLocation:
 			{
+				[FinderService updateForLocations:savedLocations];
+				[FinderService reload];
 				break;
 			}
 			
@@ -1197,6 +1200,43 @@
 	}
 }
 
+
+
+- (IBAction)revealUploadInFinder:(id)sender
+{
+	Upload *upload = (Upload *)[transfers objectAtIndex:[transferTable selectedRow]];
+
+	NSMutableArray *files = [[NSMutableArray alloc] init];
+	NSMutableArray *errors = [[NSMutableArray alloc] init];
+	NSFileManager *mgr = [[NSFileManager alloc] init];
+	
+	for (int i = 0; i < [[upload localFiles] count]; i++)
+	{
+		NSString *path = [[upload localFiles] objectAtIndex:i];
+		if ([mgr fileExistsAtPath:path])
+		{
+			[files addObject:[NSURL fileURLWithPath:[path stringByStandardizingPath]]];
+		}
+		else
+		{
+			[errors addObject:[path stringByStandardizingPath]];
+		}
+	}
+	
+	FNApplication *finder = [[FNApplication alloc] initWithBundleID: @"com.apple.finder"];
+	[[finder activate] send];
+	[[finder select:files] sendWithError:nil];
+	
+	if ([errors count] > 0)
+	{
+		NSBeginInformationalAlertSheet(@"The following files could not be found:", @"OK", nil, nil, nil, nil, nil, nil, nil, [errors componentsJoinedByString:@"\n"]);
+	}
+	
+	[finder release];
+	[files release];
+	[errors release];
+	[mgr release];
+}
 
 
 @end
