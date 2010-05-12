@@ -1,4 +1,4 @@
-## Screenshots
+# Screenshots
 
 ![Finder Menu](http://goto11.net/assets/images/oneway-screen1.png "Add your own upload options to Finder!")
 
