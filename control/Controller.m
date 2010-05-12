@@ -410,7 +410,7 @@
 	
 	Upload *upload = [self startUpload:filepaths toLocation:loc];
 	
-	[transfers addObject:upload];
+	[transfers insertObject:upload atIndex:0];
 	[transferTable reloadData];
 }
 
@@ -637,7 +637,7 @@
 										forKey:upload];
 				}
 				
-				[transfers addObject:upload];
+				[transfers insertObject:upload atIndex:0];
 				
 				break;
 			}
@@ -922,8 +922,9 @@
 		if (![record isActive])
 		{
 			[discardedItems addObject:record];
-			i = [[transferTable selectedRowIndexes] indexGreaterThanIndex:i];
 		}
+		
+		i = [[transferTable selectedRowIndexes] indexGreaterThanIndex:i];
 	}
 	
 	[transfers removeObjectsInArray:discardedItems];	

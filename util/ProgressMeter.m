@@ -203,17 +203,17 @@ NSString * const SecondString	= @"second";
 {
 	NSString *str;
 	
-	if (((int)bytes / BYTES_IN_A_GIGABYTE) > 0)
+	if ((int)(bytes / BYTES_IN_A_GIGABYTE) > 0)
 	{
 		//  > 1 GB
 		str = [NSString stringWithFormat:@"%.1f %@", (bytes / BYTES_IN_A_GIGABYTE), GigaBytePrefix];
 	}
-	else if (((int)bytes / BYTES_IN_A_MEGABYTE) > 0)
+	else if ((int)(bytes / BYTES_IN_A_MEGABYTE) > 0)
 	{
 		//  > 1 MB
 		str = [NSString stringWithFormat:@"%.1f %@", (bytes / BYTES_IN_A_MEGABYTE), MegaBytePrefix];		
 	}
-	else if (((int)bytes / BYTES_IN_A_KILOBYTE) > 0)
+	else if ((int)(bytes / BYTES_IN_A_KILOBYTE) > 0)
 	{
 		//  > 1 KB
 		str = [NSString stringWithFormat:@"%.1f %@", (bytes / BYTES_IN_A_KILOBYTE), KiloBytePrefix];
@@ -221,7 +221,7 @@ NSString * const SecondString	= @"second";
 	else
 	{
 		//  < 1 KB
-		str = [NSString stringWithFormat:@"%d %@", (int)bytes, BytePrefix];
+		str = [NSString stringWithFormat:@"%.0f %@", bytes, BytePrefix];
 	}
 	
 	return str;

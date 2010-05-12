@@ -7,7 +7,7 @@ echo "Uninstalling OneWay.app ..."
 /bin/rm -rf $HOME/Library/OneWay
 /bin/rm -rf /Applications/OneWay.app
 
-defaults delete com.cocoaism.OneWay
+defaults delete net.goto11.OneWay
 
 /System/Library/CoreServices/pbs
 

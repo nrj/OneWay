@@ -13,7 +13,7 @@
 	<key>CFBundleIconFile</key>
 	<string>OneWay.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.cocoaism.${PRODUCT_NAME:identifier}</string>
+	<string>net.goto11.${PRODUCT_NAME:identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,7 +27,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://appcast.cocoaism.com/oneway</string>
+	<string>http://goto11.net/oneway/appcast</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
 	<key>SUShowReleaseNotes</key>
@@ -35,7 +35,7 @@
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_public.pem</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.5</string>
+	<string>0.5.1</string>
 	<key>OWVersionRequiresFinderRestart</key>
 	<string>NO</string>
 </dict>
