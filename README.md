@@ -8,6 +8,5 @@
 
 Copyright (c) 2010 Nick Jensen
 
-Licensed under the GNU General Public License.
+Licensed under the <a href="http://www.gnu.org/licenses/gpl-3.0.txt">GNU General Public License</a>.
 
-http://www.gnu.org/licenses/gpl-3.0.txt
