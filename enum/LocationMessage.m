@@ -2,8 +2,7 @@
 //  LocationMessage.m
 //  OneWay
 //
-//  Created by nrj on 2/21/10.
-//  Copyright 2010 cocoaism.com. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import "LocationMessage.h"

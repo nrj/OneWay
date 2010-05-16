@@ -2,11 +2,17 @@
 //  NSString+Extras.h
 //  OneWay
 //
-//  Created by nrj on 2/23/10.
-//  Copyright 2010 cocoaism.com. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import <Cocoa/Cocoa.h>
+
+
+typedef enum {
+	NSTruncateStart = 0,
+	NSTruncateMiddle = 1,
+	NSTruncateEnd = 2
+} NSTruncateTypes;
 
 
 @interface NSString (Extras)

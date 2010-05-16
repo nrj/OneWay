@@ -2,8 +2,7 @@
 //  NSString+UUID.m
 //  OneWay
 //
-//  Created by nrj on 9/4/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import "NSString+UUID.h"

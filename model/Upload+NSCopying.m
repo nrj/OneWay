@@ -2,8 +2,7 @@
 //  Upload+NSCopying.m
 //  OneWay
 //
-//  Created by nrj on 2/14/10.
-//  Copyright 2010 cocoaism.com. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import "Upload+NSCopying.h"
@@ -21,19 +20,18 @@
 	[copy setUsername:username];
 	[copy setPassword:password];
 	[copy setPath:path];
+	[copy setUrl:url];
 	[copy setPort:port];
 	[copy setStatus:status];
 	[copy setConnected:connected];
 	[copy setCancelled:cancelled];
 	[copy setName:name];
 	[copy setStatusMessage:statusMessage];
-//	[copy setCurrentFile:currentFile];
 	[copy setLocalFiles:localFiles];
+	[copy setTransfers:transfers];
 	[copy setProgress:progress];
 	[copy setTotalFiles:totalFiles];
 	[copy setTotalFilesUploaded:totalFilesUploaded];
-
-//	[copy setProgressInfo:progressInfo];
 	[copy setTotalBytes:totalBytes];
 	[copy setTotalBytesUploaded:totalBytesUploaded];
 	[copy setBytesPerSecond:bytesPerSecond];

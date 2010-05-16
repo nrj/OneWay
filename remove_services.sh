@@ -3,8 +3,7 @@
 # remove_services.sh
 # OneWay
 #
-# Created by nrj on 3/18/10.
-# Copyright 2010 cocoaism.com. All rights reserved.
+# Copyright 2010 Nick Jensen <http://goto11.net>
 
 
 /bin/rm -rf $HOME/Library/Services/OneWay*.workflow

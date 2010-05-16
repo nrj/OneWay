@@ -2,32 +2,27 @@
 //  Controller.m
 //  OneWay
 //
-//  Created by nrj on 7/18/09.
-//  Copyright 2009. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import "Controller.h"
 #import "Controller+Toolbar.h"
 #import "Controller+Growl.h"
-
+#import "Controller+TransferMenu.h"
+#import "OWConstants.h"
 #import "FinderService.h"
 #import "FinderItem.h"
-
-#import "FNGlue.h"
-
 #import "Location.h"
-#import "LocationSheet.h"
 #import "LocationCell.h"
 #import "TransferCell.h"
+#import "WelcomeView.h"
+#import "LocationSheet.h"
 #import "UploadSheet.h"
 #import "PasswordSheet.h"
 #import "FailureSheet.h"
-#import "WelcomeView.h"
 #import "EMKeychain.h"
-#import "OWConstants.h"
 #import "UploadName.h"
 #import "LocationMessage.h"
-#import "NSString+Extras.h"
 #import "SystemVersion.h"
 
 
@@ -260,7 +255,7 @@
 	
 	[newClient setDelegate:self];
 	[newClient setShowProgress:YES];
-	[newClient setVerbose:YES];
+	[newClient setVerbose:NO];
 	
 	[clients addObject:newClient];
 	
@@ -294,6 +289,11 @@
 	
 	[record setName:[UploadName nameForFileList:fileList]];
 	[record setStatusMessage:@"Queued"];
+	
+	if ([location webAccessible])
+	{
+		[record setUrl:[location baseUrl]];
+	}
 
 	[transferTable reloadData];
 	[self updateActiveTransfersLabel];
@@ -850,7 +850,7 @@
 #pragma mark Toolbar Actions
 
 
-- (void)retrySelectedTransfers:(id)sender
+- (IBAction)retrySelectedTransfers:(id)sender
 {	
 	NSLog(@"Retrying selected transfers...");
 	
@@ -883,7 +883,7 @@
 }
 
 
-- (void)stopSelectedTransfers:(id)sender
+- (IBAction)stopSelectedTransfers:(id)sender
 {	
 	NSLog(@"Stopping selected transfers...");
 	
@@ -908,7 +908,7 @@
 
 
 
-- (void)clearSelectedTransfers:(id)sender
+- (IBAction)clearSelectedTransfers:(id)sender
 {	
 	NSLog(@"Clearing selected transfers...");
 	
@@ -1200,44 +1200,5 @@
 						  [NSString stringWithFormat:@"Are you sure you want to delete \"%@:%@\" from your context menu?", [loc hostname], [loc directory]]);
 	}
 }
-
-
-
-- (IBAction)revealUploadInFinder:(id)sender
-{
-	Upload *upload = (Upload *)[transfers objectAtIndex:[transferTable selectedRow]];
-
-	NSMutableArray *files = [[NSMutableArray alloc] init];
-	NSMutableArray *errors = [[NSMutableArray alloc] init];
-	NSFileManager *mgr = [[NSFileManager alloc] init];
-	
-	for (int i = 0; i < [[upload localFiles] count]; i++)
-	{
-		NSString *path = [[upload localFiles] objectAtIndex:i];
-		if ([mgr fileExistsAtPath:path])
-		{
-			[files addObject:[NSURL fileURLWithPath:[path stringByStandardizingPath]]];
-		}
-		else
-		{
-			[errors addObject:[path stringByStandardizingPath]];
-		}
-	}
-	
-	FNApplication *finder = [[FNApplication alloc] initWithBundleID: @"com.apple.finder"];
-	[[finder activate] send];
-	[[finder select:files] sendWithError:nil];
-	
-	if ([errors count] > 0)
-	{
-		NSBeginInformationalAlertSheet(@"The following files could not be found:", @"OK", nil, nil, nil, nil, nil, nil, nil, [errors componentsJoinedByString:@"\n"]);
-	}
-	
-	[finder release];
-	[files release];
-	[errors release];
-	[mgr release];
-}
-
 
 @end

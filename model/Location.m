@@ -2,8 +2,7 @@
 //  Location.m
 //  OneWay	
 //
-//  Created by nrj on 7/22/09.
-//  Copyright 2009. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import "Location.h"
@@ -20,8 +19,10 @@
 @synthesize username;
 @synthesize password;
 @synthesize directory;
+@synthesize baseUrl;
 @synthesize uid;
 @synthesize savePassword;
+@synthesize webAccessible;
 
 
 - (id)copyWithZone:(NSZone *)zone 
@@ -35,8 +36,10 @@
 	[copy setUsername:username];
 	[copy setPassword:password];
 	[copy setDirectory:directory];
+	[copy setBaseUrl:baseUrl];
 	[copy setUid:uid];
 	[copy setSavePassword:savePassword];
+	[copy setWebAccessible:webAccessible];
 
     return copy;
 }
@@ -49,9 +52,11 @@
 	[encoder encodeObject:hostname forKey:@"hostname"];
 	[encoder encodeInt:port forKey:@"port"];
 	[encoder encodeObject:username forKey:@"username"];
-	[encoder encodeObject:directory forKey:@"directory"];	
+	[encoder encodeObject:directory forKey:@"directory"];
+	[encoder encodeObject:baseUrl forKey:@"baseUrl"];
 	[encoder encodeObject:uid forKey:@"uid"];
 	[encoder encodeBool:savePassword forKey:@"savePassword"];
+	[encoder encodeBool:webAccessible forKey:@"webAccessible"];
 }
 
 
@@ -63,21 +68,32 @@
 	port = [decoder decodeIntForKey:@"port"];
 	username = [[decoder decodeObjectForKey:@"username"] retain];
 	directory = [[decoder decodeObjectForKey:@"directory"] retain];
+	baseUrl = [[decoder decodeObjectForKey:@"baseUrl"] retain];
 	uid = [[decoder decodeObjectForKey:@"uid"] retain];
 	savePassword = [decoder decodeBoolForKey:@"savePassword"];
+	webAccessible = [decoder decodeBoolForKey:@"webAccessible"];
+	
 	return self;
 }
 
 
-- (void)setType:(int)newType
+- (void)setType:(int)value
 {
-	if (newType != type)
+	if (value != type)
 	{
-		type = newType;
+		type = value;
 		[self setProtocolDefaults];		
 	}
 }
 
+- (void)setWebAccessible:(BOOL)value
+{
+	if (value != webAccessible)
+	{
+		webAccessible = value;
+		[self guessBaseUrl];
+	}
+}
 
 - (id)initWithType:(int)aType hostname:(NSString *)aHostname username:(NSString *)aUsername password:(NSString *)aPassword directory:(NSString *)aDirectory
 {		
@@ -90,6 +106,8 @@
 		[self setPassword:aPassword];
 		[self setDirectory:aDirectory];
 		[self setSavePassword:YES];
+		[self setWebAccessible:NO];
+		
 		[self setProtocolDefaults];
 	}
 
@@ -114,6 +132,27 @@
 	{
 		[self setProtocol:kSecProtocolTypeFTP];
 		[self setPort:21];
+	}
+}
+
+
+- (void)guessBaseUrl
+{
+	if (webAccessible && ([self baseUrl] == nil || [[self baseUrl] length] == 0 || [[self baseUrl] isEqualToString:@"http://"]))
+	{
+		NSString *url = @"";
+		
+		if ([hostname length] > 0)
+		{
+			url = [hostname copy];
+			
+			if (![[directory lastPathComponent] isEqualToString:@"~"])
+			{
+				url = [url stringByAppendingPathComponent:[directory lastPathComponent]];
+			}			
+		}
+				
+		[self setBaseUrl:[NSString stringWithFormat:@"http://%@", url]];
 	}
 }
 

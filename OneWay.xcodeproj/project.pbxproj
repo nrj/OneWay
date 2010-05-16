@@ -21,17 +21,23 @@
 		0B19DEB211274C7700B13C62 /* WelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEAD11274C7700B13C62 /* WelcomeView.m */; };
 		0B19DEB511274C8C00B13C62 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEB411274C8C00B13C62 /* Location.m */; };
 		0B19DEC711274CFB00B13C62 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEC511274CFB00B13C62 /* NSString+UUID.m */; };
+		0B2BF0D5119CB32800E3DDEA /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BF0D3119CB32800E3DDEA /* LICENSE */; };
+		0B2BF0D6119CB32800E3DDEA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BF0D4119CB32800E3DDEA /* README.md */; };
+		0B2BF258119CF9EF00E3DDEA /* TransferTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BF257119CF9EF00E3DDEA /* TransferTable.m */; };
 		0B2C5BEE11309699006C4F5B /* networkDrive.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5BED11309699006C4F5B /* networkDrive.png */; };
 		0B2C5BF211309774006C4F5B /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C5BF111309774006C4F5B /* LocationCell.m */; };
 		0B2C5CF71130BFB0006C4F5B /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5CF61130BFB0006C4F5B /* add.png */; };
 		0B2C5CFA1130C03E006C4F5B /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5CF91130C03E006C4F5B /* delete.png */; };
 		0B2C5D0E1130C287006C4F5B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5D0D1130C287006C4F5B /* menu.png */; };
+		0B32ADAF119E0C9E00225E8D /* NSMenu+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B32ADAE119E0C9E00225E8D /* NSMenu+Extras.m */; };
+		0B3B2405119E0FA1007E440D /* objective-curl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3B2404119E0FA1007E440D /* objective-curl.framework */; };
+		0B3B2415119E0FAE007E440D /* objective-curl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3B2404119E0FA1007E440D /* objective-curl.framework */; };
+		0B3B244F119E1392007E440D /* FileTransfer+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B244E119E1392007E440D /* FileTransfer+NSCoding.m */; };
+		0B3B2575119F7BFF007E440D /* Controller+TransferMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B2574119F7BFF007E440D /* Controller+TransferMenu.m */; };
 		0B4627A2114D9DCA00198C23 /* LocationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4627A1114D9DCA00198C23 /* LocationMessage.m */; };
 		0B4627D1114DB4A600198C23 /* SystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4627D0114DB4A600198C23 /* SystemVersion.m */; };
-		0B46A78D117CA35F003F1E87 /* objective-curl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B46A78C117CA35F003F1E87 /* objective-curl.framework */; };
 		0B46A8EA117CCBC7003F1E87 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B46A8E9117CCBC7003F1E87 /* Growl.framework */; };
 		0B46A8EC117CCBC7003F1E87 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B46A8EB117CCBC7003F1E87 /* Sparkle.framework */; };
-		0B46A8FE117CCBCF003F1E87 /* objective-curl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B46A78C117CA35F003F1E87 /* objective-curl.framework */; };
 		0B46A8FF117CCBCF003F1E87 /* Growl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B46A8E9117CCBC7003F1E87 /* Growl.framework */; };
 		0B46A900117CCBCF003F1E87 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B46A8EB117CCBC7003F1E87 /* Sparkle.framework */; };
 		0B6E84B71127540600296175 /* Controller+Scripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6E84B21127540600296175 /* Controller+Scripting.m */; };
@@ -57,7 +63,6 @@
 		0BAB8D451127482300AD061A /* dsa_public.pem in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D3F1127482300AD061A /* dsa_public.pem */; };
 		0BAB8D461127482300AD061A /* OneWay.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D401127482300AD061A /* OneWay.sdef */; };
 		0BAB8D471127482300AD061A /* OneWayPlugin-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D411127482300AD061A /* OneWayPlugin-Info.plist */; };
-		0BAB8D481127482300AD061A /* README in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D421127482300AD061A /* README */; };
 		0BAB8D491127482300AD061A /* uninstall.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D431127482300AD061A /* uninstall.sh */; };
 		0BAB8D4A1127482300AD061A /* version.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D441127482300AD061A /* version.plist */; };
 		0BAB8D531127484D00AD061A /* Controller+Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D4F1127484D00AD061A /* Controller+Toolbar.m */; };
@@ -90,8 +95,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				0B3B2415119E0FAE007E440D /* objective-curl.framework in Copy Frameworks */,
 				0BEAD719117C20E500289E36 /* Appscript.framework in Copy Frameworks */,
-				0B46A8FE117CCBCF003F1E87 /* objective-curl.framework in Copy Frameworks */,
 				0B46A8FF117CCBCF003F1E87 /* Growl.framework in Copy Frameworks */,
 				0B46A900117CCBCF003F1E87 /* Sparkle.framework in Copy Frameworks */,
 			);
@@ -132,18 +137,28 @@
 		0B19DEB411274C8C00B13C62 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		0B19DEC411274CFB00B13C62 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
 		0B19DEC511274CFB00B13C62 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
+		0B2BF0D3119CB32800E3DDEA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		0B2BF0D4119CB32800E3DDEA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		0B2BF256119CF9EF00E3DDEA /* TransferTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTable.h; sourceTree = "<group>"; };
+		0B2BF257119CF9EF00E3DDEA /* TransferTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferTable.m; sourceTree = "<group>"; };
 		0B2C5BED11309699006C4F5B /* networkDrive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = networkDrive.png; sourceTree = "<group>"; };
 		0B2C5BF011309774006C4F5B /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		0B2C5BF111309774006C4F5B /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		0B2C5CF61130BFB0006C4F5B /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		0B2C5CF91130C03E006C4F5B /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		0B2C5D0D1130C287006C4F5B /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		0B32ADAD119E0C9E00225E8D /* NSMenu+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMenu+Extras.h"; sourceTree = "<group>"; };
+		0B32ADAE119E0C9E00225E8D /* NSMenu+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMenu+Extras.m"; sourceTree = "<group>"; };
 		0B3824CD114F3B2B00F5E8A4 /* UploadSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadSheet.h; sourceTree = "<group>"; };
+		0B3B2404119E0FA1007E440D /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "/Users/nrj/Library/Frameworks/objective-curl.framework"; sourceTree = "<absolute>"; };
+		0B3B244D119E1392007E440D /* FileTransfer+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FileTransfer+NSCoding.h"; sourceTree = "<group>"; };
+		0B3B244E119E1392007E440D /* FileTransfer+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FileTransfer+NSCoding.m"; sourceTree = "<group>"; };
+		0B3B2573119F7BFF007E440D /* Controller+TransferMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+TransferMenu.h"; sourceTree = "<group>"; };
+		0B3B2574119F7BFF007E440D /* Controller+TransferMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Controller+TransferMenu.m"; sourceTree = "<group>"; };
 		0B4627A0114D9DCA00198C23 /* LocationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMessage.h; sourceTree = "<group>"; };
 		0B4627A1114D9DCA00198C23 /* LocationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMessage.m; sourceTree = "<group>"; };
 		0B4627CF114DB4A600198C23 /* SystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemVersion.h; sourceTree = "<group>"; };
 		0B4627D0114DB4A600198C23 /* SystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemVersion.m; sourceTree = "<group>"; };
-		0B46A78C117CA35F003F1E87 /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "/Users/nrj/Library/Frameworks/objective-curl.framework"; sourceTree = "<absolute>"; };
 		0B46A8E9117CCBC7003F1E87 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = /Users/nrj/Library/Frameworks/Growl.framework; sourceTree = "<absolute>"; };
 		0B46A8EB117CCBC7003F1E87 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Users/nrj/Library/Frameworks/Sparkle.framework; sourceTree = "<absolute>"; };
 		0B6E84B11127540600296175 /* Controller+Scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+Scripting.h"; sourceTree = "<group>"; };
@@ -177,7 +192,6 @@
 		0BAB8D3F1127482300AD061A /* dsa_public.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_public.pem; sourceTree = "<group>"; };
 		0BAB8D401127482300AD061A /* OneWay.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.sdef; path = OneWay.sdef; sourceTree = "<group>"; };
 		0BAB8D411127482300AD061A /* OneWayPlugin-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OneWayPlugin-Info.plist"; sourceTree = "<group>"; };
-		0BAB8D421127482300AD061A /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		0BAB8D431127482300AD061A /* uninstall.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = uninstall.sh; sourceTree = "<group>"; };
 		0BAB8D441127482300AD061A /* version.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = version.plist; sourceTree = "<group>"; };
 		0BAB8D4E1127484D00AD061A /* Controller+Toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+Toolbar.h"; sourceTree = "<group>"; };
@@ -230,9 +244,9 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				0BD6195411344D7E00050C25 /* Security.framework in Frameworks */,
 				0BEAD701117C20E000289E36 /* Appscript.framework in Frameworks */,
-				0B46A78D117CA35F003F1E87 /* objective-curl.framework in Frameworks */,
 				0B46A8EA117CCBC7003F1E87 /* Growl.framework in Frameworks */,
 				0B46A8EC117CCBC7003F1E87 /* Sparkle.framework in Frameworks */,
+				0B3B2405119E0FA1007E440D /* objective-curl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +351,8 @@
 				0B19DEC511274CFB00B13C62 /* NSString+UUID.m */,
 				0BD618841134446500050C25 /* NSString+Extras.h */,
 				0BD618851134446500050C25 /* NSString+Extras.m */,
+				0B32ADAD119E0C9E00225E8D /* NSMenu+Extras.h */,
+				0B32ADAE119E0C9E00225E8D /* NSMenu+Extras.m */,
 			);
 			path = extras;
 			sourceTree = "<group>";
@@ -361,6 +377,8 @@
 				0B86BC961157C201005C44E4 /* Controller+Growl.m */,
 				0BAB8D4E1127484D00AD061A /* Controller+Toolbar.h */,
 				0BAB8D4F1127484D00AD061A /* Controller+Toolbar.m */,
+				0B3B2573119F7BFF007E440D /* Controller+TransferMenu.h */,
+				0B3B2574119F7BFF007E440D /* Controller+TransferMenu.m */,
 				0BAB8D501127484D00AD061A /* Controller.h */,
 				0BAB8D511127484D00AD061A /* Controller.m */,
 			);
@@ -385,6 +403,8 @@
 			children = (
 				0B19DEB311274C8C00B13C62 /* Location.h */,
 				0B19DEB411274C8C00B13C62 /* Location.m */,
+				0B3B244D119E1392007E440D /* FileTransfer+NSCoding.h */,
+				0B3B244E119E1392007E440D /* FileTransfer+NSCoding.m */,
 				0B8EC5A11128E63100D30FF3 /* Upload+NSCoding.h */,
 				0B8EC5A21128E63100D30FF3 /* Upload+NSCoding.m */,
 				0B8EC5A41128E63C00D30FF3 /* Upload+NSCopying.h */,
@@ -403,6 +423,8 @@
 				0B19DEAB11274C7700B13C62 /* TransferCell.m */,
 				0B19DEAC11274C7700B13C62 /* WelcomeView.h */,
 				0B19DEAD11274C7700B13C62 /* WelcomeView.m */,
+				0B2BF256119CF9EF00E3DDEA /* TransferTable.h */,
+				0B2BF257119CF9EF00E3DDEA /* TransferTable.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -437,9 +459,9 @@
 				0BD6195311344D7E00050C25 /* Security.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				0BEAD700117C20E000289E36 /* Appscript.framework */,
-				0B46A78C117CA35F003F1E87 /* objective-curl.framework */,
 				0B46A8E9117CCBC7003F1E87 /* Growl.framework */,
 				0B46A8EB117CCBC7003F1E87 /* Sparkle.framework */,
+				0B3B2404119E0FA1007E440D /* objective-curl.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -487,13 +509,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0B2BF0D3119CB32800E3DDEA /* LICENSE */,
+				0B2BF0D4119CB32800E3DDEA /* README.md */,
 				0B72FE011156D22A00085DCD /* remove_services.sh */,
 				0BCBD274114D5A7F006C12BE /* workflow */,
 				0B6E8581112762F400296175 /* icons */,
 				0BAB8D3F1127482300AD061A /* dsa_public.pem */,
 				0BAB8D401127482300AD061A /* OneWay.sdef */,
 				0BAB8D411127482300AD061A /* OneWayPlugin-Info.plist */,
-				0BAB8D421127482300AD061A /* README */,
 				0BAB8D431127482300AD061A /* uninstall.sh */,
 				0BAB8D441127482300AD061A /* version.plist */,
 				0BAB8D361127480A00AD061A /* LocationSheet.xib */,
@@ -596,7 +619,6 @@
 				0BAB8D451127482300AD061A /* dsa_public.pem in Resources */,
 				0BAB8D461127482300AD061A /* OneWay.sdef in Resources */,
 				0BAB8D471127482300AD061A /* OneWayPlugin-Info.plist in Resources */,
-				0BAB8D481127482300AD061A /* README in Resources */,
 				0BAB8D491127482300AD061A /* uninstall.sh in Resources */,
 				0BAB8D4A1127482300AD061A /* version.plist in Resources */,
 				0B6E858C1127631800296175 /* clear.png in Resources */,
@@ -618,6 +640,8 @@
 				0BCBD27D114D5DFB006C12BE /* Thumbnail.png in Resources */,
 				0B72FE021156D22A00085DCD /* remove_services.sh in Resources */,
 				0B86BC0B1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict in Resources */,
+				0B2BF0D5119CB32800E3DDEA /* LICENSE in Resources */,
+				0B2BF0D6119CB32800E3DDEA /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,6 +710,10 @@
 				0B106B76117B9F67006739B8 /* FNConstantGlue.m in Sources */,
 				0B106B77117B9F67006739B8 /* FNReferenceGlue.m in Sources */,
 				0B106B78117B9F67006739B8 /* FNReferenceRendererGlue.m in Sources */,
+				0B2BF258119CF9EF00E3DDEA /* TransferTable.m in Sources */,
+				0B32ADAF119E0C9E00225E8D /* NSMenu+Extras.m in Sources */,
+				0B3B244F119E1392007E440D /* FileTransfer+NSCoding.m in Sources */,
+				0B3B2575119F7BFF007E440D /* Controller+TransferMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +776,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -772,6 +804,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Frameworks\"",
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -797,6 +833,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$HOME/Library/Frameworks\"/**",
+					"\"$(SRCROOT)/../../../Library/Frameworks\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -820,6 +857,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$HOME/Library/Frameworks\"/**",
+					"\"$(SRCROOT)/../../../Library/Frameworks\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

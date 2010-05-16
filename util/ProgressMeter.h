@@ -2,8 +2,7 @@
 //  ProgressMeter.h
 //  OneWay
 //
-//  Created by nrj on 3/28/10.
-//  Copyright 2010 cocoaism.com. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import <Cocoa/Cocoa.h>

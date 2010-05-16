@@ -2,8 +2,7 @@
 //  ProgressGradients.m
 //  OneWay
 //
-//  Created by nrj on 9/1/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import "ProgressGradients.h"

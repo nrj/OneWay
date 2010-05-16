@@ -2,8 +2,7 @@
 //  LocationSheet.h
 //  OneWay
 //
-//  Created by nrj on 9/1/09.
-//  Copyright 2009. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import <Cocoa/Cocoa.h>
@@ -16,6 +15,8 @@
 	IBOutlet NSButton *saveButton;
 	IBOutlet NSButton *closeButton;
 	IBOutlet NSPopUpButton *typeMenu;
+	IBOutlet NSButton *moreButton;
+	IBOutlet NSBox *moreOptionsBox;
 	
 	Location *location;
 	NSArray *fileList;
@@ -23,6 +24,7 @@
 
 	BOOL shouldShowSaveOption;
 	BOOL shouldSaveLocation;
+	BOOL shouldShowMoreOptions;
 
 	NSColor *messageColor;
 }
@@ -32,9 +34,11 @@
 @property(readwrite, copy) NSString *message;
 @property(readwrite, assign) BOOL shouldShowSaveOption;
 @property(readwrite, assign) BOOL shouldSaveLocation;
+@property(readwrite, assign) BOOL shouldShowMoreOptions;
 @property(readwrite, retain) NSColor *messageColor;
 
 - (IBAction)closeSheetOK:(id)sender;
 - (IBAction)closeSheetCancel:(id)sender;
+- (IBAction)moreOptionsPressed:(id)sender;
 
 @end

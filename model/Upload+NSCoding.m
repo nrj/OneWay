@@ -2,8 +2,7 @@
 //  Upload+NSCoding.m
 //  OneWay
 //
-//  Created by nrj on 2/14/10.
-//  Copyright 2010 cocoaism.com. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import "Upload+NSCoding.h"
@@ -19,19 +18,18 @@
 	hostname			= [[decoder decodeObjectForKey:@"hostname"] retain];
 	username			= [[decoder decodeObjectForKey:@"username"] retain];
 	path				= [[decoder decodeObjectForKey:@"path"] retain];
+	url					= [[decoder decodeObjectForKey:@"url"] retain];
 	port				= [decoder decodeIntForKey:@"port"];
 	status				= [decoder decodeIntForKey:@"status"];
 	connected			= [decoder decodeBoolForKey:@"connected"];
 	cancelled			= [decoder decodeBoolForKey:@"cancelled"];
 	name				= [[decoder decodeObjectForKey:@"name"] retain];
 	statusMessage		= [[decoder decodeObjectForKey:@"statusMessage"] retain];
-//	current			= [[decoder decodeObjectForKey:@"currentFile"] retain];
 	localFiles			= [[decoder decodeObjectForKey:@"localFiles"] retain];
+	transfers			= [[decoder decodeObjectForKey:@"transfers"] retain];
 	progress			= [decoder decodeIntForKey:@"progress"];
 	totalFiles			= [decoder decodeIntForKey:@"totalFiles"];
 	totalFilesUploaded	= [decoder decodeIntForKey:@"totalFilesUploaded"];
-	
-//	progressInfo		= [[decoder decodeObjectForKey:@"progressInfo"] retain];
 	totalBytes			= [decoder decodeDoubleForKey:@"totalBytes"];
 	totalBytesUploaded	= [decoder decodeDoubleForKey:@"totalBytesUploaded"];
 	bytesPerSecond		= [decoder decodeDoubleForKey:@"bytesPerSecond"];
@@ -56,19 +54,18 @@
 	[encoder encodeObject:hostname forKey:@"hostname"];
 	[encoder encodeObject:username forKey:@"username"];
 	[encoder encodeObject:path forKey:@"path"];
+	[encoder encodeObject:url forKey:@"url"];
 	[encoder encodeInt:port forKey:@"port"];
 	[encoder encodeInt:status forKey:@"status"];
 	[encoder encodeBool:connected forKey:@"connected"];
 	[encoder encodeBool:cancelled forKey:@"cancelled"];
 	[encoder encodeObject:name forKey:@"name"];
 	[encoder encodeObject:statusMessage forKey:@"statusMessage"];
-//	[encoder encodeObject:currentFile forKey:@"currentFile"];
 	[encoder encodeObject:localFiles forKey:@"localFiles"];
+	[encoder encodeObject:transfers forKey:@"transfers"];
 	[encoder encodeInt:progress forKey:@"progress"];
 	[encoder encodeInt:totalFiles forKey:@"totalFiles"];
 	[encoder encodeInt:totalFilesUploaded forKey:@"totalFilesUploaded"];
-
-//	[encoder encodeObject:progressInfo forKey:@"progressInfo"];
 	[encoder encodeDouble:totalBytes forKey:@"totalBytes"];
 	[encoder encodeDouble:totalBytesUploaded forKey:@"totalBytesUploaded"];	
 	[encoder encodeDouble:bytesPerSecond forKey:@"bytesPerSecond"];	

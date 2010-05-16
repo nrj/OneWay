@@ -2,8 +2,7 @@
 //  TransferCell.m
 //		
 //
-//  Created by nrj on 8/6/09.
-//  Copyright 2009. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import "TransferCell.h"

@@ -2,8 +2,7 @@
 //  Controller.h
 //  OneWay
 //
-//  Created by nrj on 7/18/09.
-//  Copyright 2009. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import <Cocoa/Cocoa.h>
@@ -64,6 +63,12 @@
 - (void)displayNextError;
 
 - (void)createLocationAndTransferFiles:(NSArray *)fileList;
+
+- (IBAction)retrySelectedTransfers:(id)sender;
+- (IBAction)clearSelectedTransfers:(id)sender;
+- (IBAction)stopSelectedTransfers:(id)sender;
+
+
 - (IBAction)createLocation:(id)sender;
 - (IBAction)updateLocation:(id)sender;
 - (IBAction)deleteLocation:(id)sender;

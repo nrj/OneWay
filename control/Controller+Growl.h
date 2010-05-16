@@ -2,8 +2,7 @@
 //  Controller+Growl.h
 //  OneWay
 //
-//  Created by nrj on 3/22/10.
-//  Copyright 2010 cocoaism.com. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import <Cocoa/Cocoa.h>

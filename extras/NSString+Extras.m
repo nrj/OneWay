@@ -2,8 +2,7 @@
 //  NSString+Extras.m
 //  OneWay
 //
-//  Created by nrj on 2/23/10.
-//  Copyright 2010 cocoaism.com. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import "NSString+Extras.h"
@@ -11,11 +10,6 @@
 
 @implementation NSString (Extras)
 
-typedef enum {
-	NSTruncateStart = 0,
-	NSTruncateMiddle = 1,
-	NSTruncateEnd = 2
-} NSTruncateTypes;
 
 - (NSString *)stringWithTruncatingToLength:(unsigned)length {
 	return [self stringTruncatedToLength:length direction:NSTruncateStart];

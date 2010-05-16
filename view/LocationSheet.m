@@ -2,8 +2,7 @@
 //  LocationSheet.m
 //  OneWay
 //
-//  Created by nrj on 9/1/09.
-//  Copyright 2009. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import "LocationSheet.h"
@@ -13,12 +12,20 @@
 
 @implementation LocationSheet
 
+
 @synthesize message;
+
 @synthesize messageColor;
+
 @synthesize location;
+
 @synthesize fileList;
+
 @synthesize shouldShowSaveOption;
+
 @synthesize shouldSaveLocation;
+
+@synthesize shouldShowMoreOptions;
 
 
 - (id)init
@@ -41,10 +48,62 @@
 }
 
 
-- (void)windowDidBecomeKey:(NSNotification *)notification
-{	
-	[messageLabel setStringValue:message];
+- (void)setLocation:(Location *)aLocation
+{
+	if (aLocation != location)
+	{
+		[location release];
+		location = [aLocation retain];
+		
+		[messageLabel setStringValue:message];
+		
+		[moreButton setState:[location webAccessible]];
+		
+		[self moreOptionsPressed:moreButton];
+	}
 }
+
+
+- (void)awakeFromNib
+{
+	[moreButton setState:[location webAccessible]];
+	
+	[self moreOptionsPressed:moreButton];	
+}
+
+
+- (IBAction)moreOptionsPressed:(id)sender 
+{ 
+	NSWindow *window = [sender window]; 
+	NSRect frame = [window frame];
+	CGFloat sizeChange = [moreOptionsBox frame].size.height + 10; 
+	switch ([sender state]) 
+	{ 
+		case NSOnState:
+			if ([moreOptionsBox isHidden])
+			{
+				[moreOptionsBox setHidden:NO];
+				frame.size.height += sizeChange;
+				frame.origin.y -= sizeChange; 
+			}
+			break; 
+		
+		case NSOffState: 
+			if (![moreOptionsBox isHidden])
+			{
+				[moreOptionsBox setHidden:YES];
+				frame.size.height -= sizeChange;
+				frame.origin.y += sizeChange;
+			}
+			break; 
+
+		default: 
+			break; 
+	} 
+	
+	[window setFrame:frame display:YES animate:YES]; 
+} 
+
 
 
 - (IBAction)closeSheetOK:(id)sender

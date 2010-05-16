@@ -2,8 +2,7 @@
 //  Location.h
 //  OneWay
 //
-//  Created by nrj on 7/22/09.
-//  Copyright 2009. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import <Foundation/Foundation.h>
@@ -17,8 +16,10 @@
 	NSString *username;
 	NSString *password;
 	NSString *directory;
+	NSString *baseUrl;
 	NSString *uid;
 	BOOL savePassword;
+	BOOL webAccessible;
 }
 
 @property(nonatomic, readwrite, assign) int type;
@@ -28,8 +29,10 @@
 @property(nonatomic, readwrite, copy) NSString *username;
 @property(nonatomic, readwrite, copy) NSString *password;
 @property(nonatomic, readwrite, copy) NSString *directory;
+@property(nonatomic, readwrite, copy) NSString *baseUrl;
 @property(nonatomic, readwrite, copy) NSString *uid;
 @property(nonatomic, readwrite, assign) BOOL savePassword;
+@property(nonatomic, readwrite, assign) BOOL webAccessible;
 
 - (void)encodeWithCoder:(NSCoder *)encoder;
 
@@ -38,6 +41,8 @@
 - (id)initWithType:(int)aType hostname:(NSString *)aHostname username:(NSString *)aUsername password:(NSString *)aPassword directory:(NSString *)aDirectory;
 
 - (void)setProtocolDefaults;
+
+- (void)guessBaseUrl;
 
 - (NSString *)protocolString;
 

@@ -2,8 +2,7 @@
 //  PasswordSheet.h
 //  OneWay
 //
-//  Created by nrj on 9/7/09.
-//  Copyright 2009 cocoaism.com. All rights reserved.
+//  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
 #import <Cocoa/Cocoa.h>
