@@ -18,7 +18,7 @@
 	NSPoint menuPoint = [self convertPoint:[event locationInWindow] fromView:nil];
 	
 	int row = [self rowAtPoint:menuPoint];
-	
+		
 	BOOL currentRowIsSelected = [[self selectedRowIndexes] containsIndex:row];
 
 	if (!currentRowIsSelected)

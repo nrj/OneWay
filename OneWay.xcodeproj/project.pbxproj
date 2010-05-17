@@ -34,6 +34,7 @@
 		0B3B2415119E0FAE007E440D /* objective-curl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3B2404119E0FA1007E440D /* objective-curl.framework */; };
 		0B3B244F119E1392007E440D /* FileTransfer+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B244E119E1392007E440D /* FileTransfer+NSCoding.m */; };
 		0B3B2575119F7BFF007E440D /* Controller+TransferMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B2574119F7BFF007E440D /* Controller+TransferMenu.m */; };
+		0B3B264211A089DC007E440D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B3B264111A089DC007E440D /* Credits.html */; };
 		0B4627A2114D9DCA00198C23 /* LocationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4627A1114D9DCA00198C23 /* LocationMessage.m */; };
 		0B4627D1114DB4A600198C23 /* SystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4627D0114DB4A600198C23 /* SystemVersion.m */; };
 		0B46A8EA117CCBC7003F1E87 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B46A8E9117CCBC7003F1E87 /* Growl.framework */; };
@@ -155,6 +156,7 @@
 		0B3B244E119E1392007E440D /* FileTransfer+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FileTransfer+NSCoding.m"; sourceTree = "<group>"; };
 		0B3B2573119F7BFF007E440D /* Controller+TransferMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+TransferMenu.h"; sourceTree = "<group>"; };
 		0B3B2574119F7BFF007E440D /* Controller+TransferMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Controller+TransferMenu.m"; sourceTree = "<group>"; };
+		0B3B264111A089DC007E440D /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		0B4627A0114D9DCA00198C23 /* LocationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMessage.h; sourceTree = "<group>"; };
 		0B4627A1114D9DCA00198C23 /* LocationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMessage.m; sourceTree = "<group>"; };
 		0B4627CF114DB4A600198C23 /* SystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemVersion.h; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 				0BBCEA5A11323E01001676F3 /* FailureSheet.xib */,
 				0BE6F88B1132473A00AA2BCF /* restart_finder.sh */,
 				0B86BC0A1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict */,
+				0B3B264111A089DC007E440D /* Credits.html */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				0B86BC0B1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict in Resources */,
 				0B2BF0D5119CB32800E3DDEA /* LICENSE in Resources */,
 				0B2BF0D6119CB32800E3DDEA /* README.md in Resources */,
+				0B3B264211A089DC007E440D /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

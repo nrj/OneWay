@@ -26,6 +26,9 @@ enum OWTransferMenuTag {
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {	
+	if ([transferTable selectedRow] < 0) 
+		return NO;
+	
 	Upload *upload = [transfers objectAtIndex:[transferTable selectedRow]];
 	
 	BOOL answer = NO;
@@ -51,7 +54,10 @@ enum OWTransferMenuTag {
 
 
 - (void)menuWillOpen:(NSMenu *)menu
-{
+{	
+	if ([transferTable selectedRow] < 0) 
+		return;
+
 	Upload *upload = [transfers objectAtIndex:[transferTable selectedRow]];
 	
 	NSMenuItem *copyMenu = [menu itemWithTag:OWTransferMenuURLSubMenu];
