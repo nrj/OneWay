@@ -70,12 +70,13 @@
 		0BAB8D541127484D00AD061A /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D511127484D00AD061A /* Controller.m */; };
 		0BAB8D57112748A000AD061A /* OWConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB8D56112748A000AD061A /* OWConstants.m */; };
 		0BB3ED3811444656008CC281 /* UploadName.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3ED3711444656008CC281 /* UploadName.m */; };
+		0BB62BD711A21491008CF2AD /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB62BD611A21491008CF2AD /* NSString+URLEncoding.m */; };
 		0BBCEA5B11323E01001676F3 /* FailureSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBCEA5A11323E01001676F3 /* FailureSheet.xib */; };
 		0BCBD273114D597D006C12BE /* FinderService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCBD272114D597D006C12BE /* FinderService.m */; };
 		0BCBD276114D5A9D006C12BE /* template.wflow in Resources */ = {isa = PBXBuildFile; fileRef = 0BCBD275114D5A9D006C12BE /* template.wflow */; };
 		0BCBD278114D5C2F006C12BE /* template.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BCBD277114D5C2F006C12BE /* template.plist */; };
 		0BCBD27D114D5DFB006C12BE /* Thumbnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BCBD27C114D5DFB006C12BE /* Thumbnail.png */; };
-		0BD618861134446500050C25 /* NSString+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618851134446500050C25 /* NSString+Extras.m */; };
+		0BD618861134446500050C25 /* NSString+Truncate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618851134446500050C25 /* NSString+Truncate.m */; };
 		0BD618BB113446B400050C25 /* EMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618BA113446B400050C25 /* EMKeychain.m */; };
 		0BD6195411344D7E00050C25 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD6195311344D7E00050C25 /* Security.framework */; };
 		0BDD2795113252E0005D7F84 /* retry.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDD2794113252E0005D7F84 /* retry.png */; };
@@ -204,14 +205,16 @@
 		0BAB8D56112748A000AD061A /* OWConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OWConstants.m; sourceTree = "<group>"; };
 		0BB3ED3611444656008CC281 /* UploadName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadName.h; sourceTree = "<group>"; };
 		0BB3ED3711444656008CC281 /* UploadName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadName.m; sourceTree = "<group>"; };
+		0BB62BD511A21491008CF2AD /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		0BB62BD611A21491008CF2AD /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
 		0BBCEA1A11323B79001676F3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FailureSheet.xib; sourceTree = "<group>"; };
 		0BCBD271114D597D006C12BE /* FinderService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderService.h; sourceTree = "<group>"; };
 		0BCBD272114D597D006C12BE /* FinderService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderService.m; sourceTree = "<group>"; };
 		0BCBD275114D5A9D006C12BE /* template.wflow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = template.wflow; sourceTree = "<group>"; };
 		0BCBD277114D5C2F006C12BE /* template.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = template.plist; sourceTree = "<group>"; };
 		0BCBD27C114D5DFB006C12BE /* Thumbnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Thumbnail.png; sourceTree = "<group>"; };
-		0BD618841134446500050C25 /* NSString+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extras.h"; sourceTree = "<group>"; };
-		0BD618851134446500050C25 /* NSString+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extras.m"; sourceTree = "<group>"; };
+		0BD618841134446500050C25 /* NSString+Truncate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Truncate.h"; sourceTree = "<group>"; };
+		0BD618851134446500050C25 /* NSString+Truncate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Truncate.m"; sourceTree = "<group>"; };
 		0BD618B9113446B400050C25 /* EMKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychain.h; sourceTree = "<group>"; };
 		0BD618BA113446B400050C25 /* EMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychain.m; sourceTree = "<group>"; };
 		0BD6195311344D7E00050C25 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -349,10 +352,12 @@
 		0BAB8D0D112744E300AD061A /* extras */ = {
 			isa = PBXGroup;
 			children = (
+				0BB62BD511A21491008CF2AD /* NSString+URLEncoding.h */,
+				0BB62BD611A21491008CF2AD /* NSString+URLEncoding.m */,
 				0B19DEC411274CFB00B13C62 /* NSString+UUID.h */,
 				0B19DEC511274CFB00B13C62 /* NSString+UUID.m */,
-				0BD618841134446500050C25 /* NSString+Extras.h */,
-				0BD618851134446500050C25 /* NSString+Extras.m */,
+				0BD618841134446500050C25 /* NSString+Truncate.h */,
+				0BD618851134446500050C25 /* NSString+Truncate.m */,
 				0B32ADAD119E0C9E00225E8D /* NSMenu+Extras.h */,
 				0B32ADAE119E0C9E00225E8D /* NSMenu+Extras.m */,
 			);
@@ -700,7 +705,7 @@
 				0B8EC5A61128E63C00D30FF3 /* Upload+NSCopying.m in Sources */,
 				0B2C5BF211309774006C4F5B /* LocationCell.m in Sources */,
 				0BE6F80011323F6900AA2BCF /* FailureSheet.m in Sources */,
-				0BD618861134446500050C25 /* NSString+Extras.m in Sources */,
+				0BD618861134446500050C25 /* NSString+Truncate.m in Sources */,
 				0BD618BB113446B400050C25 /* EMKeychain.m in Sources */,
 				0BB3ED3811444656008CC281 /* UploadName.m in Sources */,
 				0BCBD273114D597D006C12BE /* FinderService.m in Sources */,
@@ -718,6 +723,7 @@
 				0B32ADAF119E0C9E00225E8D /* NSMenu+Extras.m in Sources */,
 				0B3B244F119E1392007E440D /* FileTransfer+NSCoding.m in Sources */,
 				0B3B2575119F7BFF007E440D /* Controller+TransferMenu.m in Sources */,
+				0BB62BD711A21491008CF2AD /* NSString+URLEncoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

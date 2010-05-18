@@ -5,9 +5,15 @@
 //  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
+#import "OWConstants.h"
 #import "LocationSheet.h"
 #import "Location.h"
-#import "NSString+Extras.h"
+#import "NSString+Truncate.h"
+
+
+NSString * const PASSWORD_LABEL = @"Password";
+
+NSString * const PASSPHRASE_LABEL = @"Passphrase";
 
 
 @implementation LocationSheet
@@ -56,8 +62,9 @@
 		location = [aLocation retain];
 		
 		[messageLabel setStringValue:message];
-		
 		[moreButton setState:[location webAccessible]];
+		
+		[self updatePasswordLabel];
 		
 		[self moreOptionsPressed:moreButton];
 	}
@@ -69,8 +76,21 @@
 	[moreButton setState:[location webAccessible]];
 	
 	[self moreOptionsPressed:moreButton];	
+	
+	[self updatePasswordLabel];
 }
 
+- (IBAction)locationTypeSelected:(id)sender
+{
+	int selection = [sender indexOfItem:[sender selectedItem]];
+
+	if (selection == OWLocationTypeFTP)
+	{
+		[location setUsePublicKeyAuth:NO];
+		[location setPrivateKeyFile:nil];
+		[location setPublicKeyFile:nil];
+	}
+}
 
 - (IBAction)moreOptionsPressed:(id)sender 
 { 
@@ -104,6 +124,54 @@
 	[window setFrame:frame display:YES animate:YES]; 
 } 
 
+
+- (IBAction)usePublicKeyAuthPressed:(id)sender
+{	
+	if ([sender state] == NSOnState)
+	{		
+		NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+		
+		[openDlg setCanChooseFiles:YES];
+		[openDlg setCanChooseDirectories:NO];
+		[openDlg setTitle:@"Select Private Key"];
+		
+		NSString *sshDir = [@"~/.ssh" stringByExpandingTildeInPath];
+		
+		if ([openDlg runModalForDirectory:sshDir file:nil] == NSOKButton)
+		{
+			if ([[openDlg filenames] count] == 1)
+			{
+				NSString *privateKeyPath = [[openDlg filenames] objectAtIndex:0];
+				NSString *publicKeyPath = [NSString stringWithFormat:@"%@.pub", privateKeyPath];
+				
+				[location setUsePublicKeyAuth:YES];
+				[location setPrivateKeyFile:privateKeyPath];
+				[location setPublicKeyFile:publicKeyPath];
+			}
+		}		
+	}
+	else
+	{
+		[location setUsePublicKeyAuth:NO];
+		[location setPrivateKeyFile:nil];
+		[location setPublicKeyFile:nil];		
+	}
+	
+	[self updatePasswordLabel];
+}
+
+
+- (void)updatePasswordLabel
+{
+	if ([location usePublicKeyAuth])
+	{
+		[passwordLabel setStringValue:PASSPHRASE_LABEL];
+	}
+	else
+	{
+		[passwordLabel setStringValue:PASSWORD_LABEL];	
+	}	
+}
 
 
 - (IBAction)closeSheetOK:(id)sender

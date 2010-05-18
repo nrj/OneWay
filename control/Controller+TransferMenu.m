@@ -6,7 +6,8 @@
 //
 
 #import "Controller+TransferMenu.h"
-#import "NSString+Extras.h"
+#import "NSString+Truncate.h"
+#import "NSString+URLEncoding.h"
 #import "NSMenu+Extras.h"
 #import "FNGlue.h"
 
@@ -43,6 +44,7 @@ enum OWTransferMenuTag {
 			answer = ![upload isActive];
 			break;
 		case OWTransferMenuFileURL:
+		case OWTransferMenuReveal:
 			answer = YES;
 			break;
 		default:
@@ -94,7 +96,7 @@ enum OWTransferMenuTag {
 			NSMenuItem *menuItem = [[[NSMenuItem alloc] initWithTitle:title 
 															   action:selector
 														keyEquivalent:@""] autorelease];
-			[menuItem setRepresentedObject:url];
+			[menuItem setRepresentedObject:[url encodedURLString]];
 			[menuItem setTag:OWTransferMenuFileURL];
 			
 			[[copyMenu submenu] insertItem:menuItem 

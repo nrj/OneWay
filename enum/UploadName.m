@@ -6,7 +6,8 @@
 //
 
 #import "UploadName.h"
-#import "NSString+Extras.h"
+#import "NSString+Truncate.h"
+
 
 @implementation UploadName
 

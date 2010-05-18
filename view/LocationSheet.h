@@ -17,11 +17,14 @@
 	IBOutlet NSPopUpButton *typeMenu;
 	IBOutlet NSButton *moreButton;
 	IBOutlet NSBox *moreOptionsBox;
-	
+	IBOutlet NSButton *usePublicKeyCheckbox;
+	IBOutlet NSTextField *passwordLabel;
+
 	Location *location;
 	NSArray *fileList;
 	NSString *message;
 
+	
 	BOOL shouldShowSaveOption;
 	BOOL shouldSaveLocation;
 	BOOL shouldShowMoreOptions;
@@ -39,6 +42,10 @@
 
 - (IBAction)closeSheetOK:(id)sender;
 - (IBAction)closeSheetCancel:(id)sender;
+- (IBAction)locationTypeSelected:(id)sender;
 - (IBAction)moreOptionsPressed:(id)sender;
+- (IBAction)usePublicKeyAuthPressed:(id)sender;
+
+- (void)updatePasswordLabel;
 
 @end

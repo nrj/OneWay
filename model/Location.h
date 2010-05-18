@@ -15,11 +15,14 @@
 	int port;
 	NSString *username;
 	NSString *password;
+	NSString *privateKeyFile;
+	NSString *publicKeyFile;
 	NSString *directory;
 	NSString *baseUrl;
 	NSString *uid;
 	BOOL savePassword;
 	BOOL webAccessible;
+	BOOL usePublicKeyAuth;
 }
 
 @property(nonatomic, readwrite, assign) int type;
@@ -28,11 +31,14 @@
 @property(nonatomic, readwrite, assign) int port;
 @property(nonatomic, readwrite, copy) NSString *username;
 @property(nonatomic, readwrite, copy) NSString *password;
+@property(nonatomic, readwrite, copy) NSString *privateKeyFile;
+@property(nonatomic, readwrite, copy) NSString *publicKeyFile;
 @property(nonatomic, readwrite, copy) NSString *directory;
 @property(nonatomic, readwrite, copy) NSString *baseUrl;
 @property(nonatomic, readwrite, copy) NSString *uid;
 @property(nonatomic, readwrite, assign) BOOL savePassword;
 @property(nonatomic, readwrite, assign) BOOL webAccessible;
+@property(nonatomic, readwrite, assign) BOOL usePublicKeyAuth;
 
 - (void)encodeWithCoder:(NSCoder *)encoder;
 

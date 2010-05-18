@@ -6,7 +6,7 @@
 //
 
 #import "LocationMessage.h"
-#import "NSString+Extras.h"
+#import "NSString+Truncate.h"
 
 @implementation LocationMessage
 

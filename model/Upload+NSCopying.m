@@ -19,6 +19,8 @@
 	[copy setHostname:hostname];
 	[copy setUsername:username];
 	[copy setPassword:password];
+	[copy setPrivateKeyFile:privateKeyFile];
+	[copy setUsePublicKeyAuth:usePublicKeyAuth];
 	[copy setPath:path];
 	[copy setUrl:url];
 	[copy setPort:port];

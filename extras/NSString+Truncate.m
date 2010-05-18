@@ -1,14 +1,14 @@
 //
-//  NSString+Extras.m
+//  NSString+Truncate.m
 //  OneWay
 //
 //  Copyright 2010 Nick Jensen <http://goto11.net>
 //
 
-#import "NSString+Extras.h"
+#import "NSString+Truncate.h"
 
 
-@implementation NSString (Extras)
+@implementation NSString (Truncate)
 
 
 - (NSString *)stringWithTruncatingToLength:(unsigned)length {

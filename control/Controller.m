@@ -287,6 +287,13 @@
 											 directory:[location directory]
 												  port:[location port]];
 	
+	if ([location protocol] == kSecProtocolTypeSSH && [location usePublicKeyAuth])
+	{
+		[record setUsePublicKeyAuth:YES];
+		[record setPrivateKeyFile:[[location privateKeyFile] stringByExpandingTildeInPath]];
+		[record setPublicKeyFile:[NSString stringWithFormat:@"%@.pub", [record privateKeyFile]]];
+	}
+	
 	[record setName:[UploadName nameForFileList:fileList]];
 	[record setStatusMessage:@"Queued"];
 	

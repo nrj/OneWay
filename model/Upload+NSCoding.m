@@ -17,6 +17,8 @@
 	protocolPrefix		= [[decoder decodeObjectForKey:@"protocolPrefix"] retain];
 	hostname			= [[decoder decodeObjectForKey:@"hostname"] retain];
 	username			= [[decoder decodeObjectForKey:@"username"] retain];
+	privateKeyFile		= [[decoder decodeObjectForKey:@"privateKeyFile"] retain];
+	usePublicKeyAuth	= [decoder decodeBoolForKey:@"usePublicKeyAuth"];
 	path				= [[decoder decodeObjectForKey:@"path"] retain];
 	url					= [[decoder decodeObjectForKey:@"url"] retain];
 	port				= [decoder decodeIntForKey:@"port"];
@@ -34,6 +36,7 @@
 	totalBytesUploaded	= [decoder decodeDoubleForKey:@"totalBytesUploaded"];
 	bytesPerSecond		= [decoder decodeDoubleForKey:@"bytesPerSecond"];
 	secondsRemaining	= [decoder decodeDoubleForKey:@"secondsRemaining"];
+	
 		
 	return self;
 }
@@ -53,6 +56,8 @@
 	[encoder encodeObject:protocolPrefix forKey:@"protocolPrefix"];
 	[encoder encodeObject:hostname forKey:@"hostname"];
 	[encoder encodeObject:username forKey:@"username"];
+	[encoder encodeObject:privateKeyFile forKey:@"privateKeyFile"];
+	[encoder encodeBool:usePublicKeyAuth forKey:@"usePublicKeyAuth"];
 	[encoder encodeObject:path forKey:@"path"];
 	[encoder encodeObject:url forKey:@"url"];
 	[encoder encodeInt:port forKey:@"port"];
@@ -70,6 +75,7 @@
 	[encoder encodeDouble:totalBytesUploaded forKey:@"totalBytesUploaded"];	
 	[encoder encodeDouble:bytesPerSecond forKey:@"bytesPerSecond"];	
 	[encoder encodeDouble:secondsRemaining forKey:@"secondsRemaining"];	
+
 }
 
 

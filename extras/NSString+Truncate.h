@@ -1,5 +1,5 @@
 //
-//  NSString+Extras.h
+//  NSString+Truncate.h
 //  OneWay
 //
 //  Copyright 2010 Nick Jensen <http://goto11.net>
@@ -15,7 +15,7 @@ typedef enum {
 } NSTruncateTypes;
 
 
-@interface NSString (Extras)
+@interface NSString (Truncate)
 
 - (NSString *)stringWithTruncatingToLength:(unsigned)length;
 

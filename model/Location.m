@@ -18,11 +18,14 @@
 @synthesize port;
 @synthesize username;
 @synthesize password;
+@synthesize privateKeyFile;
+@synthesize publicKeyFile;
 @synthesize directory;
 @synthesize baseUrl;
 @synthesize uid;
 @synthesize savePassword;
 @synthesize webAccessible;
+@synthesize usePublicKeyAuth;
 
 
 - (id)copyWithZone:(NSZone *)zone 
@@ -35,11 +38,14 @@
 	[copy setPort:port];
 	[copy setUsername:username];
 	[copy setPassword:password];
+	[copy setPrivateKeyFile:privateKeyFile];
+	[copy setPublicKeyFile:publicKeyFile];
 	[copy setDirectory:directory];
 	[copy setBaseUrl:baseUrl];
 	[copy setUid:uid];
 	[copy setSavePassword:savePassword];
 	[copy setWebAccessible:webAccessible];
+	[copy setUsePublicKeyAuth:usePublicKeyAuth];
 
     return copy;
 }
@@ -52,11 +58,14 @@
 	[encoder encodeObject:hostname forKey:@"hostname"];
 	[encoder encodeInt:port forKey:@"port"];
 	[encoder encodeObject:username forKey:@"username"];
+	[encoder encodeObject:privateKeyFile forKey:@"privateKeyFile"];
+	[encoder encodeObject:publicKeyFile forKey:@"publicKeyFile"];
 	[encoder encodeObject:directory forKey:@"directory"];
 	[encoder encodeObject:baseUrl forKey:@"baseUrl"];
 	[encoder encodeObject:uid forKey:@"uid"];
 	[encoder encodeBool:savePassword forKey:@"savePassword"];
 	[encoder encodeBool:webAccessible forKey:@"webAccessible"];
+	[encoder encodeBool:usePublicKeyAuth forKey:@"usePublicKeyAuth"];
 }
 
 
@@ -67,11 +76,14 @@
 	hostname = [[decoder decodeObjectForKey:@"hostname"] retain];
 	port = [decoder decodeIntForKey:@"port"];
 	username = [[decoder decodeObjectForKey:@"username"] retain];
+	privateKeyFile = [[decoder decodeObjectForKey:@"privateKeyFile"] retain];
+	publicKeyFile = [[decoder decodeObjectForKey:@"publicKeyFile"] retain];
 	directory = [[decoder decodeObjectForKey:@"directory"] retain];
 	baseUrl = [[decoder decodeObjectForKey:@"baseUrl"] retain];
 	uid = [[decoder decodeObjectForKey:@"uid"] retain];
 	savePassword = [decoder decodeBoolForKey:@"savePassword"];
 	webAccessible = [decoder decodeBoolForKey:@"webAccessible"];
+	usePublicKeyAuth = [decoder decodeBoolForKey:@"usePublicKeyAuth"];
 	
 	return self;
 }
@@ -107,7 +119,7 @@
 		[self setDirectory:aDirectory];
 		[self setSavePassword:YES];
 		[self setWebAccessible:NO];
-		
+		[self setUsePublicKeyAuth:NO];
 		[self setProtocolDefaults];
 	}
 
@@ -180,6 +192,8 @@
 	[username release], username = nil;
 	[password release], password = nil;
 	[directory release], directory = nil;
+	[privateKeyFile release], privateKeyFile = nil;
+	[publicKeyFile release], publicKeyFile = nil;
 	[uid release], uid = nil;
 	
 	[super dealloc];
