@@ -287,7 +287,7 @@
 											 directory:[location directory]
 												  port:[location port]];
 	
-	if ([location protocol] == kSecProtocolTypeSSH && [location usePublicKeyAuth])
+	if ([location usePublicKeyAuth])
 	{
 		[record setUsePublicKeyAuth:YES];
 		[record setPrivateKeyFile:[[location privateKeyFile] stringByExpandingTildeInPath]];
@@ -315,14 +315,6 @@
 	[self showTransfersView];
 
 	id <CurlClient>client = [self uploadClientForProtocol:[record protocol]];
-	
-	if ([record password] == nil || [[record password] isEqualToString:@""])
-	{
-		[record setPassword:[self getPasswordFromKeychain:[record hostname] 
-												 username:[record username] 
-													 port:[record port]
-												 protocol:[record protocol]]];
-	}
 	
 	[client upload:record];
 	
@@ -1021,6 +1013,8 @@
 														port:port
 													protocol:protocol];
 }
+
+
 
 
 #pragma mark Transfer Queue Functions

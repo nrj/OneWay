@@ -48,3 +48,8 @@ NSString * const OWServiceDirectory			= @"~/Library/Services";
 NSString * const OWServiceWorkflowTemplate	= @"Contents/Resources/template.wflow";
 NSString * const OWServicePListTemplate		= @"Contents/Resources/template.plist";
 NSString * const OWServiceThumbnail			= @"Contents/Resources/Thumbnail.png";
+
+// Labels
+
+NSString * const PASSWORD_LABEL = @"Password";
+NSString * const PASSPHRASE_LABEL = @"Passphrase";

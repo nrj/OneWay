@@ -19,6 +19,8 @@
 	
 	IBOutlet NSTextField *titleLabel;
 	IBOutlet NSTextField *passwordField;
+	IBOutlet NSTextField *passwordLabel;
+	IBOutlet NSButton *usePublicKeyCheckbox;
 }
 
 @property(readwrite, retain) Upload *upload;
@@ -28,5 +30,10 @@
 - (IBAction)closeSheetOK:(id)sender;
 - (IBAction)closeSheetCancel:(id)sender;
 - (IBAction)closeSheetCancelAll:(id)sender;
+
+- (IBAction)usePublicKeyAuthPressed:(id)sender;
+
+- (void)updatePasswordLabel;
+- (void)updateTitle;
 
 @end

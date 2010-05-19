@@ -64,3 +64,8 @@ NSString * const OWServiceDirectory;
 NSString * const OWServiceWorkflowTemplate;
 NSString * const OWServicePListTemplate;
 NSString * const OWServiceThumbnail;
+
+// Labels
+
+NSString * const PASSWORD_LABEL;
+NSString * const PASSPHRASE_LABEL;

@@ -11,11 +11,6 @@
 #import "NSString+Truncate.h"
 
 
-NSString * const PASSWORD_LABEL = @"Password";
-
-NSString * const PASSPHRASE_LABEL = @"Passphrase";
-
-
 @implementation LocationSheet
 
 
