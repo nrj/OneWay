@@ -59,7 +59,7 @@
 		[messageLabel setStringValue:message];
 		[moreButton setState:[location webAccessible]];
 		
-		[self updatePasswordLabel];
+		[self updateLocationLabels];
 		
 		[self moreOptionsPressed:moreButton];
 	}
@@ -72,19 +72,19 @@
 	
 	[self moreOptionsPressed:moreButton];	
 	
-	[self updatePasswordLabel];
+	[self updateLocationLabels];
 }
 
 - (IBAction)locationTypeSelected:(id)sender
 {
 	int selection = [sender indexOfItem:[sender selectedItem]];
 
-	if (selection == OWLocationTypeFTP)
-	{
-		[location setUsePublicKeyAuth:NO];
-		[location setPrivateKeyFile:nil];
-		[location setPublicKeyFile:nil];
-	}
+	NSLog(@"Selected %d", selection);
+	
+	[moreButton setState:[location webAccessible]];
+	
+	[self moreOptionsPressed:moreButton];
+	[self updateLocationLabels];
 }
 
 - (IBAction)moreOptionsPressed:(id)sender 
@@ -152,20 +152,36 @@
 		[location setPublicKeyFile:nil];		
 	}
 	
-	[self updatePasswordLabel];
+	[self updateLocationLabels];
 }
 
 
-- (void)updatePasswordLabel
+- (void)updateLocationLabels
 {
-	if ([location usePublicKeyAuth])
-	{
-		[passwordLabel setStringValue:PASSPHRASE_LABEL];
+	if ([location type] == OWLocationTypeS3) {
+		
+		[directoryLabel setStringValue:S3DIRECTORY_LABEL];
+		[usernameLabel setStringValue:S3USERNAME_LABEL];
+		[passwordLabel setStringValue:S3PASSWORD_LABEL];
+	}
+	else if ([location type] == OWLocationTypeSFTP) {
+
+		[directoryLabel setStringValue:DIRECTORY_LABEL];
+		[usernameLabel setStringValue:USERNAME_LABEL];
+		
+		if ([location usePublicKeyAuth]) {
+			[passwordLabel setStringValue:PASSPHRASE_LABEL];
+		}
+		else {
+			[passwordLabel setStringValue:PASSWORD_LABEL];
+		}
 	}
 	else
 	{
-		[passwordLabel setStringValue:PASSWORD_LABEL];	
-	}	
+		[directoryLabel setStringValue:DIRECTORY_LABEL];
+		[usernameLabel setStringValue:USERNAME_LABEL];
+		[passwordLabel setStringValue:PASSWORD_LABEL];
+	}
 }
 
 

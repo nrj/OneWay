@@ -30,8 +30,6 @@
 		0B2C5CFA1130C03E006C4F5B /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5CF91130C03E006C4F5B /* delete.png */; };
 		0B2C5D0E1130C287006C4F5B /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5D0D1130C287006C4F5B /* menu.png */; };
 		0B32ADAF119E0C9E00225E8D /* NSMenu+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B32ADAE119E0C9E00225E8D /* NSMenu+Extras.m */; };
-		0B3B2405119E0FA1007E440D /* objective-curl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3B2404119E0FA1007E440D /* objective-curl.framework */; };
-		0B3B2415119E0FAE007E440D /* objective-curl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3B2404119E0FA1007E440D /* objective-curl.framework */; };
 		0B3B244F119E1392007E440D /* FileTransfer+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B244E119E1392007E440D /* FileTransfer+NSCoding.m */; };
 		0B3B2575119F7BFF007E440D /* Controller+TransferMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B2574119F7BFF007E440D /* Controller+TransferMenu.m */; };
 		0B3B264211A089DC007E440D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B3B264111A089DC007E440D /* Credits.html */; };
@@ -53,6 +51,8 @@
 		0B6E85951127631800296175 /* upArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B6E858B1127631800296175 /* upArrow.png */; };
 		0B72FE001156D21D00085DCD /* FinderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B72FDFE1156D21D00085DCD /* FinderItem.m */; };
 		0B72FE021156D22A00085DCD /* remove_services.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0B72FE011156D22A00085DCD /* remove_services.sh */; };
+		0B75A3A511B1E7B6005C2D94 /* objective-curl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B75A3A411B1E7B6005C2D94 /* objective-curl.framework */; };
+		0B75A3A811B1E7BB005C2D94 /* objective-curl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0B75A3A411B1E7B6005C2D94 /* objective-curl.framework */; };
 		0B86BC0B1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = 0B86BC0A1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict */; };
 		0B86BC971157C201005C44E4 /* Controller+Growl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B86BC961157C201005C44E4 /* Controller+Growl.m */; };
 		0B8A6AA8115FD85000DB6E88 /* ProgressMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A6AA7115FD85000DB6E88 /* ProgressMeter.m */; };
@@ -97,7 +97,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0B3B2415119E0FAE007E440D /* objective-curl.framework in Copy Frameworks */,
+				0B75A3A811B1E7BB005C2D94 /* objective-curl.framework in Copy Frameworks */,
 				0BEAD719117C20E500289E36 /* Appscript.framework in Copy Frameworks */,
 				0B46A8FF117CCBCF003F1E87 /* Growl.framework in Copy Frameworks */,
 				0B46A900117CCBCF003F1E87 /* Sparkle.framework in Copy Frameworks */,
@@ -152,7 +152,6 @@
 		0B32ADAD119E0C9E00225E8D /* NSMenu+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMenu+Extras.h"; sourceTree = "<group>"; };
 		0B32ADAE119E0C9E00225E8D /* NSMenu+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMenu+Extras.m"; sourceTree = "<group>"; };
 		0B3824CD114F3B2B00F5E8A4 /* UploadSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadSheet.h; sourceTree = "<group>"; };
-		0B3B2404119E0FA1007E440D /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "/Users/nrj/Library/Frameworks/objective-curl.framework"; sourceTree = "<absolute>"; };
 		0B3B244D119E1392007E440D /* FileTransfer+NSCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FileTransfer+NSCoding.h"; sourceTree = "<group>"; };
 		0B3B244E119E1392007E440D /* FileTransfer+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FileTransfer+NSCoding.m"; sourceTree = "<group>"; };
 		0B3B2573119F7BFF007E440D /* Controller+TransferMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+TransferMenu.h"; sourceTree = "<group>"; };
@@ -180,6 +179,7 @@
 		0B72FDFE1156D21D00085DCD /* FinderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderItem.m; sourceTree = "<group>"; };
 		0B72FDFF1156D21D00085DCD /* FinderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderItem.h; sourceTree = "<group>"; };
 		0B72FE011156D22A00085DCD /* remove_services.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = remove_services.sh; sourceTree = "<group>"; };
+		0B75A3A411B1E7B6005C2D94 /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "/Users/nrj/Library/Frameworks/objective-curl.framework"; sourceTree = "<absolute>"; };
 		0B86BC0A1157BFC0005C44E4 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		0B86BC951157C201005C44E4 /* Controller+Growl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Controller+Growl.h"; sourceTree = "<group>"; };
 		0B86BC961157C201005C44E4 /* Controller+Growl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Controller+Growl.m"; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 				0BEAD701117C20E000289E36 /* Appscript.framework in Frameworks */,
 				0B46A8EA117CCBC7003F1E87 /* Growl.framework in Frameworks */,
 				0B46A8EC117CCBC7003F1E87 /* Sparkle.framework in Frameworks */,
-				0B3B2405119E0FA1007E440D /* objective-curl.framework in Frameworks */,
+				0B75A3A511B1E7B6005C2D94 /* objective-curl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +468,7 @@
 				0BEAD700117C20E000289E36 /* Appscript.framework */,
 				0B46A8E9117CCBC7003F1E87 /* Growl.framework */,
 				0B46A8EB117CCBC7003F1E87 /* Sparkle.framework */,
-				0B3B2404119E0FA1007E440D /* objective-curl.framework */,
+				0B75A3A411B1E7B6005C2D94 /* objective-curl.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";

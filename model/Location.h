@@ -46,7 +46,7 @@
 
 - (id)initWithType:(int)aType hostname:(NSString *)aHostname username:(NSString *)aUsername password:(NSString *)aPassword directory:(NSString *)aDirectory;
 
-- (void)setProtocolDefaults;
+- (void)setLocationDefaults;
 
 - (void)guessBaseUrl;
 

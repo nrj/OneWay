@@ -94,7 +94,7 @@
 	if (value != type)
 	{
 		type = value;
-		[self setProtocolDefaults];		
+		[self setLocationDefaults];		
 	}
 }
 
@@ -120,7 +120,7 @@
 		[self setSavePassword:YES];
 		[self setWebAccessible:NO];
 		[self setUsePublicKeyAuth:NO];
-		[self setProtocolDefaults];
+		[self setLocationDefaults];
 	}
 
 	return self;
@@ -133,17 +133,31 @@
 }
 
 
-- (void)setProtocolDefaults
+- (void)setLocationDefaults
 {
 	if (type == OWLocationTypeSFTP)
 	{
 		[self setProtocol:kSecProtocolTypeSSH];
 		[self setPort:22];
 	}
-	else
+	else if (type == OWLocationTypeFTP)
 	{
 		[self setProtocol:kSecProtocolTypeFTP];
 		[self setPort:21];
+		[self setUsePublicKeyAuth:NO];
+		[self setPrivateKeyFile:nil];
+		[self setPublicKeyFile:nil];		
+	}
+	else if (type == OWLocationTypeS3)
+	{
+		[self setProtocol:kSecProtocolTypeHTTPS];
+		[self setPort:443];
+		[self setHostname:@"s3.amazonaws.com"];
+		[self setDirectory:@""];
+		[self setWebAccessible:YES];
+		[self setUsePublicKeyAuth:NO];
+		[self setPrivateKeyFile:nil];
+		[self setPublicKeyFile:nil];
 	}
 }
 
@@ -180,6 +194,10 @@
 	else if (type == OWLocationTypeFTP)
 	{
 		str = @"FTP";
+	}
+	else if (type == OWLocationTypeS3)
+	{
+		str = @"S3";
 	}
 
 	return str;

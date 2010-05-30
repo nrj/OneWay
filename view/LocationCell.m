@@ -107,6 +107,9 @@
 		case OWLocationTypeSFTP:
 			url = [NSString stringWithFormat:@"sftp://%@/%@", [location hostname], [location directory]];
 			break;
+		case OWLocationTypeS3:
+			url = [NSString stringWithFormat:@"https://%@/%@", [location hostname], [location directory]];
+			break;
 		default:
 			url= @"";
 			break;

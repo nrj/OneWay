@@ -18,6 +18,9 @@
 	IBOutlet NSButton *moreButton;
 	IBOutlet NSBox *moreOptionsBox;
 	IBOutlet NSButton *usePublicKeyCheckbox;
+
+	IBOutlet NSTextField *directoryLabel;
+	IBOutlet NSTextField *usernameLabel;
 	IBOutlet NSTextField *passwordLabel;
 
 	Location *location;
@@ -46,6 +49,6 @@
 - (IBAction)moreOptionsPressed:(id)sender;
 - (IBAction)usePublicKeyAuthPressed:(id)sender;
 
-- (void)updatePasswordLabel;
+- (void)updateLocationLabels;
 
 @end

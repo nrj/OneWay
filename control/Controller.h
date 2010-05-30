@@ -56,7 +56,7 @@
 @property(readwrite, assign) int totalTransfers;
 @property(readwrite, assign) int totalActiveTransfers;
 
-- (id <CurlClient>)uploadClientForProtocol:(SecProtocolType)protocol;
+- (id <CurlClient>)uploadClientForLocation:(Location *)location;
 
 - (void)retryUpload:(Upload *)record;
 - (Upload *)startUpload:(NSArray *)fileList toLocation:(Location *)location;

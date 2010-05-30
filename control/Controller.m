@@ -225,12 +225,13 @@
  * a new will be created and returned.
  *
  */
-- (id <CurlClient>)uploadClientForProtocol:(SecProtocolType)protocol
+- (id <CurlClient>)uploadClientForLocation:(Location *)location
 {
 	for (int i = 0; i < [clients count]; i++)
 	{
-		if ((protocol == kSecProtocolTypeSSH && [[clients objectAtIndex:i] isMemberOfClass:[CurlSFTP class]]) ||
-			(protocol == kSecProtocolTypeFTP && [[clients objectAtIndex:i] isMemberOfClass:[CurlFTP class]]))
+		if (([location type] == OWLocationTypeSFTP && [[clients objectAtIndex:i] isMemberOfClass:[CurlSFTP class]]) ||
+			([location type] == OWLocationTypeFTP && [[clients objectAtIndex:i] isMemberOfClass:[CurlFTP class]]) ||
+			([location type] == OWLocationTypeS3 && [[clients objectAtIndex:i] isMemberOfClass:[CurlS3 class]])) 
 		{
 			return (id <CurlClient>)[clients objectAtIndex:i];
 		}
@@ -238,24 +239,28 @@
 	
 	id <CurlClient>newClient;
 	
-	switch (protocol)
+	switch ([location type])
 	{
-		case kSecProtocolTypeSSH:
+		case OWLocationTypeSFTP:
 			newClient = [[[CurlSFTP alloc] init] autorelease];
 			break;
 			
-		case kSecProtocolTypeFTP:
+		case OWLocationTypeFTP:
 			newClient = [[[CurlFTP alloc] init] autorelease];
+			break;
+			
+		case OWLocationTypeS3:
+			newClient = [[[CurlS3 alloc] init] autorelease];
 			break;
 				
 		default:
-			NSLog(@"uploadClientForProtocol - Unknown Protocol %d", protocol);
+			NSLog(@"uploadClientForLocation - Unknown Type %d", [location type]);
 			return nil;
 	}
 	
 	[newClient setDelegate:self];
 	[newClient setShowProgress:YES];
-	[newClient setVerbose:NO];
+	[newClient setVerbose:YES];
 	
 	[clients addObject:newClient];
 	
@@ -270,7 +275,7 @@
 
 	[self showTransfersView];
 	
-	id <CurlClient>client = [self uploadClientForProtocol:[location protocol]];
+	id <CurlClient>client = [self uploadClientForLocation:location];
 	
 	if ([location password] == nil || [[location password] isEqualToString:@""])
 	{
@@ -314,7 +319,7 @@
 {	
 	[self showTransfersView];
 
-	id <CurlClient>client = [self uploadClientForProtocol:[record protocol]];
+	id <CurlClient>client = [self uploadClientForLocation:[record protocol]];
 	
 	[client upload:record];
 	

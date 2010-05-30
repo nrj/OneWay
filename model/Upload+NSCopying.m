@@ -21,6 +21,7 @@
 	[copy setPassword:password];
 	[copy setPrivateKeyFile:privateKeyFile];
 	[copy setUsePublicKeyAuth:usePublicKeyAuth];
+	[copy setCanUsePublicKeyAuth:canUsePublicKeyAuth];
 	[copy setPath:path];
 	[copy setUrl:url];
 	[copy setPort:port];

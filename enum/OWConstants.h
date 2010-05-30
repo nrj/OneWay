@@ -9,7 +9,8 @@ enum OWTableViewType {
 
 enum OWProtocolType {
 	OWLocationTypeSFTP,
-	OWLocationTypeFTP
+	OWLocationTypeFTP,
+	OWLocationTypeS3
 };
 
 enum OWContextInfo {
@@ -67,5 +68,10 @@ NSString * const OWServiceThumbnail;
 
 // Labels
 
+NSString * const USERNAME_LABEL;
 NSString * const PASSWORD_LABEL;
 NSString * const PASSPHRASE_LABEL;
+NSString * const DIRECTORY_LABEL;
+NSString * const S3DIRECTORY_LABEL;
+NSString * const S3USERNAME_LABEL;
+NSString * const S3PASSWORD_LABEL;

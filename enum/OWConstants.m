@@ -51,5 +51,10 @@ NSString * const OWServiceThumbnail			= @"Contents/Resources/Thumbnail.png";
 
 // Labels
 
+NSString * const USERNAME_LABEL = @"Username";
 NSString * const PASSWORD_LABEL = @"Password";
 NSString * const PASSPHRASE_LABEL = @"Passphrase";
+NSString * const DIRECTORY_LABEL = @"Directory";
+NSString * const S3DIRECTORY_LABEL = @"Bucket";
+NSString * const S3USERNAME_LABEL = @"Access Key";
+NSString * const S3PASSWORD_LABEL = @"Secret Key";
