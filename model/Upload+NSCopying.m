@@ -24,6 +24,7 @@
 	[copy setCanUsePublicKeyAuth:canUsePublicKeyAuth];
 	[copy setPath:path];
 	[copy setUrl:url];
+	[copy setClientType:clientType];
 	[copy setPort:port];
 	[copy setStatus:status];
 	[copy setConnected:connected];

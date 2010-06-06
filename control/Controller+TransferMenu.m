@@ -18,7 +18,12 @@ enum OWTransferMenuTag {
 	OWTransferMenuReload		= 2,
 	OWTransferMenuReveal		= 3,
 	OWTransferMenuURLSubMenu	= 4,
-	OWTransferMenuFileURL		= 5
+	OWTransferMenuFileURL		= 5,
+	OWTransferMenuCreateBookmark = 6,
+	OWTransferMenuEditBookmark  = 7,
+	OWTransferMenuDeleteBookmark = 8,
+	OWTransferMenuShowTransfers = 9,
+	OWTransferMenuShowBookmarks = 10
 };
 
 
@@ -26,25 +31,42 @@ enum OWTransferMenuTag {
 
 
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
-{	
-	if ([transferTable selectedRow] < 0) 
-		return NO;
-	
-	Upload *upload = [transfers objectAtIndex:[transferTable selectedRow]];
-	
+{		
 	BOOL answer = NO;
-
+	
+	Upload *upload = nil;
+	Location *location = nil;
+	
 	switch ([menuItem tag])
 	{
 		case OWTransferMenuStop:
-			answer =  [upload isActive];
+			if ([transferTable selectedRow] < 0) return NO;
+			upload = [transfers objectAtIndex:[transferTable selectedRow]];
+			answer = [upload isActive];
 			break;
 		case OWTransferMenuRemove:
 		case OWTransferMenuReload:
+			if ([transferTable selectedRow] < 0) return NO;
+			upload = [transfers objectAtIndex:[transferTable selectedRow]];
 			answer = ![upload isActive];
 			break;
 		case OWTransferMenuFileURL:
 		case OWTransferMenuReveal:
+			if ([transferTable selectedRow] < 0) return NO;
+			upload = [transfers objectAtIndex:[transferTable selectedRow]];			
+			answer = (upload != nil);
+			break;
+
+		case OWTransferMenuEditBookmark:
+		case OWTransferMenuDeleteBookmark:
+			if ([menuTable selectedRow] < 0) return NO;
+			location = [savedLocations objectAtIndex:[menuTable selectedRow]];			
+			answer = (location != nil);
+			break;
+			
+		case OWTransferMenuCreateBookmark:
+		case OWTransferMenuShowTransfers:
+		case OWTransferMenuShowBookmarks:
 			answer = YES;
 			break;
 		default:

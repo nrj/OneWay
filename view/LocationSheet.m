@@ -158,13 +158,13 @@
 
 - (void)updateLocationLabels
 {
-	if ([location type] == OWLocationTypeS3) {
+	if ([location type] == CURL_CLIENT_S3) {
 		
 		[directoryLabel setStringValue:S3DIRECTORY_LABEL];
 		[usernameLabel setStringValue:S3USERNAME_LABEL];
 		[passwordLabel setStringValue:S3PASSWORD_LABEL];
 	}
-	else if ([location type] == OWLocationTypeSFTP) {
+	else if ([location type] == CURL_CLIENT_SFTP) {
 
 		[directoryLabel setStringValue:DIRECTORY_LABEL];
 		[usernameLabel setStringValue:USERNAME_LABEL];

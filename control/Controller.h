@@ -56,7 +56,7 @@
 @property(readwrite, assign) int totalTransfers;
 @property(readwrite, assign) int totalActiveTransfers;
 
-- (id <CurlClient>)uploadClientForLocation:(Location *)location;
+- (id <CurlClient>)uploadClientForType:(int)clientType;
 
 - (void)retryUpload:(Upload *)record;
 - (Upload *)startUpload:(NSArray *)fileList toLocation:(Location *)location;
@@ -78,8 +78,8 @@
 - (void)updateActiveTransfersLabel;
 
 - (void)toggleView:(id)sender;
-- (void)showTransfersView;
-- (void)showLocationsView;
+- (IBAction)showTransfersView:(id)sender;
+- (IBAction)showLocationsView:(id)sender;
 
 - (void)requireSettingsDirectory;
 

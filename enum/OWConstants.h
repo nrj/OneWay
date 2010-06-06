@@ -7,12 +7,6 @@ enum OWTableViewType {
 	OWTableViewMenuItems
 };
 
-enum OWProtocolType {
-	OWLocationTypeSFTP,
-	OWLocationTypeFTP,
-	OWLocationTypeS3
-};
-
 enum OWContextInfo {
 	OWContextCreateLocation,
 	OWContextCreateLocationAndTransferFiles,

@@ -101,13 +101,13 @@
 	// Draw the url string
 	NSString *url;
 	switch ([location type]) {
-		case OWLocationTypeFTP:
+		case CURL_CLIENT_FTP:
 			url = [NSString stringWithFormat:@"ftp://%@/%@", [location hostname], [location directory]];
 			break;
-		case OWLocationTypeSFTP:
+		case CURL_CLIENT_SFTP:
 			url = [NSString stringWithFormat:@"sftp://%@/%@", [location hostname], [location directory]];
 			break;
-		case OWLocationTypeS3:
+		case CURL_CLIENT_S3:
 			url = [NSString stringWithFormat:@"https://%@/%@", [location hostname], [location directory]];
 			break;
 		default:

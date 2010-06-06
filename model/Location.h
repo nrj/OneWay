@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <objective-curl/objective-curl.h>
 
 @interface Location : NSObject <NSCoding>
 {

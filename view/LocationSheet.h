@@ -6,6 +6,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <objective-curl/objective-curl.h>
 
 @class Location;
 

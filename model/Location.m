@@ -135,12 +135,12 @@
 
 - (void)setLocationDefaults
 {
-	if (type == OWLocationTypeSFTP)
+	if (type == CURL_CLIENT_SFTP)
 	{
 		[self setProtocol:kSecProtocolTypeSSH];
 		[self setPort:22];
 	}
-	else if (type == OWLocationTypeFTP)
+	else if (type == CURL_CLIENT_FTP)
 	{
 		[self setProtocol:kSecProtocolTypeFTP];
 		[self setPort:21];
@@ -148,7 +148,7 @@
 		[self setPrivateKeyFile:nil];
 		[self setPublicKeyFile:nil];		
 	}
-	else if (type == OWLocationTypeS3)
+	else if (type == CURL_CLIENT_S3)
 	{
 		[self setProtocol:kSecProtocolTypeHTTPS];
 		[self setPort:443];
@@ -187,15 +187,15 @@
 {
 	NSString *str;
 	
-	if (type == OWLocationTypeSFTP)
+	if (type == CURL_CLIENT_SFTP)
 	{
 		str = @"SFTP";
 	}
-	else if (type == OWLocationTypeFTP)
+	else if (type == CURL_CLIENT_FTP)
 	{
 		str = @"FTP";
 	}
-	else if (type == OWLocationTypeS3)
+	else if (type == CURL_CLIENT_S3)
 	{
 		str = @"S3";
 	}

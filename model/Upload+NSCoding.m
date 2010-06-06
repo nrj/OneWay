@@ -22,6 +22,7 @@
 	usePublicKeyAuth	= [decoder decodeBoolForKey:@"canUsePublicKeyAuth"];
 	path				= [[decoder decodeObjectForKey:@"path"] retain];
 	url					= [[decoder decodeObjectForKey:@"url"] retain];
+	clientType			= [decoder decodeIntForKey:@"clientType"];
 	port				= [decoder decodeIntForKey:@"port"];
 	status				= [decoder decodeIntForKey:@"status"];
 	connected			= [decoder decodeBoolForKey:@"connected"];
@@ -62,6 +63,7 @@
 	[encoder encodeBool:canUsePublicKeyAuth forKey:@"canUsePublicKeyAuth"];
 	[encoder encodeObject:path forKey:@"path"];
 	[encoder encodeObject:url forKey:@"url"];
+	[encoder encodeInt:clientType forKey:@"clientType"];
 	[encoder encodeInt:port forKey:@"port"];
 	[encoder encodeInt:status forKey:@"status"];
 	[encoder encodeBool:connected forKey:@"connected"];

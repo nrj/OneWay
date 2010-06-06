@@ -225,13 +225,11 @@
  * a new will be created and returned.
  *
  */
-- (id <CurlClient>)uploadClientForLocation:(Location *)location
+- (id <CurlClient>)uploadClientForType:(int)clientType
 {
 	for (int i = 0; i < [clients count]; i++)
 	{
-		if (([location type] == OWLocationTypeSFTP && [[clients objectAtIndex:i] isMemberOfClass:[CurlSFTP class]]) ||
-			([location type] == OWLocationTypeFTP && [[clients objectAtIndex:i] isMemberOfClass:[CurlFTP class]]) ||
-			([location type] == OWLocationTypeS3 && [[clients objectAtIndex:i] isMemberOfClass:[CurlS3 class]])) 
+		if (clientType == [(id <CurlClient>)[clients objectAtIndex:i] clientType]) 
 		{
 			return (id <CurlClient>)[clients objectAtIndex:i];
 		}
@@ -239,22 +237,22 @@
 	
 	id <CurlClient>newClient;
 	
-	switch ([location type])
+	switch (clientType)
 	{
-		case OWLocationTypeSFTP:
+		case CURL_CLIENT_SFTP:
 			newClient = [[[CurlSFTP alloc] init] autorelease];
 			break;
 			
-		case OWLocationTypeFTP:
+		case CURL_CLIENT_FTP:
 			newClient = [[[CurlFTP alloc] init] autorelease];
 			break;
 			
-		case OWLocationTypeS3:
+		case CURL_CLIENT_S3:
 			newClient = [[[CurlS3 alloc] init] autorelease];
 			break;
 				
 		default:
-			NSLog(@"uploadClientForLocation - Unknown Type %d", [location type]);
+			NSLog(@"uploadClientForLocation - Unknown Type %d",  clientType);
 			return nil;
 	}
 	
@@ -273,9 +271,9 @@
 {
 	NSLog(@"Starting upload of %d files to %@", [fileList count], [location hostname]);
 
-	[self showTransfersView];
+	[self showTransfersView:nil];
 	
-	id <CurlClient>client = [self uploadClientForLocation:location];
+	id <CurlClient>client = [self uploadClientForType:[location type]];
 	
 	if ([location password] == nil || [[location password] isEqualToString:@""])
 	{
@@ -317,9 +315,9 @@
 
 - (void)retryUpload:(Upload *)record
 {	
-	[self showTransfersView];
+	[self showTransfersView:nil];
 
-	id <CurlClient>client = [self uploadClientForLocation:[record protocol]];
+	id <CurlClient>client = [self uploadClientForType:[record clientType]];
 	
 	[client upload:record];
 	
@@ -940,16 +938,16 @@
 
 
 - (void)toggleView:(id)sender
-{
+{	
 	int selected = [toggleView selectedSegment];
 	
 	switch (selected)
 	{
 		case 0:
-			[self showTransfersView];
+			[self showTransfersView:nil];
 			break;
 		case 1:
-			[self showLocationsView];
+			[self showLocationsView:nil];
 			break;
 		default:
 			break;
@@ -957,15 +955,19 @@
 }
 
 
-- (void)showTransfersView
+- (IBAction)showTransfersView:(id)sender
 {
+	[window makeKeyAndOrderFront:nil];
+	[toggleView setSelectedSegment:0];
 	[viewStack selectTabViewItemAtIndex:0];
 	[self setupToolbar:OWTransferToolbarIdentifier forWindow:window];
 }
 
 
-- (void)showLocationsView
-{
+- (IBAction)showLocationsView:(id)sender
+{	
+	[window makeKeyAndOrderFront:nil];
+	[toggleView setSelectedSegment:1];
 	[viewStack selectTabViewItemAtIndex:1];
 	[self setupToolbar:OWLocationToolbarIdentifier forWindow:window];
 }
@@ -1121,7 +1123,9 @@
 
 - (IBAction)createLocation:(id)sender
 {
-	Location *newLocation = [[Location alloc] initWithType:OWLocationTypeSFTP 
+	[self showLocationsView:nil];
+	
+	Location *newLocation = [[Location alloc] initWithType:CURL_CLIENT_SFTP 
 												  hostname:@"" 
 												  username:@"" 
 												  password:@"" 
@@ -1146,7 +1150,7 @@
 
 - (void)createLocationAndTransferFiles:(NSArray *)fileList
 {
-	Location *newLocation = [[Location alloc] initWithType:OWLocationTypeSFTP 
+	Location *newLocation = [[Location alloc] initWithType:CURL_CLIENT_SFTP 
 												  hostname:@"" 
 												  username:@""
 												  password:@""
