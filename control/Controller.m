@@ -24,6 +24,7 @@
 #import "UploadName.h"
 #import "LocationMessage.h"
 #import "SystemVersion.h"
+#import "MigrationUtil.h"
 
 
 @implementation Controller
@@ -197,9 +198,14 @@
 			welcomeView = [[WelcomeView alloc] initRelativeToWindow:window];
 			[NSApp runModalForWindow:[welcomeView window]];
 		}
+				
+		// Run migration code, if any.
+		[MigrationUtil migrateFromVersion:lastLaunchedVersion 
+								toVersion:version 
+							   controller:self];
 		
 		// Update the last launched version to this one
-		[[NSUserDefaults standardUserDefaults] setObject:version forKey:@"lastLaunchedVersion"];	
+		[[NSUserDefaults standardUserDefaults] setObject:version forKey:@"lastLaunchedVersion"];
 	}
 	
 	[FinderService updateForLocations:savedLocations];
@@ -258,7 +264,7 @@
 	
 	[newClient setDelegate:self];
 	[newClient setShowProgress:YES];
-	[newClient setVerbose:YES];
+	[newClient setVerbose:NO];
 	
 	[clients addObject:newClient];
 	
@@ -937,6 +943,30 @@
 
 
 
+- (IBAction)clearAllTransfers:(id)sender
+{	
+	NSLog(@"Clearing all active transfers...");
+	
+	NSMutableArray *discardedItems = [NSMutableArray array];
+	
+	for (int i = 0; i < [transfers count]; i++)
+	{
+		Upload *record = (Upload *)[transfers objectAtIndex:i];
+		
+		if (![record isActive])
+		{
+			[discardedItems addObject:record];
+		}
+	}
+	
+	[transfers removeObjectsInArray:discardedItems];	
+	[transferTable deselectAll:nil];
+	[transferTable reloadData];
+	[self updateActiveTransfersLabel];
+}
+
+
+
 - (void)toggleView:(id)sender
 {	
 	int selected = [toggleView selectedSegment];
@@ -955,9 +985,14 @@
 }
 
 
-- (IBAction)showTransfersView:(id)sender
+- (IBAction)bringToFront:(id)sender
 {
 	[window makeKeyAndOrderFront:nil];
+}
+
+- (IBAction)showTransfersView:(id)sender
+{
+	[self bringToFront:nil];
 	[toggleView setSelectedSegment:0];
 	[viewStack selectTabViewItemAtIndex:0];
 	[self setupToolbar:OWTransferToolbarIdentifier forWindow:window];
@@ -966,7 +1001,7 @@
 
 - (IBAction)showLocationsView:(id)sender
 {	
-	[window makeKeyAndOrderFront:nil];
+	[self bringToFront:nil];
 	[toggleView setSelectedSegment:1];
 	[viewStack selectTabViewItemAtIndex:1];
 	[self setupToolbar:OWLocationToolbarIdentifier forWindow:window];

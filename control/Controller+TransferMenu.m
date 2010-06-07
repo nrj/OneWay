@@ -23,7 +23,9 @@ enum OWTransferMenuTag {
 	OWTransferMenuEditBookmark  = 7,
 	OWTransferMenuDeleteBookmark = 8,
 	OWTransferMenuShowTransfers = 9,
-	OWTransferMenuShowBookmarks = 10
+	OWTransferMenuShowBookmarks = 10,
+	OWTransferMenuBringToFront	= 11,
+	OWTransferMenuRemoveAll		= 12
 };
 
 
@@ -67,8 +69,14 @@ enum OWTransferMenuTag {
 		case OWTransferMenuCreateBookmark:
 		case OWTransferMenuShowTransfers:
 		case OWTransferMenuShowBookmarks:
+		case OWTransferMenuBringToFront:
 			answer = YES;
 			break;
+			
+		case OWTransferMenuRemoveAll:
+			answer = [transfers count] > 0;
+			break;
+			
 		default:
 			break;
 	}

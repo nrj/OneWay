@@ -66,6 +66,7 @@
 
 - (IBAction)retrySelectedTransfers:(id)sender;
 - (IBAction)clearSelectedTransfers:(id)sender;
+- (IBAction)clearAllTransfers:(id)sender;
 - (IBAction)stopSelectedTransfers:(id)sender;
 
 
@@ -77,6 +78,7 @@
 - (void)updateContextMenu;
 - (void)updateActiveTransfersLabel;
 
+- (IBAction)bringToFront:(id)sender;
 - (void)toggleView:(id)sender;
 - (IBAction)showTransfersView:(id)sender;
 - (IBAction)showLocationsView:(id)sender;

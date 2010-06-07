@@ -58,6 +58,7 @@
 		0B8A6AA8115FD85000DB6E88 /* ProgressMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8A6AA7115FD85000DB6E88 /* ProgressMeter.m */; };
 		0B8EC5A31128E63100D30FF3 /* Upload+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8EC5A21128E63100D30FF3 /* Upload+NSCoding.m */; };
 		0B8EC5A61128E63C00D30FF3 /* Upload+NSCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8EC5A51128E63C00D30FF3 /* Upload+NSCopying.m */; };
+		0BA5EF5F11BC5D47009C5194 /* MigrationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EF5E11BC5D47009C5194 /* MigrationUtil.m */; };
 		0BAB8D3C1127480A00AD061A /* LocationSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D361127480A00AD061A /* LocationSheet.xib */; };
 		0BAB8D3D1127480A00AD061A /* PasswordSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D381127480A00AD061A /* PasswordSheet.xib */; };
 		0BAB8D3E1127480A00AD061A /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D3A1127480A00AD061A /* WelcomeView.xib */; };
@@ -189,6 +190,8 @@
 		0B8EC5A21128E63100D30FF3 /* Upload+NSCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Upload+NSCoding.m"; sourceTree = "<group>"; };
 		0B8EC5A41128E63C00D30FF3 /* Upload+NSCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Upload+NSCopying.h"; sourceTree = "<group>"; };
 		0B8EC5A51128E63C00D30FF3 /* Upload+NSCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Upload+NSCopying.m"; sourceTree = "<group>"; };
+		0BA5EF5D11BC5D47009C5194 /* MigrationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MigrationUtil.h; sourceTree = "<group>"; };
+		0BA5EF5E11BC5D47009C5194 /* MigrationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MigrationUtil.m; sourceTree = "<group>"; };
 		0BAB8D371127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LocationSheet.xib; sourceTree = "<group>"; };
 		0BAB8D391127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PasswordSheet.xib; sourceTree = "<group>"; };
 		0BAB8D3B1127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/WelcomeView.xib; sourceTree = "<group>"; };
@@ -297,6 +300,8 @@
 		0B4627CE114DB48900198C23 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				0BA5EF5D11BC5D47009C5194 /* MigrationUtil.h */,
+				0BA5EF5E11BC5D47009C5194 /* MigrationUtil.m */,
 				0B19DEA811274C7700B13C62 /* ProgressGradients.h */,
 				0B19DEA911274C7700B13C62 /* ProgressGradients.m */,
 				0B4627CF114DB4A600198C23 /* SystemVersion.h */,
@@ -724,6 +729,7 @@
 				0B3B244F119E1392007E440D /* FileTransfer+NSCoding.m in Sources */,
 				0B3B2575119F7BFF007E440D /* Controller+TransferMenu.m in Sources */,
 				0BB62BD711A21491008CF2AD /* NSString+URLEncoding.m in Sources */,
+				0BA5EF5F11BC5D47009C5194 /* MigrationUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
