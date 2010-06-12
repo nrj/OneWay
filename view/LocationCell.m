@@ -57,8 +57,24 @@
 	// Outter most rectangle
 	NSRect outterRect = NSInsetRect([self drawingRectForBounds:cellFrame], 10.5, 7.5);
 	
+	
+	
 	// Make the icon
-	NSImage *icon = [NSImage imageNamed:@"networkDrive"];
+	NSString *imageName = nil;
+	switch ([location type])
+	{
+		default:
+		case CURL_CLIENT_FTP:
+			imageName = @"ftp-drive";
+			break;
+		case CURL_CLIENT_SFTP:
+			imageName = @"sftp-drive";
+			break;
+		case CURL_CLIENT_S3:
+			imageName = @"cloud-drive";
+			break;
+	}
+	NSImage *icon = [NSImage imageNamed:imageName];
 	NSSize iconSize = NSMakeSize(32, 32);
 	[icon setSize:iconSize];
 	[icon setFlipped:YES];

@@ -411,21 +411,22 @@
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
-								<object class="NSMenuItem" key="NSMenuItem" id="443658465">
+								<object class="NSMenuItem" key="NSMenuItem" id="429195754">
 									<reference key="NSMenu" ref="826281948"/>
-									<string key="NSTitle">SFTP - SSH File Transfer Protocol</string>
+									<string key="NSTitle">FTP - File Transfer Protocol</string>
 									<string key="NSKeyEquiv"/>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<int key="NSState">1</int>
-									<object class="NSCustomResource" key="NSOnImage" id="704416121">
+									<object class="NSCustomResource" key="NSImage">
 										<string key="NSClassName">NSImage</string>
-										<string key="NSResourceName">NSMenuCheckmark</string>
+										<string key="NSResourceName">ftp-icon</string>
 									</object>
-									<object class="NSCustomResource" key="NSMixedImage" id="704022685">
+									<object class="NSCustomResource" key="NSMixedImage" id="298432601">
 										<string key="NSClassName">NSImage</string>
 										<string key="NSResourceName">NSMenuMixedState</string>
 									</object>
 									<string key="NSAction">_popUpItemAction:</string>
+									<int key="NSTag">1</int>
 									<reference key="NSTarget" ref="370182789"/>
 								</object>
 								<bool key="NSMenuItemRespectAlignment">YES</bool>
@@ -433,14 +434,17 @@
 									<string key="NSTitle">OtherViews</string>
 									<object class="NSMutableArray" key="NSMenuItems">
 										<bool key="EncodedWithXMLCoder">YES</bool>
-										<reference ref="443658465"/>
-										<object class="NSMenuItem" id="429195754">
+										<reference ref="429195754"/>
+										<object class="NSMenuItem" id="443658465">
 											<reference key="NSMenu" ref="826281948"/>
-											<string key="NSTitle">FTP - File Transfer Protocol</string>
+											<string key="NSTitle">SFTP - SSH File Transfer Protocol</string>
 											<string key="NSKeyEquiv"/>
 											<int key="NSMnemonicLoc">2147483647</int>
-											<reference key="NSOnImage" ref="704416121"/>
-											<reference key="NSMixedImage" ref="704022685"/>
+											<object class="NSCustomResource" key="NSImage">
+												<string key="NSClassName">NSImage</string>
+												<string key="NSResourceName">sftp-icon</string>
+											</object>
+											<reference key="NSMixedImage" ref="298432601"/>
 											<string key="NSAction">_popUpItemAction:</string>
 											<reference key="NSTarget" ref="370182789"/>
 										</object>
@@ -449,9 +453,13 @@
 											<string key="NSTitle">Amazon S3 - Simple Storage Service</string>
 											<string key="NSKeyEquiv"/>
 											<int key="NSMnemonicLoc">2147483647</int>
-											<reference key="NSOnImage" ref="704416121"/>
-											<reference key="NSMixedImage" ref="704022685"/>
+											<object class="NSCustomResource" key="NSImage">
+												<string key="NSClassName">NSImage</string>
+												<string key="NSResourceName">cloud-icon</string>
+											</object>
+											<reference key="NSMixedImage" ref="298432601"/>
 											<string key="NSAction">_popUpItemAction:</string>
+											<int key="NSTag">2</int>
 											<reference key="NSTarget" ref="370182789"/>
 										</object>
 									</object>
@@ -847,22 +855,6 @@
 					<int key="connectionID">178</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedIndex: location.type</string>
-						<reference key="source" ref="2658033"/>
-						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="2658033"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">selectedIndex: location.type</string>
-							<string key="NSBinding">selectedIndex</string>
-							<string key="NSKeyPath">location.type</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">183</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">messageLabel</string>
 						<reference key="source" ref="1001"/>
@@ -1174,6 +1166,22 @@
 					</object>
 					<int key="connectionID">293</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedTag: location.type</string>
+						<reference key="source" ref="2658033"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="2658033"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">selectedTag: location.type</string>
+							<string key="NSBinding">selectedTag</string>
+							<string key="NSKeyPath">location.type</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">296</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1228,7 +1236,6 @@
 							<reference ref="469702086"/>
 							<reference ref="233702296"/>
 							<reference ref="238868838"/>
-							<reference ref="331146472"/>
 							<reference ref="768109151"/>
 							<reference ref="273108373"/>
 							<reference ref="534111540"/>
@@ -1239,6 +1246,7 @@
 							<reference ref="776128934"/>
 							<reference ref="951746258"/>
 							<reference ref="72517573"/>
+							<reference ref="331146472"/>
 						</object>
 						<reference key="parent" ref="501213035"/>
 					</object>
@@ -1429,16 +1437,11 @@
 						<reference key="object" ref="826281948"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="443658465"/>
-							<reference ref="429195754"/>
 							<reference ref="982238677"/>
+							<reference ref="429195754"/>
+							<reference ref="443658465"/>
 						</object>
 						<reference key="parent" ref="370182789"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">154</int>
-						<reference key="object" ref="443658465"/>
-						<reference key="parent" ref="826281948"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">155</int>
@@ -1630,6 +1633,11 @@
 						<reference key="object" ref="982238677"/>
 						<reference key="parent" ref="826281948"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">154</int>
+						<reference key="object" ref="443658465"/>
+						<reference key="parent" ref="826281948"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1710,7 +1718,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1106, 582}, {367, 54}}</string>
+					<string>{{1041, 770}, {367, 57}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1720,9 +1728,9 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1133, 221}, {407, 379}}</string>
+					<string>{{1032, 487}, {407, 379}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1133, 221}, {407, 379}}</string>
+					<string>{{1032, 487}, {407, 379}}</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1797,7 +1805,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">293</int>
+			<int key="maxID">296</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -77,7 +77,7 @@
 
 - (IBAction)locationTypeSelected:(id)sender
 {
-	int selection = [sender indexOfItem:[sender selectedItem]];
+	int selection = [[sender selectedItem] tag];
 
 	NSLog(@"Selected %d", selection);
 	

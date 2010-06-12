@@ -26,7 +26,6 @@
 		0B2BF0D5119CB32800E3DDEA /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BF0D3119CB32800E3DDEA /* LICENSE */; };
 		0B2BF0D6119CB32800E3DDEA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BF0D4119CB32800E3DDEA /* README.md */; };
 		0B2BF258119CF9EF00E3DDEA /* TransferTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BF257119CF9EF00E3DDEA /* TransferTable.m */; };
-		0B2C5BEE11309699006C4F5B /* networkDrive.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5BED11309699006C4F5B /* networkDrive.png */; };
 		0B2C5BF211309774006C4F5B /* LocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C5BF111309774006C4F5B /* LocationCell.m */; };
 		0B2C5CF71130BFB0006C4F5B /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5CF61130BFB0006C4F5B /* add.png */; };
 		0B2C5CFA1130C03E006C4F5B /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C5CF91130C03E006C4F5B /* delete.png */; };
@@ -82,6 +81,12 @@
 		0BD6195411344D7E00050C25 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD6195311344D7E00050C25 /* Security.framework */; };
 		0BDA867B11C4231100BCA6B6 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDA867A11C4231100BCA6B6 /* Growl.framework */; };
 		0BDA868311C4231700BCA6B6 /* Growl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDA867A11C4231100BCA6B6 /* Growl.framework */; };
+		0BDB4A1411C4302800456AE1 /* cloud-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDB4A1111C4302800456AE1 /* cloud-icon.png */; };
+		0BDB4A1511C4302800456AE1 /* ftp-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDB4A1211C4302800456AE1 /* ftp-icon.png */; };
+		0BDB4A1611C4302800456AE1 /* sftp-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDB4A1311C4302800456AE1 /* sftp-icon.png */; };
+		0BDB4A2811C437E900456AE1 /* cloud-drive.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDB4A2511C437E900456AE1 /* cloud-drive.png */; };
+		0BDB4A2911C437E900456AE1 /* ftp-drive.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDB4A2611C437E900456AE1 /* ftp-drive.png */; };
+		0BDB4A2A11C437E900456AE1 /* sftp-drive.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDB4A2711C437E900456AE1 /* sftp-drive.png */; };
 		0BDD2795113252E0005D7F84 /* retry.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDD2794113252E0005D7F84 /* retry.png */; };
 		0BE6F80011323F6900AA2BCF /* FailureSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6F7FF11323F6900AA2BCF /* FailureSheet.m */; };
 		0BE6F88C1132473A00AA2BCF /* restart_finder.sh in Resources */ = {isa = PBXBuildFile; fileRef = 0BE6F88B1132473A00AA2BCF /* restart_finder.sh */; };
@@ -145,7 +150,6 @@
 		0B2BF0D4119CB32800E3DDEA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		0B2BF256119CF9EF00E3DDEA /* TransferTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTable.h; sourceTree = "<group>"; };
 		0B2BF257119CF9EF00E3DDEA /* TransferTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransferTable.m; sourceTree = "<group>"; };
-		0B2C5BED11309699006C4F5B /* networkDrive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = networkDrive.png; sourceTree = "<group>"; };
 		0B2C5BF011309774006C4F5B /* LocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCell.h; sourceTree = "<group>"; };
 		0B2C5BF111309774006C4F5B /* LocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCell.m; sourceTree = "<group>"; };
 		0B2C5CF61130BFB0006C4F5B /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
@@ -222,6 +226,12 @@
 		0BD618BA113446B400050C25 /* EMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychain.m; sourceTree = "<group>"; };
 		0BD6195311344D7E00050C25 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0BDA867A11C4231100BCA6B6 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Frameworks/Growl.framework; sourceTree = "<group>"; };
+		0BDB4A1111C4302800456AE1 /* cloud-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-icon.png"; sourceTree = "<group>"; };
+		0BDB4A1211C4302800456AE1 /* ftp-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ftp-icon.png"; sourceTree = "<group>"; };
+		0BDB4A1311C4302800456AE1 /* sftp-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sftp-icon.png"; sourceTree = "<group>"; };
+		0BDB4A2511C437E900456AE1 /* cloud-drive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-drive.png"; sourceTree = "<group>"; };
+		0BDB4A2611C437E900456AE1 /* ftp-drive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ftp-drive.png"; sourceTree = "<group>"; };
+		0BDB4A2711C437E900456AE1 /* sftp-drive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sftp-drive.png"; sourceTree = "<group>"; };
 		0BDD2794113252E0005D7F84 /* retry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retry.png; sourceTree = "<group>"; };
 		0BE6F7FE11323F6900AA2BCF /* FailureSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FailureSheet.h; sourceTree = "<group>"; };
 		0BE6F7FF11323F6900AA2BCF /* FailureSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FailureSheet.m; sourceTree = "<group>"; };
@@ -315,11 +325,16 @@
 		0B6E8581112762F400296175 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				0BDB4A2511C437E900456AE1 /* cloud-drive.png */,
+				0BDB4A2611C437E900456AE1 /* ftp-drive.png */,
+				0BDB4A2711C437E900456AE1 /* sftp-drive.png */,
+				0BDB4A1111C4302800456AE1 /* cloud-icon.png */,
+				0BDB4A1211C4302800456AE1 /* ftp-icon.png */,
+				0BDB4A1311C4302800456AE1 /* sftp-icon.png */,
 				0BDD2794113252E0005D7F84 /* retry.png */,
 				0B2C5D0D1130C287006C4F5B /* menu.png */,
 				0B2C5CF91130C03E006C4F5B /* delete.png */,
 				0B2C5CF61130BFB0006C4F5B /* add.png */,
-				0B2C5BED11309699006C4F5B /* networkDrive.png */,
 				0B6E85821127631800296175 /* clear.png */,
 				0B6E85841127631800296175 /* log.png */,
 				0B6E85861127631800296175 /* OneWay.icns */,
@@ -641,7 +656,6 @@
 				0B6E85931127631800296175 /* stop.png in Resources */,
 				0B6E85941127631800296175 /* transfers.png in Resources */,
 				0B6E85951127631800296175 /* upArrow.png in Resources */,
-				0B2C5BEE11309699006C4F5B /* networkDrive.png in Resources */,
 				0B2C5CF71130BFB0006C4F5B /* add.png in Resources */,
 				0B2C5CFA1130C03E006C4F5B /* delete.png in Resources */,
 				0B2C5D0E1130C287006C4F5B /* menu.png in Resources */,
@@ -656,6 +670,12 @@
 				0B2BF0D5119CB32800E3DDEA /* LICENSE in Resources */,
 				0B2BF0D6119CB32800E3DDEA /* README.md in Resources */,
 				0B3B264211A089DC007E440D /* Credits.html in Resources */,
+				0BDB4A1411C4302800456AE1 /* cloud-icon.png in Resources */,
+				0BDB4A1511C4302800456AE1 /* ftp-icon.png in Resources */,
+				0BDB4A1611C4302800456AE1 /* sftp-icon.png in Resources */,
+				0BDB4A2811C437E900456AE1 /* cloud-drive.png in Resources */,
+				0BDB4A2911C437E900456AE1 /* ftp-drive.png in Resources */,
+				0BDB4A2A11C437E900456AE1 /* sftp-drive.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
