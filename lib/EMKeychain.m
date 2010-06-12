@@ -136,7 +136,7 @@ static BOOL _logErrors;
 		
 		return nil;
 	}
-	NSString *passwordString = [NSString stringWithCString:password length:passwordLength];
+	NSString *passwordString = [NSString stringWithUTF8String:password];
 	SecKeychainItemFreeContent(NULL, password);
 	
 	return [EMGenericKeychainItem genericKeychainItem:item forServiceName:serviceNameString username:usernameString password:passwordString];
@@ -224,7 +224,7 @@ static BOOL _logErrors;
 		
 		return nil;
 	}
-	NSString *passwordString = [NSString stringWithCString:password length:passwordLength];
+	NSString *passwordString = [NSString stringWithUTF8String:password];
 	SecKeychainItemFreeContent(NULL, password);
 	
 	return [EMInternetKeychainItem internetKeychainItem:item forServer:serverString username:usernameString password:passwordString path:pathString port:port protocol:protocol];

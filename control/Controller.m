@@ -437,9 +437,9 @@
 
 
 /*
- * Called when the upload starts the connection process.
+ * Called when curl starts the connection process.
  */
-- (void)uploadIsConnecting:(Upload *)record
+- (void)curlIsConnecting:(RemoteObject *)record
 {	
 	[record setStatusMessage:[NSString stringWithFormat:@"Connecting to %@ ...", [record hostname]]];
 	
@@ -447,6 +447,17 @@
 	[self updateActiveTransfersLabel];
 }
 
+
+/*
+ * Called when curl has connected to the host.
+ */
+- (void)curlDidConnect:(RemoteObject *)record
+{
+	[record setStatusMessage:[NSString stringWithFormat:@"Connected to %@ ...", [record hostname]]];
+	
+	[transferTable reloadData];	
+	[self updateActiveTransfersLabel];
+}
 
 
 /*
@@ -522,7 +533,7 @@
  */
 - (void)uploadDidFail:(Upload *)record message:(NSString *)message
 {	
-	NSLog(@"Upload Failed: %@", message);
+	NSLog(@"Upload Failed: %d %@", [record status], message);
 	
 	if ([record status] == TRANSFER_STATUS_FAILED)
 	{

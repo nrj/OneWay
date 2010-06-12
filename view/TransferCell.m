@@ -117,17 +117,17 @@
 										 progressOutline.origin.y + 0.5,
 										 progress, NSProgressIndicatorPreferredSmallThickness - .5);
 		
-		if ([record status] == TRANSFER_STATUS_UPLOADING)
-		{
-			[[ProgressGradients progressBlueGradient] drawInRect:progressFill angle:90];
-		}
-		else if ([record status] == TRANSFER_STATUS_CANCELLED || [record status] == TRANSFER_STATUS_FAILED)
+		if ([record status] == TRANSFER_STATUS_CANCELLED || [record status] == TRANSFER_STATUS_FAILED)
 		{
 			[[ProgressGradients progressRedGradient] drawInRect:progressFill angle:90];
 		}
 		else if ([record status] == TRANSFER_STATUS_COMPLETE)
 		{
 			[[ProgressGradients progressLightGreenGradient] drawInRect:progressFill angle:90];
+		}
+		else
+		{
+			[[ProgressGradients progressBlueGradient] drawInRect:progressFill angle:90];
 		}
 	}
 	

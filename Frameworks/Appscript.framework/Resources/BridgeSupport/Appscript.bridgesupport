@@ -1,0 +1,174 @@
+<?xml version='1.0'?>
+<!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
+<signatures version='0.9'>
+<depends_on path='/System/Library/Frameworks/Carbon.framework'/>
+<depends_on path='/System/Library/Frameworks/CoreFoundation.framework'/>
+<depends_on path='/System/Library/Frameworks/Foundation.framework'/>
+<depends_on path='/System/Library/Frameworks/CoreServices.framework'/>
+<depends_on path='/System/Library/Frameworks/ApplicationServices.framework'/>
+<constant name='kASErrorBriefMessageKey' type='@'/>
+<constant name='kASErrorDomain' type='@'/>
+<constant name='kASErrorExpectedTypeKey' type='@'/>
+<constant name='kASErrorFailedEvent' type='@'/>
+<constant name='kASErrorNumberKey' type='@'/>
+<constant name='kASErrorOffendingObjectKey' type='@'/>
+<constant name='kASErrorStringKey' type='@'/>
+<enum name='AS_typeUInt16' value='1970497650'/>
+<enum name='AS_typeUInt64' value='1969450861'/>
+<enum name='AS_typeUTF16ExternalRepresentation' value='1970549046'/>
+<enum name='NSINTEGER_DEFINED' value='1'/>
+<enum name='NSIntegerMax' value='2147483647'/>
+<enum name='NSIntegerMin' value='-2147483648'/>
+<enum name='NSUIntegerMax' value='4294967295'/>
+<enum name='kAEMDontUnpack' value='0'/>
+<enum name='kAEMTargetCurrent' value='1'/>
+<enum name='kAEMTargetDescriptor' value='5'/>
+<enum name='kAEMTargetEppcURL' value='3'/>
+<enum name='kAEMTargetFileURL' value='2'/>
+<enum name='kAEMTargetPID' value='4'/>
+<enum name='kAEMUnpackAsItem' value='1'/>
+<enum name='kAEMUnpackAsList' value='2'/>
+<enum name='kASRelaunchAlways' value='2'/>
+<enum name='kASRelaunchNever' value='0'/>
+<enum name='kASRelaunchSpecial' value='1'/>
+<enum name='kASTargetBundleID' value='3'/>
+<enum name='kASTargetCurrent' value='1'/>
+<enum name='kASTargetDescriptor' value='6'/>
+<enum name='kASTargetName' value='2'/>
+<enum name='kASTargetPID' value='5'/>
+<enum name='kASTargetURL' value='4'/>
+<enum name='typeFSS' value='1718842144'/>
+<function name='AEMGetDefaultUnitTypeDefinitions'>
+<arg type='^@'/>
+<arg type='^@'/>
+</function>
+<function name='AEMSendMessageThreadSafe'>
+<arg type='^{AEDesc=I^^{OpaqueAEDataStorageType}}'/>
+<arg type='^{AEDesc=I^^{OpaqueAEDataStorageType}}'/>
+<arg type='l'/>
+<arg type='l'/>
+<retval type='l'/>
+</function>
+<function name='ASDescriptionForError'>
+<arg type='l'/>
+<retval type='@'/>
+</function>
+<function name='disposeSpecifierModule'/>
+<function name='disposeTestModule'/>
+<function name='initSpecifierModule'/>
+<function name='initTestModule'/>
+<class name='AEMApplication'>
+<method selector='abortTransactionWithError:'>
+<retval type='B'/>
+</method>
+<method selector='beginTransactionWithError:'>
+<retval type='B'/>
+</method>
+<method selector='beginTransactionWithSession:error:'>
+<retval type='B'/>
+</method>
+<method selector='endTransactionWithError:'>
+<retval type='B'/>
+</method>
+<method selector='isEqual:'>
+<retval type='B'/>
+</method>
+<method selector='processExistsForDescriptor:' class_method='true'>
+<retval type='B'/>
+</method>
+<method selector='processExistsForEppcURL:' class_method='true'>
+<retval type='B'/>
+</method>
+<method selector='processExistsForFileURL:' class_method='true'>
+<retval type='B'/>
+</method>
+<method selector='processExistsForPID:' class_method='true'>
+<retval type='B'/>
+</method>
+<method selector='reconnect'>
+<retval type='B'/>
+</method>
+<method selector='reconnectWithError:'>
+<retval type='B'/>
+</method>
+<method selector='setCreateProc:'>
+<arg function_pointer='true' type='^?' index='0'>
+<arg type='L'/>
+<arg type='L'/>
+<arg type='^{AEDesc=I^^{OpaqueAEDataStorageType}}'/>
+<arg type='s'/>
+<arg type='l'/>
+<arg type='^{AEDesc=I^^{OpaqueAEDataStorageType}}'/>
+<retval type='s'/>
+</arg>
+</method>
+<method selector='setSendProc:'>
+<arg function_pointer='true' type='^?' index='0'>
+<arg type='^{AEDesc=I^^{OpaqueAEDataStorageType}}'/>
+<arg type='^{AEDesc=I^^{OpaqueAEDataStorageType}}'/>
+<arg type='l'/>
+<arg type='l'/>
+<retval type='l'/>
+</arg>
+</method>
+</class>
+<class name='AEMEvent'>
+<method selector='initWithEvent:codecs:sendProc:'>
+<arg function_pointer='true' type='^?' index='2'>
+<arg type='^{AEDesc=I^^{OpaqueAEDataStorageType}}'/>
+<arg type='^{AEDesc=I^^{OpaqueAEDataStorageType}}'/>
+<arg type='l'/>
+<arg type='l'/>
+<retval type='l'/>
+</arg>
+</method>
+</class>
+<class name='ASAppDataBase'>
+<method selector='connectWithError:'>
+<retval type='B'/>
+</method>
+<method selector='isRunning'>
+<retval type='B'/>
+</method>
+<method selector='launchApplicationWithError:'>
+<retval type='B'/>
+</method>
+</class>
+<class name='ASBoolean'>
+<method selector='boolValue'>
+<retval type='B'/>
+</method>
+<method selector='initWithBool:'>
+<arg type='B' index='0'/>
+</method>
+</class>
+<class name='ASReference'>
+<method selector='abortTransactionWithError:'>
+<retval type='B'/>
+</method>
+<method selector='beginTransactionWithError:'>
+<retval type='B'/>
+</method>
+<method selector='beginTransactionWithSession:error:'>
+<retval type='B'/>
+</method>
+<method selector='endTransactionWithError:'>
+<retval type='B'/>
+</method>
+<method selector='isRunning'>
+<retval type='B'/>
+</method>
+<method selector='launchApplication'>
+<retval type='B'/>
+</method>
+<method selector='launchApplicationWithError:'>
+<retval type='B'/>
+</method>
+<method selector='reconnectApplication'>
+<retval type='B'/>
+</method>
+<method selector='reconnectApplicationWithError:'>
+<retval type='B'/>
+</method>
+</class>
+</signatures>

@@ -19,6 +19,8 @@
 	
 	IBOutlet NSTextField *titleLabel;
 	IBOutlet NSTextField *passwordField;
+
+	IBOutlet NSTextField *usernameLabel;
 	IBOutlet NSTextField *passwordLabel;
 	IBOutlet NSButton *usePublicKeyCheckbox;
 }
@@ -33,7 +35,7 @@
 
 - (IBAction)usePublicKeyAuthPressed:(id)sender;
 
-- (void)updatePasswordLabel;
+- (void)updateLabels;
 - (void)updateTitle;
 
 @end

@@ -7,6 +7,8 @@
 
 #import "PasswordSheet.h"
 #import "OWConstants.h"
+#import <objective-curl/CurlClientType.h>
+
 
 @implementation PasswordSheet
 
@@ -36,8 +38,7 @@
 - (void)awakeFromNib
 {
 	[self updateTitle];
-	
-	[self updatePasswordLabel];
+	[self updateLabels];
 }
 
 
@@ -48,7 +49,8 @@
 		[upload release];
 		upload = [aUpload retain];
 		
-		[self updatePasswordLabel];
+
+		[self updateLabels];
 		[self updateTitle];
 	}
 }
@@ -102,20 +104,33 @@
 	}
 	
 	[self updateTitle];
-	[self updatePasswordLabel];
+	[self updateLabels];
 }
 
 
-- (void)updatePasswordLabel
+- (void)updateLabels
 {
-	if ([upload usePublicKeyAuth])
-	{
-		[passwordLabel setStringValue:PASSPHRASE_LABEL];
+	if ([upload clientType] == CURL_CLIENT_S3) {
+
+		[usernameLabel setStringValue:S3USERNAME_LABEL];
+		[passwordLabel setStringValue:S3PASSWORD_LABEL];
+	}
+	else if ([upload clientType] == CURL_CLIENT_SFTP) {
+
+		[usernameLabel setStringValue:USERNAME_LABEL];
+		
+		if ([upload usePublicKeyAuth]) {
+			[passwordLabel setStringValue:PASSPHRASE_LABEL];
+		}
+		else {
+			[passwordLabel setStringValue:PASSWORD_LABEL];
+		}
 	}
 	else
 	{
-		[passwordLabel setStringValue:PASSWORD_LABEL];	
-	}	
+		[usernameLabel setStringValue:USERNAME_LABEL];
+		[passwordLabel setStringValue:PASSWORD_LABEL];
+	}
 }
 
 
