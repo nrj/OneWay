@@ -33,7 +33,7 @@
 {
 	if (self = [super initWithWindowNibName:@"LocationSheet"])
 	{
-		message = [[NSString alloc] initWithFormat:@""];
+		message = @"";
 		messageColor = [NSColor darkGrayColor];
 	}
 	return self;
@@ -54,25 +54,24 @@
 	if (aLocation != location)
 	{
 		[location release];
-		location = [aLocation retain];
-		
-		[messageLabel setStringValue:message];
-		[moreButton setState:[location webAccessible]];
-		
-		[self updateLocationLabels];
-		
-		[self moreOptionsPressed:moreButton];
+		location = [aLocation retain];		
 	}
+	
+	[messageLabel setStringValue:message];
+	[moreButton setState:[location webAccessible]];
+	
+	[self updateLocationLabels];	
+	[self moreOptionsPressed:moreButton];
 }
 
 
 - (void)awakeFromNib
 {
+	[messageLabel setStringValue:message];
 	[moreButton setState:[location webAccessible]];
 	
-	[self moreOptionsPressed:moreButton];	
-	
 	[self updateLocationLabels];
+	[self moreOptionsPressed:moreButton];
 }
 
 - (IBAction)locationTypeSelected:(id)sender

@@ -94,7 +94,7 @@
 	if (value != type)
 	{
 		type = value;
-		[self setLocationDefaults];		
+		[self setLocationDefaults];
 	}
 }
 
@@ -106,6 +106,21 @@
 		[self guessBaseUrl];
 	}
 }
+
+
+- (void)setDirectory:(NSString *)value
+{
+	if (value != directory) {
+			
+		[directory release];
+		directory = [value copy];
+		
+		if (webAccessible) {
+			[self guessBaseUrl];
+		}
+	}
+}
+
 
 - (id)initWithType:(int)aType hostname:(NSString *)aHostname username:(NSString *)aUsername password:(NSString *)aPassword directory:(NSString *)aDirectory
 {		
@@ -164,7 +179,10 @@
 
 - (void)guessBaseUrl
 {
-	if (webAccessible && ([self baseUrl] == nil || [[self baseUrl] length] == 0 || [[self baseUrl] isEqualToString:@"http://"]))
+	if (webAccessible && ([self baseUrl] == nil || 
+						  [[self baseUrl] length] == 0 || 
+						  [[self baseUrl] isEqualToString:@"http://"] ||
+						  [[self baseUrl] isEqualToString:[NSString stringWithFormat:@"http://%@", hostname]]))
 	{
 		NSString *url = @"";
 		

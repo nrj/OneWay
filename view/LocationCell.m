@@ -50,7 +50,7 @@
 	}
 	
 	
-	const int HORIZONTAL_PADDING = 10;
+	const int HORIZONTAL_PADDING = 15;
 	const int VERTICAL_PADDING = 3;
 	
 	
@@ -74,6 +74,7 @@
 			imageName = @"cloud-drive";
 			break;
 	}
+	
 	NSImage *icon = [NSImage imageNamed:imageName];
 	NSSize iconSize = NSMakeSize(32, 32);
 	[icon setSize:iconSize];
