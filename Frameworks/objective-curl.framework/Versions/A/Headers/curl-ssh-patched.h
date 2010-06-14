@@ -39,9 +39,9 @@
  * in a subdirectory of the source tree.
  */
 
-#include <curl/curlver.h>			/* libcurl version defines   */
-#include <curl/curlbuild.h>		/* libcurl build definitions */
-#include <curl/curlrules.h>			/* libcurl rules enforcement */
+#import "objective-curlver.h"			/* libcurl version defines   */
+#import "objective-curlbuild.h"	/* libcurl build definitions */
+#import "objective-curlrules.h"			/* libcurl rules enforcement */
 
 /*
  * Define WIN32 when build target is Win32 API
