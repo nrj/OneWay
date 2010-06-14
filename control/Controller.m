@@ -281,7 +281,7 @@
 	
 	id <CurlClient>client = [self uploadClientForType:[location type]];
 	
-	if ([location password] == nil || [[location password] isEqualToString:@""])
+	if (([location password] == nil || [[location password] isEqualToString:@""]) && ![location usePublicKeyAuth])
 	{
 		[location setPassword:[self getPasswordFromKeychain:[location hostname] 
 												   username:[location username] 
@@ -323,6 +323,18 @@
 {	
 	[self showTransfersView:nil];
 
+	if (([record password] == nil || [[record password] isEqualToString:@""]) && ![record usePublicKeyAuth])
+	{
+		[record setPassword:[self getPasswordFromKeychain:[record hostname] 
+												 username:[record username] 
+													 port:[record port] 
+												 protocol:[record protocol]]];
+		
+		[self updateQueuedUploadsUsername:[record username] 
+							  andPassword:[record password] 
+								  withURI:[record uri]];
+	}
+	
 	id <CurlClient>client = [self uploadClientForType:[record clientType]];
 	
 	[client upload:record];
@@ -876,18 +888,19 @@
 	int i = [[transferTable selectedRowIndexes] firstIndex];
 	
 	NSMapTable *selectedTransfers = [NSMapTable mapTableWithWeakToWeakObjects]; 
-
-	while (i != NSNotFound)
-	{
+	NSPointerArray *uploadsToRetryNow = [NSPointerArray pointerArrayWithWeakObjects]; 
+	
+	while (i != NSNotFound) {
+		
 		Upload *record = (Upload *)[transfers objectAtIndex:i];
 		
-		if (![selectedTransfers objectForKey:[record uri]])
-		{
+		if (![selectedTransfers objectForKey:[record uri]]) {
+			
 			[selectedTransfers setObject:record forKey:[record uri]];
-			[self retryUpload:record];
+			[uploadsToRetryNow addPointer:record];
 		}
-		else
-		{
+		else {
+			
 			[retryQueue addPointer:record];
 			[record setStatus:TRANSFER_STATUS_QUEUED];
 			[record setStatusMessage:@"Queued"];
@@ -895,8 +908,13 @@
 		
 		i = [[transferTable selectedRowIndexes] indexGreaterThanIndex:i];
 	}
-									 
-	[transferTable reloadData];	
+	
+	[transferTable reloadData];
+	
+	for (i = 0; i < [uploadsToRetryNow count]; i++) {
+		
+		[self retryUpload:(Upload *)[uploadsToRetryNow pointerAtIndex:i]];
+	}
 	
 	[self updateActiveTransfersLabel];
 }
@@ -1059,13 +1077,25 @@
 
 - (void)savePasswordToKeychain:(NSString *)password forHostname:(NSString *)hostname username:(NSString *)username port:(int)port protocol:(SecProtocolType)protocol
 {
-	[EMInternetKeychainItem addInternetKeychainItemForServer:hostname 
-												withUsername:username
-													password:password
-														path:@""
-														port:port
-													protocol:protocol];
+	EMInternetKeychainItem *existing = [EMInternetKeychainItem internetKeychainItemForServer:hostname 
+																				withUsername:username 
+																						path:@"" 
+																						port:port 
+																					protocol:protocol];
+	
+	if (existing) {
+		[existing setPassword:password];
+	}
+	else {
+		[EMInternetKeychainItem addInternetKeychainItemForServer:hostname 
+													withUsername:username
+														password:password
+															path:@""
+															port:port
+														protocol:protocol];
+	}
 }
+
 
 
 

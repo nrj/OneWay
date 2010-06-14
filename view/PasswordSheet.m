@@ -65,8 +65,8 @@
 	}
 	else
 	{
-		[titleLabel setStringValue:[NSString stringWithFormat:@"Enter Login for %@",
-									[upload hostname]]];
+		NSString *path = [[upload hostname] stringByAppendingPathComponent:[upload path]];
+		[titleLabel setStringValue:[NSString stringWithFormat:@"Enter Login for %@", path]];
 	}
 }
 

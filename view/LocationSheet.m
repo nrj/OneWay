@@ -74,23 +74,22 @@
 	[self moreOptionsPressed:moreButton];
 }
 
+
 - (IBAction)locationTypeSelected:(id)sender
 {
 	int selection = [[sender selectedItem] tag];
 
 	NSLog(@"Selected %d", selection);
 	
-	[moreButton setState:[location webAccessible]];
-	
-	[self moreOptionsPressed:moreButton];
 	[self updateLocationLabels];
 }
+
 
 - (IBAction)moreOptionsPressed:(id)sender 
 { 
 	NSWindow *window = [sender window]; 
 	NSRect frame = [window frame];
-	CGFloat sizeChange = [moreOptionsBox frame].size.height + 10; 
+	CGFloat sizeChange = [moreOptionsBox frame].size.height + 5; 
 	switch ([sender state]) 
 	{ 
 		case NSOnState:

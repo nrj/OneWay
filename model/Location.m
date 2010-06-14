@@ -108,20 +108,6 @@
 }
 
 
-- (void)setDirectory:(NSString *)value
-{
-	if (value != directory) {
-			
-		[directory release];
-		directory = [value copy];
-		
-		if (webAccessible) {
-			[self guessBaseUrl];
-		}
-	}
-}
-
-
 - (id)initWithType:(int)aType hostname:(NSString *)aHostname username:(NSString *)aUsername password:(NSString *)aPassword directory:(NSString *)aDirectory
 {		
 	if (self = [super init]) 
@@ -169,7 +155,6 @@
 		[self setPort:443];
 		[self setHostname:@"s3.amazonaws.com"];
 		[self setDirectory:@""];
-		[self setWebAccessible:YES];
 		[self setUsePublicKeyAuth:NO];
 		[self setPrivateKeyFile:nil];
 		[self setPublicKeyFile:nil];

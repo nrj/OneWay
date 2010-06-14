@@ -13,13 +13,13 @@
 
 + (NSString *)newLocationMessage
 {
-	return @"New Menu Item";	
+	return @"Create New Bookmark";	
 }
 
 
 + (NSString *)editLocationMessage
 {
-	return @"Edit Menu Item";
+	return @"Editing Bookmark";
 }
 
 

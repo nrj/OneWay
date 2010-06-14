@@ -19,7 +19,7 @@
 	username			= [[decoder decodeObjectForKey:@"username"] retain];
 	privateKeyFile		= [[decoder decodeObjectForKey:@"privateKeyFile"] retain];
 	usePublicKeyAuth	= [decoder decodeBoolForKey:@"usePublicKeyAuth"];
-	usePublicKeyAuth	= [decoder decodeBoolForKey:@"canUsePublicKeyAuth"];
+	canUsePublicKeyAuth	= [decoder decodeBoolForKey:@"canUsePublicKeyAuth"];
 	path				= [[decoder decodeObjectForKey:@"path"] retain];
 	url					= [[decoder decodeObjectForKey:@"url"] retain];
 	clientType			= [decoder decodeIntForKey:@"clientType"];

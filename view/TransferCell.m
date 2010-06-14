@@ -57,9 +57,27 @@
 	
 	// Outter most rectangle
 	NSRect outterRect = NSInsetRect([self drawingRectForBounds:cellFrame], 10.5, 7.5);
-	
+	NSString *imageName = nil;
 	// Make the icon
-	NSImage *icon = [NSImage imageNamed:@"upArrow"];
+	switch ([record status]) {
+
+		default:
+		case TRANSFER_STATUS_UPLOADING:
+			imageName = @"uploading";
+			break;
+			
+		case TRANSFER_STATUS_COMPLETE:
+			imageName = @"finished";
+			break;
+			
+		case TRANSFER_STATUS_FAILED:
+		case TRANSFER_STATUS_LOGIN_DENIED:
+		case TRANSFER_STATUS_CANCELLED:
+			imageName = @"warning";			
+	}
+	
+	NSImage *icon = [NSImage imageNamed:imageName];
+	
 	NSSize iconSize = NSMakeSize(32, 32);
 	[icon setSize:iconSize];
 	[icon setFlipped:YES];
