@@ -996,6 +996,27 @@
 
 
 
+- (void)forceClearAllTransfers
+{	
+	NSLog(@"Force clearing all transfers...");
+	
+	NSMutableArray *discardedItems = [NSMutableArray array];
+	
+	for (int i = 0; i < [transfers count]; i++)
+	{
+		Upload *record = (Upload *)[transfers objectAtIndex:i];
+		
+		[discardedItems addObject:record];
+	}
+	
+	[transfers removeObjectsInArray:discardedItems];
+	[transferTable deselectAll:nil];
+	[transferTable reloadData];
+	[self updateActiveTransfersLabel];
+}
+
+
+
 - (void)toggleView:(id)sender
 {	
 	int selected = [toggleView selectedSegment];

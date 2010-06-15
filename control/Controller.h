@@ -66,6 +66,7 @@
 
 - (IBAction)retrySelectedTransfers:(id)sender;
 - (IBAction)clearSelectedTransfers:(id)sender;
+- (void)forceClearAllTransfers;
 - (IBAction)clearAllTransfers:(id)sender;
 - (IBAction)stopSelectedTransfers:(id)sender;
 

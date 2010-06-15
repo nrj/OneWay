@@ -35,7 +35,8 @@ const int ONEWAY_VERSION_0_5_4 = 54;
 		
 		NSLog(@"Running migration code for %@ -> %@", fromVersion, toVersion);
 		
-		[(Controller *)ctrl clearAllTransfers:nil];
+		[(Controller *)ctrl forceClearAllTransfers];
+		[(Controller *)ctrl saveUserData];
 	}	
 }
 
