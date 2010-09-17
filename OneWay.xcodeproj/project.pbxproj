@@ -21,6 +21,7 @@
 		0B19DEB211274C7700B13C62 /* WelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEAD11274C7700B13C62 /* WelcomeView.m */; };
 		0B19DEB511274C8C00B13C62 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEB411274C8C00B13C62 /* Location.m */; };
 		0B19DEC711274CFB00B13C62 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B19DEC511274CFB00B13C62 /* NSString+UUID.m */; };
+		0B295C4C12440DDA00A284A0 /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B295C4B12440DDA00A284A0 /* more.png */; };
 		0B2BF0D5119CB32800E3DDEA /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BF0D3119CB32800E3DDEA /* LICENSE */; };
 		0B2BF0D6119CB32800E3DDEA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BF0D4119CB32800E3DDEA /* README.md */; };
 		0B2BF258119CF9EF00E3DDEA /* TransferTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2BF257119CF9EF00E3DDEA /* TransferTable.m */; };
@@ -55,6 +56,7 @@
 		0B8EC5A31128E63100D30FF3 /* Upload+NSCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8EC5A21128E63100D30FF3 /* Upload+NSCoding.m */; };
 		0B8EC5A61128E63C00D30FF3 /* Upload+NSCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8EC5A51128E63C00D30FF3 /* Upload+NSCopying.m */; };
 		0BA5EF5F11BC5D47009C5194 /* MigrationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA5EF5E11BC5D47009C5194 /* MigrationUtil.m */; };
+		0BA80F241243FB1800405663 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA80F231243FB1800405663 /* EMKeychainItem.m */; };
 		0BAB8D3C1127480A00AD061A /* LocationSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D361127480A00AD061A /* LocationSheet.xib */; };
 		0BAB8D3D1127480A00AD061A /* PasswordSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D381127480A00AD061A /* PasswordSheet.xib */; };
 		0BAB8D3E1127480A00AD061A /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAB8D3A1127480A00AD061A /* WelcomeView.xib */; };
@@ -76,7 +78,6 @@
 		0BD4D56C11C5A97800863EB5 /* objective-curl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD4D56B11C5A97800863EB5 /* objective-curl.framework */; };
 		0BD4D58011C5A98100863EB5 /* objective-curl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD4D56B11C5A97800863EB5 /* objective-curl.framework */; };
 		0BD618861134446500050C25 /* NSString+Truncate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618851134446500050C25 /* NSString+Truncate.m */; };
-		0BD618BB113446B400050C25 /* EMKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD618BA113446B400050C25 /* EMKeychain.m */; };
 		0BD6195411344D7E00050C25 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD6195311344D7E00050C25 /* Security.framework */; };
 		0BDA867B11C4231100BCA6B6 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDA867A11C4231100BCA6B6 /* Growl.framework */; };
 		0BDA868311C4231700BCA6B6 /* Growl.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDA867A11C4231100BCA6B6 /* Growl.framework */; };
@@ -147,6 +148,7 @@
 		0B19DEB411274C8C00B13C62 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		0B19DEC411274CFB00B13C62 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
 		0B19DEC511274CFB00B13C62 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
+		0B295C4B12440DDA00A284A0 /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
 		0B2BF0D3119CB32800E3DDEA /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		0B2BF0D4119CB32800E3DDEA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		0B2BF256119CF9EF00E3DDEA /* TransferTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransferTable.h; sourceTree = "<group>"; };
@@ -196,6 +198,8 @@
 		0B8EC5A51128E63C00D30FF3 /* Upload+NSCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Upload+NSCopying.m"; sourceTree = "<group>"; };
 		0BA5EF5D11BC5D47009C5194 /* MigrationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MigrationUtil.h; sourceTree = "<group>"; };
 		0BA5EF5E11BC5D47009C5194 /* MigrationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MigrationUtil.m; sourceTree = "<group>"; };
+		0BA80F221243FB1800405663 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
+		0BA80F231243FB1800405663 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		0BAB8D371127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LocationSheet.xib; sourceTree = "<group>"; };
 		0BAB8D391127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PasswordSheet.xib; sourceTree = "<group>"; };
 		0BAB8D3B1127480A00AD061A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/WelcomeView.xib; sourceTree = "<group>"; };
@@ -223,8 +227,6 @@
 		0BD4D56B11C5A97800863EB5 /* objective-curl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "objective-curl.framework"; path = "Frameworks/objective-curl.framework"; sourceTree = "<group>"; };
 		0BD618841134446500050C25 /* NSString+Truncate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Truncate.h"; sourceTree = "<group>"; };
 		0BD618851134446500050C25 /* NSString+Truncate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Truncate.m"; sourceTree = "<group>"; };
-		0BD618B9113446B400050C25 /* EMKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychain.h; sourceTree = "<group>"; };
-		0BD618BA113446B400050C25 /* EMKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychain.m; sourceTree = "<group>"; };
 		0BD6195311344D7E00050C25 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0BDA867A11C4231100BCA6B6 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Frameworks/Growl.framework; sourceTree = "<group>"; };
 		0BDB4A1111C4302800456AE1 /* cloud-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-icon.png"; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 		0B6E8581112762F400296175 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				0B295C4B12440DDA00A284A0 /* more.png */,
 				0BE7C27211C59C7E00A25212 /* uploading.png */,
 				0BE7C26311C59B2700A25212 /* finished.png */,
 				0BE7C26411C59B2700A25212 /* warning.png */,
@@ -369,8 +372,8 @@
 		0BAB8D0C112744DB00AD061A /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				0BD618B9113446B400050C25 /* EMKeychain.h */,
-				0BD618BA113446B400050C25 /* EMKeychain.m */,
+				0BA80F221243FB1800405663 /* EMKeychainItem.h */,
+				0BA80F231243FB1800405663 /* EMKeychainItem.m */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				0BE7C26511C59B2700A25212 /* finished.png in Resources */,
 				0BE7C26611C59B2700A25212 /* warning.png in Resources */,
 				0BE7C27311C59C7E00A25212 /* uploading.png in Resources */,
+				0B295C4C12440DDA00A284A0 /* more.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -739,7 +743,6 @@
 				0B2C5BF211309774006C4F5B /* LocationCell.m in Sources */,
 				0BE6F80011323F6900AA2BCF /* FailureSheet.m in Sources */,
 				0BD618861134446500050C25 /* NSString+Truncate.m in Sources */,
-				0BD618BB113446B400050C25 /* EMKeychain.m in Sources */,
 				0BB3ED3811444656008CC281 /* UploadName.m in Sources */,
 				0BCBD273114D597D006C12BE /* FinderService.m in Sources */,
 				0B4627A2114D9DCA00198C23 /* LocationMessage.m in Sources */,
@@ -758,6 +761,7 @@
 				0B3B2575119F7BFF007E440D /* Controller+TransferMenu.m in Sources */,
 				0BB62BD711A21491008CF2AD /* NSString+URLEncoding.m in Sources */,
 				0BA5EF5F11BC5D47009C5194 /* MigrationUtil.m in Sources */,
+				0BA80F241243FB1800405663 /* EMKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,10 +824,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Frameworks\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -848,10 +849,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Frameworks\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -876,9 +874,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$HOME/Library/Frameworks\"/**",
-					"\"$(SRCROOT)/../../../Library/Frameworks\"",
-					"\"$(SRCROOT)/Frameworks\"",
+					"\"$(SRCROOT)/Frameworks\"/**",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -901,9 +897,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$HOME/Library/Frameworks\"/**",
-					"\"$(SRCROOT)/../../../Library/Frameworks\"",
-					"\"$(SRCROOT)/Frameworks\"",
+					"\"$(SRCROOT)/Frameworks\"/**",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

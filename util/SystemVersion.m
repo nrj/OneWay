@@ -7,33 +7,40 @@
 
 #import "SystemVersion.h"
 
-
 @implementation SystemVersion
+
+
++ (void)alertSystemVersion {
+	
+	long versMaj, versMin, versBugFix;
+	
+	Gestalt(gestaltSystemVersionMajor, &versMaj);
+	Gestalt(gestaltSystemVersionMinor, &versMin);
+	Gestalt(gestaltSystemVersionBugFix, &versBugFix);
+	
+	NSBeginInformationalAlertSheet(@"MAC OS X ", @"OK", nil, nil, nil, nil, nil, nil, nil, [NSString stringWithFormat:@"%d %d %d", versMaj, versMin, versBugFix]);
+}
+	
+
 
 + (BOOL)isLeopard
 {
-    OSErr err;
-    SInt32 versionMajor, versionMinor;
-    
-	if ((err = Gestalt(gestaltSystemVersionMajor, &versionMajor)) != noErr || (err = Gestalt(gestaltSystemVersionMinor, &versionMinor)) != noErr)
-	{
-		NSLog(@"Unable to determine system version");
-    }
-    
-    return (versionMajor == 10 && versionMinor == 5);
+	long versMaj, versMin;
+	
+	Gestalt(gestaltSystemVersionMajor, &versMaj);
+	Gestalt(gestaltSystemVersionMinor, &versMin);
+	
+	return (versMaj == 10l && versMin == 5l);
 }
 
 + (BOOL)isSnowLeopard
 {
-    OSErr err;
-    SInt32 versionMajor, versionMinor;
-    
-	if ((err = Gestalt(gestaltSystemVersionMajor, &versionMajor)) != noErr || (err = Gestalt(gestaltSystemVersionMinor, &versionMinor)) != noErr)
-	{
-		NSLog(@"Unable to determine system version");
-    }
-    
-    return (versionMajor == 10 && versionMinor == 6);
+	long versMaj, versMin;
+	
+	Gestalt(gestaltSystemVersionMajor, &versMaj);
+	Gestalt(gestaltSystemVersionMinor, &versMin);
+	
+	return (versMaj == 10l && versMin == 6l);
 }
 
 @end

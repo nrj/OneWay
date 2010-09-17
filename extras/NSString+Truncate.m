@@ -10,7 +10,6 @@
 
 @implementation NSString (Truncate)
 
-
 - (NSString *)stringWithTruncatingToLength:(unsigned)length {
 	return [self stringTruncatedToLength:length direction:NSTruncateStart];
 }

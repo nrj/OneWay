@@ -20,7 +20,7 @@
 #import "UploadSheet.h"
 #import "PasswordSheet.h"
 #import "FailureSheet.h"
-#import "EMKeychain.h"
+#import "EMKeychainItem.h"
 #import "UploadName.h"
 #import "LocationMessage.h"
 #import "SystemVersion.h"
@@ -188,15 +188,15 @@
 	if (![version isEqualToString:lastLaunchedVersion])
 	{
 		// First time launching the app, or we've updated to a new version
-		
 		BOOL versionNeedsFinderRestart = [[[[NSBundle mainBundle] infoDictionary] 
 										   objectForKey:@"OWVersionRequiresFinderRestart"] boolValue];
 		
-		if ((version == nil || versionNeedsFinderRestart) && [SystemVersion isLeopard])
+		if ((!lastLaunchedVersion || versionNeedsFinderRestart) && [SystemVersion isLeopard])
 		{
 			// If this is the first time, or an update that requires a Finder restart do it
 			welcomeView = [[WelcomeView alloc] initRelativeToWindow:window];
 			[NSApp runModalForWindow:[welcomeView window]];
+			[welcomeView release];
 		}
 				
 		// Run migration code, if any.
@@ -322,8 +322,8 @@
 - (void)retryUpload:(Upload *)record
 {	
 	[self showTransfersView:nil];
-
-	if (([record password] == nil || [[record password] isEqualToString:@""]) && ![record usePublicKeyAuth])
+	
+	if ((![record password] || [[record password] isEqualToString:@""]) && ![record usePublicKeyAuth])
 	{
 		[record setPassword:[self getPasswordFromKeychain:[record hostname] 
 												 username:[record username] 
@@ -662,7 +662,7 @@
 
 				Upload *upload = [self startUpload:fileList toLocation:location];
 				
-				if ([location savePassword])
+				if ([location password] && ![[location password] isEqualToString:@""] && [location savePassword])
 				{
 					[passwordsToSave setObject:[NSNumber numberWithInt:1] 
 										forKey:upload];
@@ -682,10 +682,36 @@
 												atIndex:[savedLocations count] - 1];
 				[FinderService reload];
 				
+				if ([location password] && ![[location password] isEqualToString:@""] && [location savePassword]) {
+					
+					[self savePasswordToKeychain:[location password] 
+									 forHostname:[location hostname] 
+										username:[location username] 
+											port:[location port] 
+										protocol:[location protocol]];
+				}
+				
+								
 				break;
 			}
-
+			// Updated an existing location
+			case OWContextUpdateLocation:
+			{
+				[FinderService updateForLocations:savedLocations];
+				[FinderService reload];
 				
+				if ([location password] && ![[location password] isEqualToString:@""] && [location savePassword]) {
+					
+					[self savePasswordToKeychain:[location password] 
+									 forHostname:[location hostname] 
+										username:[location username] 
+											port:[location port] 
+										protocol:[location protocol]];
+				}
+				
+				break;
+			}
+			
 			// Delete a location
 			case OWContextDeleteLocation:
 			{				
@@ -694,16 +720,6 @@
 				[FinderService reload];
 				break;
 			}
-				
-			
-			// Updated an existing location
-			case OWContextUpdateLocation:
-			{
-				[FinderService updateForLocations:savedLocations];
-				[FinderService reload];
-				break;
-			}
-			
 				
 			default:
 				NSLog(@"Unknown context in locationSheetDidEnd:returnCode:contextInfo:");
@@ -751,7 +767,7 @@
 	
 	if (returnCode == 1)		// Try Again
 	{
-		if ([passwordSheet savePassword])
+		if ([upload password] && ![[upload password] isEqualToString:@""] && [passwordSheet savePassword])
 		{
 			[passwordsToSave setObject:[NSNumber numberWithInt:1] 
 								forKey:upload];
@@ -1090,8 +1106,8 @@
 																							path:@""
 																							port:port 
 																						protocol:protocol];
-	
-	return [keychainItem password] ? [keychainItem password] : @"";	
+			  
+	return [keychainItem password] ? [keychainItem password] : @"";
 }
 
 

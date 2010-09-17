@@ -29,14 +29,14 @@
 	<key>SUFeedURL</key>
 	<string>http://goto11.net/oneway/appcast</string>
 	<key>SUEnableAutomaticChecks</key>
-	<string>YES</string>
+	<true/>
 	<key>SUShowReleaseNotes</key>
-	<string>YES</string>
+	<true/>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_public.pem</string>
 	<key>CFBundleVersion</key>
-	<string>0.5.4</string>
+	<string>0.5.5</string>
 	<key>OWVersionRequiresFinderRestart</key>
-	<string>NO</string>
+	<true/>
 </dict>
 </plist>

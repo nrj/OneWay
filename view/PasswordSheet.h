@@ -18,6 +18,7 @@
 	BOOL savePassword;
 	
 	IBOutlet NSTextField *titleLabel;
+	IBOutlet NSTextField *subtitleLabel;
 	IBOutlet NSTextField *passwordField;
 
 	IBOutlet NSTextField *usernameLabel;

@@ -60,13 +60,14 @@
 {
 	if ([upload usePublicKeyAuth])
 	{
-		[titleLabel setStringValue:[NSString stringWithFormat:@"Enter Passphrase for %@", 
-									[upload privateKeyFile]]];
+		[titleLabel setStringValue:@"Private key is password protected"];
+		[subtitleLabel setStringValue:@"Enter the passphrase for the private key file"];  
 	}
 	else
 	{
+		[titleLabel setStringValue:@"Invalid Login"];
 		NSString *path = [[upload hostname] stringByAppendingPathComponent:[upload path]];
-		[titleLabel setStringValue:[NSString stringWithFormat:@"Enter Login for %@", path]];
+		[subtitleLabel setStringValue:[NSString stringWithFormat:@"Enter login for %@", path]];
 	}
 }
 
