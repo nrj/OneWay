@@ -281,7 +281,7 @@
 	
 	id <CurlClient>client = [self uploadClientForType:[location type]];
 	
-	if (([location password] == nil || [[location password] isEqualToString:@""]) && ![location usePublicKeyAuth])
+	if (([location password] == nil || [[location password] isEqualToString:@""]))
 	{
 		[location setPassword:[self getPasswordFromKeychain:[location hostname] 
 												   username:[location username] 
@@ -323,7 +323,7 @@
 {	
 	[self showTransfersView:nil];
 	
-	if ((![record password] || [[record password] isEqualToString:@""]) && ![record usePublicKeyAuth])
+	if ((![record password] || [[record password] isEqualToString:@""]))
 	{
 		[record setPassword:[self getPasswordFromKeychain:[record hostname] 
 												 username:[record username] 
