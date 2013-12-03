@@ -1,3 +1,5 @@
+![OneWay Icon](https://raw.github.com/nrj/OneWay/master/Icon.png)
+
 ![OneWay Screenshot](https://raw.github.com/nrj/OneWay/master/Screenshot.png)
 
 ## License
