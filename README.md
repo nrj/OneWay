@@ -1,6 +1,12 @@
+## OneWay
+
 ![OneWay Icon](https://raw.github.com/nrj/OneWay/master/Icon.png)
 
+OneWay is a contextual FTP, SFTP and Amazon S3 uploader for Mac OS X. With OneWay you can upload files directly from your Finder and easily add frequently used locations to your context menu. Just select the files or folders you wish to upload and then right-click.
+
 ![OneWay Screenshot](https://raw.github.com/nrj/OneWay/master/Screenshot.png)
+
+OneWay supports Mac OS X 10.5 and up.
 
 ## License
 
