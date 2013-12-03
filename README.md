@@ -1,4 +1,4 @@
-![OneWay Screenshot](http://goto11.net/assets/images/oneway-github-screen.png)
+![OneWay Screenshot](https://raw.github.com/nrj/OneWay/master/Screenshot.png)
 
 ## License
 
